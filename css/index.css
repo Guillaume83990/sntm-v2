@@ -81,64 +81,113 @@
   font-size:inherit;font-weight:400;letter-spacing:normal;line-height:1;
 }
 
-/* Petite, très espacée : elle signe, elle ne crie pas. */
+/* 1. La signature. Petite, très espacée : elle situe la marque
+   sans disputer la vedette à l'activité. */
 .hero__brand{
   font-family:var(--font-sans);font-weight:500;
-  font-size:clamp(.75rem,1.05vw,.9375rem);
+  font-size:clamp(.8125rem,1.15vw,1rem);
   letter-spacing:.52em;text-indent:.52em;
-  color:rgba(255,255,255,.82);
+  color:rgba(255,255,255,.86);
   line-height:1;
 }
 .hero__stroke{
   display:block;width:1px;
-  height:clamp(1.75rem,3.5vw,3rem);
+  height:clamp(1.25rem,2.6vw,2.25rem);
   background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,0));
-  margin-block:clamp(1.1rem,2.2vw,1.75rem);
+  margin-block:clamp(.9rem,1.8vw,1.35rem);
 }
-/* La case commune : sa hauteur est celle de la baseline, donc
-   les verbes ne peuvent jamais empiéter sur ce qui suit. */
+
+/* 2. L'activité. C'est désormais le premier plan typographique,
+   et la seule ligne que le scroll ne remplace jamais. */
+.hero__activity{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.875rem,5.4vw,4rem);
+  line-height:1.02;letter-spacing:-.035em;
+  max-width:17ch;
+  margin-inline:auto;
+  text-wrap:balance;
+}
+
+/* 3. La signature de marque, et les verbes qui la relaient.
+   Case commune : hauteur figée sur la baseline, donc les verbes
+   ne peuvent jamais pousser ce qui suit. */
 .hero__slot{
-  display:grid;
-  place-items:center;
+  display:grid;place-items:center;
   width:100%;
+  margin-top:clamp(1rem,2vw,1.6rem);
+  min-height:calc(1.5em + .2rem);
 }
 .hero__claim,.hero__verbs{grid-area:1/1;width:100%}
 
 .hero__claim{
   font-family:var(--font-display);font-weight:500;
-  font-size:clamp(2rem,6.4vw,4.5rem);
-  line-height:1.02;letter-spacing:-.035em;
-  max-width:15ch;
-  margin-inline:auto;
+  font-size:clamp(1.0625rem,1.9vw,1.5rem);
+  line-height:1.35;letter-spacing:-.015em;
+  color:rgba(255,255,255,.9);
+  max-width:34ch;margin-inline:auto;
   text-wrap:balance;
-}
-.hero__services{
-  font-family:var(--font-sans);font-size:var(--fs-label);font-weight:500;
-  letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(255,255,255,.62);
-  max-width:46ch;line-height:1.9;
-  margin-top:clamp(1.35rem,2.6vw,2rem);
 }
 
 .hero__verbs{
-  display:grid;
-  place-items:center;
-  align-content:center;
+  display:grid;place-items:center;align-content:center;
   pointer-events:none;
 }
 .hero__verbs span{
   grid-area:1/1;
   font-family:var(--font-display);font-weight:500;
-  font-size:clamp(1.75rem,5.6vw,4rem);
-  line-height:1.02;letter-spacing:-.035em;
+  font-size:clamp(1.125rem,2.2vw,1.75rem);
+  line-height:1.35;letter-spacing:.06em;
   text-transform:uppercase;
-  white-space:nowrap;
-  max-width:100%;
+  white-space:nowrap;max-width:100%;
 }
 
+/* 4. Les environnements, en second plan. */
+.hero__sectors{
+  font-family:var(--font-sans);font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.62);
+  max-width:44ch;line-height:1.9;
+  margin-top:clamp(1.25rem,2.4vw,1.85rem);
+}
+
+/* 5. La localisation, encore un cran en dessous, signalée par le
+   losange de la marque. */
+.hero__place{
+  display:flex;align-items:center;gap:.6rem;
+  font-family:var(--font-sans);font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+  margin-top:clamp(.5rem,1vw,.75rem);
+}
+.hero__place::before{
+  content:"";flex:none;
+  width:7px;aspect-ratio:1;
+  background:var(--color-accent);
+  clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+}
+
+/* 6. Les deux actions. */
 .hero__actions{
-  display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;
-  margin-top:clamp(2.25rem,4.5vw,3.5rem);
+  display:flex;flex-wrap:wrap;justify-content:center;gap:.85rem;
+  margin-top:clamp(1.75rem,3.4vw,2.75rem);
+}
+
+/* Écran bas ou petit téléphone : on resserre sans rien retirer,
+   la hiérarchie reste entière. */
+@media (max-width:480px){
+  .hero__activity{font-size:clamp(1.75rem,8vw,2.25rem);max-width:14ch}
+  .hero__claim{font-size:1rem;max-width:28ch}
+  .hero__sectors{font-size:.625rem;letter-spacing:.14em;max-width:30ch;line-height:1.8}
+  .hero__actions{width:100%;flex-direction:column;align-items:stretch}
+  .hero__actions .btn{width:100%}
+}
+@media (max-height:700px) and (orientation:landscape){
+  .hero__stroke{height:1rem;margin-block:.6rem}
+  .hero__activity{font-size:clamp(1.5rem,4.6vh,2.25rem)}
+  .hero__claim{font-size:.9375rem}
+  .hero__sectors{margin-top:.75rem}
+  .hero__place{display:none}
+  .hero__actions{margin-top:1rem}
 }
 
 /* ---- Pied : l'état de la surface, et le filet de progression ---- */

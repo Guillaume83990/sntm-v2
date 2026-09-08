@@ -43,7 +43,7 @@
      HEADER
      ============================================================ -->
 <header class="site-header" id="siteHeader">
-  <a class="site-header__logo" href="/" aria-label="SNTM SAP, retour à l'accueil">
+  <a class="site-header__logo" href="index.html" aria-label="SNTM SAP, retour à l'accueil">
     <img src="images/logo-sntm.webp" alt="SNTM SAP" width="180" height="120">
   </a>
 
@@ -69,7 +69,7 @@
 <div class="menu" id="menu" hidden>
   <nav class="menu__nav" aria-label="Navigation principale">
     <ul class="menu__list">
-      <li><a href="/" aria-current="page">Accueil</a></li>
+      <li><a href="index.html" aria-current="page">Accueil</a></li>
       <li><a href="nettoyage-professionnel-saint-tropez.html">Nettoyage professionnel</a></li>
       <li><a href="traitement-des-sols-saint-tropez.html">Traitement des sols</a></li>
       <li><a href="remise-en-etat-apres-travaux-saint-tropez.html">Remise en état après travaux</a></li>
@@ -133,26 +133,38 @@
 
     <div class="hero__inner">
       <h1 class="hero__h1">
+        <!-- 1. La signature : elle signe, elle ne crie pas. -->
         <span class="hero__brand" id="heroBrand">SNTM</span>
         <span class="hero__stroke" aria-hidden="true"></span>
-        <!-- Une seule case pour la baseline et les verbes : ils se
-             relaient au même endroit et ne peuvent pas déborder sur
-             le reste, quelle que soit la largeur d'écran. -->
-        <span class="hero__slot">
-          <span class="hero__claim" id="heroClaim">L'exigence du propre</span>
-          <span class="hero__verbs" id="heroVerbs" aria-hidden="true">
-            <span>Nettoyer</span>
-            <span>Entretenir</span>
-            <span>Préserver</span>
-            <span>Restaurer</span>
-          </span>
-        </span>
-        <span class="hero__services" id="heroServices">Nettoyage professionnel · Entretien · Traitement des sols · Saint-Tropez</span>
+
+        <!-- 2. L'activité, en clair et en premier plan typographique.
+             C'est la seule ligne qui ne bouge jamais pendant le scroll. -->
+        <span class="hero__activity" id="heroActivity">Nettoyage &amp; entretien professionnel</span>
       </h1>
 
+      <!-- 3. La signature de marque. Elle partage sa case avec les
+           verbes du métier : ils se relaient au même endroit et ne
+           peuvent donc pas déborder sur le reste. -->
+      <p class="hero__slot">
+        <span class="hero__claim" id="heroClaim">L'exigence du propre, dans chaque détail.</span>
+        <span class="hero__verbs" id="heroVerbs" aria-hidden="true">
+          <span>Nettoyer</span>
+          <span>Entretenir</span>
+          <span>Préserver</span>
+          <span>Restaurer</span>
+        </span>
+      </p>
+
+      <!-- 4. Les environnements, en second plan. -->
+      <p class="hero__sectors" id="heroSectors">Commerces · Établissements scolaires · Bureaux · Résidences · Copropriétés</p>
+
+      <!-- 5. La localisation, discrète. -->
+      <p class="hero__place" id="heroPlace">Golfe de Saint-Tropez · Var</p>
+
+      <!-- 6. Les deux actions. -->
       <div class="hero__actions" id="heroActions">
+        <a class="btn btn--ghost-light" href="#prestations">Découvrir notre expertise</a>
         <a class="btn btn--accent" href="contact.html">Demander un devis</a>
-        <a class="btn btn--ghost-light" href="tel:+33600000000">06.00.00.00.00</a>
       </div>
     </div>
 
@@ -444,38 +456,42 @@
      FOOTER
      ============================================================ -->
 <footer class="site-footer">
-  <div class="wrap site-footer__grid">
-    <div>
-      <img class="site-footer__logo" src="images/logo-sntm.webp" alt="SNTM SAP" width="180" height="120" loading="lazy">
-      <p class="site-footer__base">Nettoyage professionnel et traitement des sols.<br>Saint-Tropez · Golfe de Saint-Tropez · Var.</p>
-    </div>
+  <div class="site-footer__inner">
 
-    <nav aria-label="Prestations">
-      <p class="label">Prestations</p>
+    <img class="site-footer__logo" src="images/logo-sntm.webp" alt="SNTM SAP" width="180" height="120" loading="lazy">
+
+    <p class="site-footer__base">Nettoyage professionnel et traitement des sols</p>
+
+    <span class="site-footer__rule" aria-hidden="true"><i></i></span>
+
+    <nav class="site-footer__nav" aria-label="Pied de page">
       <ul>
-        <li><a href="nettoyage-professionnel-saint-tropez.html">Nettoyage professionnel</a></li>
-        <li><a href="traitement-des-sols-saint-tropez.html">Traitement des sols</a></li>
-        <li><a href="remise-en-etat-apres-travaux-saint-tropez.html">Remise en état après travaux</a></li>
-        <li><a href="nettoyage-locaux-commerciaux-saint-tropez.html">Locaux commerciaux</a></li>
-        <li><a href="nettoyage-ecoles-var.html">Établissements scolaires</a></li>
+          <li><a href="nettoyage-professionnel-saint-tropez.html">Nettoyage professionnel</a></li>
+          <li><a href="traitement-des-sols-saint-tropez.html">Traitement des sols</a></li>
+          <li><a href="remise-en-etat-apres-travaux-saint-tropez.html">Remise en état après travaux</a></li>
+          <li><a href="nettoyage-locaux-commerciaux-saint-tropez.html">Locaux commerciaux</a></li>
+          <li><a href="nettoyage-ecoles-var.html">Établissements scolaires</a></li>
+          <li><a href="realisations.html">Réalisations</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
 
-    <div>
-      <p class="label">Contact</p>
-      <ul>
-        <li><a href="tel:+33600000000">06.00.00.00.00</a></li>
-        <li><a href="mailto:contact@sntm-sap.fr">contact@sntm-sap.fr</a></li>
-        <li>[À COMPLÉTER — adresse]</li>
-        <li>[À COMPLÉTER — horaires]</li>
-      </ul>
+    <div class="site-footer__contact">
+      <a class="site-footer__tel" href="tel:+33600000000">06.00.00.00.00</a>
+      <a class="site-footer__mail" href="mailto:contact@sntm-sap.fr">contact@sntm-sap.fr</a>
+      <p class="site-footer__coords">[À COMPLÉTER — adresse]<br>[À COMPLÉTER — horaires]</p>
     </div>
-  </div>
 
-  <div class="wrap site-footer__legal">
-    <p>© <span id="year">2026</span> SNTM SAP</p>
-    <p><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-de-confidentialite.html">Confidentialité</a></p>
-    <p class="site-footer__by">Site réalisé par <a href="https://sudwebproject.com" target="_blank" rel="noopener">Sud Web Project</a></p>
+    <p class="site-footer__zones">Saint-Tropez · Ramatuelle · Gassin · Grimaud · Cogolin · Sainte-Maxime · Cavalaire-sur-Mer · La Croix-Valmer · et le reste du Var</p>
+
+    <div class="site-footer__legal">
+      <p>© <span id="year">2026</span> SNTM SAP</p>
+      <p><a href="mentions-legales.html">Mentions légales</a></p>
+      <p><a href="politique-de-confidentialite.html">Confidentialité</a></p>
+      <p>Site réalisé par <a href="https://sudwebproject.com" target="_blank" rel="noopener">Sud Web Project</a></p>
+    </div>
+
   </div>
 
   <span class="site-footer__mark" aria-hidden="true">SNTM</span>

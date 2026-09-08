@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page introuvable – SNTM SAP | Nettoyage Saint-Tropez</title>
+    <meta name="description"
+        content="Cette page n'existe pas. Retournez sur le site SNTM SAP, votre spécialiste nettoyage professionnel à Saint-Tropez.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Polices locales -->
+    <link rel="preload" href="fonts/cormorant-garamond-v21-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/cormorant-garamond-v21-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/dm-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ── RESET BODY ── */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #111111;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'DM Sans', system-ui, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ── FOND ANIMÉ ── */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(230, 0, 18, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(230, 0, 18, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(230, 0, 18, 0.12) 0%, transparent 65%);
+            top: -200px;
+            right: -200px;
+            pointer-events: none;
+            z-index: 0;
+            animation: glowDrift 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowDrift {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-80px, 80px);
+            }
+        }
+
+        /* ── NAV MINIMAL ── */
+        .nav-404 {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-404-logo img {
+            height: 44px;
+            width: auto;
+        }
+
+        .nav-404-tel {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-404-tel svg {
+            color: #e60012;
+        }
+
+        .nav-404-tel:hover {
+            color: #ffffff;
+        }
+
+        /* ── CONTENU PRINCIPAL ── */
+        .main-404 {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+        }
+
+        .content-404 {
+            text-align: center;
+            max-width: 680px;
+        }
+
+        /* Grand 404 décoratif */
+        .num-404 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(7rem, 22vw, 14rem);
+            font-weight: 300;
+            line-height: 0.85;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(230, 0, 18, 0.35);
+            letter-spacing: -0.02em;
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+            animation: fadeUp 0.7s ease both;
+        }
+
+        /* Ligne rouge sous le 404 */
+        .num-404::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #e60012;
+        }
+
+        .title-404 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 400;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+            animation: fadeUp 0.7s 0.1s ease both;
+        }
+
+        .title-404 em {
+            font-style: italic;
+            color: #e60012;
+        }
+
+        .desc-404 {
+            font-size: 0.97rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            animation: fadeUp 0.7s 0.2s ease both;
+        }
+
+        /* ── BOUTONS ── */
+        .btns-404 {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+            animation: fadeUp 0.7s 0.3s ease both;
+        }
+
+        .btn-404-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #e60012;
+            color: #ffffff;
+            border: 2px solid #e60012;
+            border-radius: 4px;
+            padding: 0.85rem 1.8rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-404-primary:hover {
+            background: #c70010;
+            border-color: #c70010;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(230, 0, 18, 0.35);
+        }
+
+        .btn-404-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            padding: 0.85rem 1.8rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-404-ghost:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* ── LIENS RAPIDES ── */
+        .links-404 {
+            animation: fadeUp 0.7s 0.4s ease both;
+        }
+
+        .links-404-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.25);
+            margin-bottom: 1rem;
+        }
+
+        .links-404-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+        }
+
+        .link-404 {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            padding: 0.45rem 1rem;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.55);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .link-404 svg {
+            color: #e60012;
+        }
+
+        .link-404:hover {
+            background: rgba(230, 0, 18, 0.1);
+            border-color: rgba(230, 0, 18, 0.3);
+            color: #ffffff;
+        }
+
+        /* ── FOOTER MINIMAL ── */
+        .footer-404 {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-404 a {
+            color: rgba(255, 255, 255, 0.35);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-404 a:hover {
+            color: #e60012;
+        }
+
+        /* ── ANIMATION ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── CURSEUR ── */
+        .cursor-dot {
+            position: fixed;
+            width: 7px;
+            height: 7px;
+            background: #ffffff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-ring {
+            position: fixed;
+            width: 34px;
+            height: 34px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, opacity 0.3s;
+            opacity: 0.5;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-ring.hovering {
+            width: 52px;
+            height: 52px;
+            opacity: 0.3;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 600px) {
+            .nav-404 {
+                padding: 1.2rem 1.5rem;
+            }
+
+            .btns-404 {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-404-primary,
+            .btn-404-ghost {
+                width: 100%;
+                justify-content: center;
+                max-width: 300px;
+            }
+
+            .cursor-dot,
+            .cursor-ring {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+
+    <!-- NAV MINIMAL -->
+    <nav class="nav-404">
+        <a href="index.html" class="nav-404-logo" aria-label="SNTM SAP - Accueil">
+            <img src="images/logo SNTM sans fond.webp" alt="SNTM SAP nettoyage Saint-Tropez" width="120" height="52">
+        </a>
+        <a href="tel:+33600000000" class="nav-404-tel">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            +33 6 00 00 00 00
+        </a>
+    </nav>
+
+    <!-- CONTENU -->
+    <main class="main-404">
+        <div class="content-404">
+
+            <div class="num-404">404</div>
+
+            <h1 class="title-404">Page <em>introuvable</em></h1>
+
+            <p class="desc-404">
+                La page que vous cherchez n'existe pas ou a été déplacée.<br>
+                Retournez sur le site SNTM SAP — <strong>nettoyage professionnel à Saint-Tropez</strong>.
+            </p>
+
+            <div class="btns-404">
+                <a href="index.html" class="btn-404-primary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <polyline points="9 18 3 12 9 6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                    </svg>
+                    Retour à l'accueil
+                </a>
+                <a href="contact.html" class="btn-404-ghost">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    Nous contacter
+                </a>
+            </div>
+
+            <div class="links-404">
+                <p class="links-404-label">Ou accédez directement à</p>
+                <div class="links-404-grid">
+                    <a href="services.html" class="link-404">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" />
+                        </svg>
+                        Nos services
+                    </a>
+                    <a href="sols.html" class="link-404">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                        Rénovation sols
+                    </a>
+                    <a href="realisations.html" class="link-404">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7" />
+                            <rect x="14" y="3" width="7" height="7" />
+                            <rect x="14" y="14" width="7" height="7" />
+                            <rect x="3" y="14" width="7" height="7" />
+                        </svg>
+                        Réalisations
+                    </a>
+                    <a href="apropos.html" class="link-404">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                        </svg>
+                        À propos
+                    </a>
+                    <a href="contact.html" class="link-404">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8" />
+                            <rect x="3" y="6" width="18" height="12" rx="2" />
+                        </svg>
+                        Devis gratuit
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER MINIMAL -->
+    <footer class="footer-404">
+        © 2026 SNTM SAP · <a href="index.html">Accueil</a> · <a href="mentions-legales.html">Mentions Légales</a>
+    </footer>
+    <script>
+        const dot = document.getElementById('cursorDot');
+        const ring = document.getElementById('cursorRing');
+        let rx = 0, ry = 0;
+
+        document.addEventListener('mousemove', e => {
+            dot.style.left = e.clientX + 'px';
+            dot.style.top = e.clientY + 'px';
+            rx += (e.clientX - rx) * 0.12;
+            ry += (e.clientY - ry) * 0.12;
+            ring.style.left = rx + 'px';
+            ring.style.top = ry + 'px';
+        });
+
+        requestAnimationFrame(function loop() {
+            ring.style.left = rx + 'px';
+            ring.style.top = ry + 'px';
+            requestAnimationFrame(loop);
+        });
+
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+        });
+    </script>
+
+</body>
+
+</html>

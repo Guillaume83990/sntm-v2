@@ -23,8 +23,10 @@
     const frame    = document.getElementById('heroFrame');
     const brand    = document.getElementById('heroBrand');
     const stroke   = document.querySelector('.hero__stroke');
+    const activity = document.getElementById('heroActivity');
     const claim    = document.getElementById('heroClaim');
-    const services = document.getElementById('heroServices');
+    const sectors  = document.getElementById('heroSectors');
+    const place    = document.getElementById('heroPlace');
     const verbs    = gsap.utils.toArray('#heroVerbs span');
     const actions  = document.getElementById('heroActions');
     const veil     = document.getElementById('heroVeil');
@@ -39,8 +41,10 @@
       if (SNTM.reduced) return;
       gsap.set(brand,    { autoAlpha: 0, letterSpacing: '.9em' });
       gsap.set(stroke,   { scaleY: 0, transformOrigin: 'top center' });
-      gsap.set(claim,    { autoAlpha: 0, y: 22 });
-      gsap.set(services, { autoAlpha: 0, y: 14 });
+      gsap.set(activity, { autoAlpha: 0, y: 22 });
+      gsap.set(claim,    { autoAlpha: 0, y: 16 });
+      gsap.set(sectors,  { autoAlpha: 0, y: 14 });
+      gsap.set(place,    { autoAlpha: 0, y: 12 });
       gsap.set(actions,  { autoAlpha: 0, y: 14 });
       gsap.set(frame,    { autoAlpha: 0, scale: 1.035 });
       gsap.set('.hero__foot', { autoAlpha: 0 });
@@ -49,10 +53,14 @@
         .to(frame,    { autoAlpha: 1, scale: 1, duration: 1.5, ease: 'power3.inOut' }, 0)
         .to(brand,    { autoAlpha: 1, letterSpacing: '.52em', duration: 1.3 }, 0.15)
         .to(stroke,   { scaleY: 1, duration: 0.9 }, 0.7)
-        .to(claim,    { autoAlpha: 1, y: 0, duration: 1.1 }, 0.85)
-        .to(services, { autoAlpha: 1, y: 0, duration: 0.9 }, 1.15)
-        .to(actions,  { autoAlpha: 1, y: 0, duration: 0.9 }, 1.3)
-        .to('.hero__foot', { autoAlpha: 1, duration: 0.8 }, 1.45);
+        // L'ordre d'apparition est l'ordre de lecture voulu :
+        // l'activité d'abord, la signature ensuite, le reste après.
+        .to(activity, { autoAlpha: 1, y: 0, duration: 1.1 }, 0.8)
+        .to(claim,    { autoAlpha: 1, y: 0, duration: 0.9 }, 1.05)
+        .to(sectors,  { autoAlpha: 1, y: 0, duration: 0.85 }, 1.25)
+        .to(place,    { autoAlpha: 1, y: 0, duration: 0.8 }, 1.35)
+        .to(actions,  { autoAlpha: 1, y: 0, duration: 0.9 }, 1.45)
+        .to('.hero__foot', { autoAlpha: 1, duration: 0.8 }, 1.6);
     });
 
     if (SNTM.reduced) { pin.style.setProperty('--pass', 100); return; }
@@ -96,7 +104,8 @@
         pin.style.setProperty('--pass', (pass * 100).toFixed(2));
         gsap.set(veil, { opacity: 1 - pass * 0.42 });
 
-        // Les verbes se relaient à la place de la baseline.
+        // Les verbes se relaient à la place de la signature de
+        // marque. La ligne d'activité, elle, ne bouge jamais.
         let actif = false;
         verbs.forEach(function (v, i) {
           const [a, b] = fenetres[i];
