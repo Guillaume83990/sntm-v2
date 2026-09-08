@@ -1,0 +1,175 @@
+/* ============================================================
+   SNTM SAP — realisations.css
+   Le hero, le comparateur avant/apres, les principes, le
+   maillage et le CTA viennent de global.css.
+   ============================================================ */
+
+/* ---------- 1. LES CHANTIERS -----------------------------
+   Blocs pleine largeur, en flux normal. Aucune section
+   epinglee, aucun defilement lateral, aucun empilement : le
+   contenu ne peut donc jamais etre coupe, quelle que soit la
+   hauteur d'ecran. La tenue vient de la composition, pas d'un
+   effet de scroll.
+   ---------------------------------------------------------- */
+
+.reals{background:var(--color-background);padding-bottom:0}
+.reals__intro{margin-top:1.5rem;max-width:62ch;color:var(--color-secondary)}
+
+/* ---- Le sommaire, en ligne ---- */
+
+.reals__index{
+  display:flex;flex-wrap:wrap;gap:.4rem;
+  margin-bottom:clamp(2.5rem,5vw,4rem);
+}
+.reals__index a{
+  display:flex;align-items:baseline;gap:.6rem;
+  padding:.7rem 1.05rem;
+  border:1px solid var(--color-border);
+  font-size:.875rem;
+  color:var(--color-secondary);
+  transition:border-color .35s var(--ease),color .35s var(--ease),background .35s var(--ease);
+}
+.reals__index span{
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.16em;
+  color:var(--color-border);font-variant-numeric:tabular-nums;
+  transition:color .35s var(--ease);
+}
+.reals__index a:hover{border-color:var(--color-secondary);color:var(--color-text)}
+.reals__index a.is-on{
+  background:var(--color-text);border-color:var(--color-text);color:var(--color-surface);
+}
+.reals__index a.is-on span{color:var(--color-accent)}
+
+/* ---- Un chantier ---- */
+
+.reals__list{display:grid}
+
+.real{
+  display:grid;
+  gap:clamp(1.25rem,2.4vw,2rem);
+  padding-block:clamp(3rem,6vw,6rem);
+  border-top:1px solid var(--color-border);
+  scroll-margin-top:calc(var(--header-h) + 1.5rem);
+}
+.real:first-child{border-top:0;padding-top:0}
+
+.real__head{display:flex;align-items:baseline;gap:1.1rem;flex-wrap:wrap}
+.real__num{
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.2em;
+  color:var(--color-accent);font-variant-numeric:tabular-nums;
+}
+.real__title{
+  font-size:clamp(1.375rem,2.8vw,2.375rem);
+  font-weight:600;letter-spacing:-.022em;line-height:1.06;
+}
+
+/* L'image sort de la grille : elle occupe toute la largeur. */
+.real__stage{width:100%}
+.real__stage .ba__stage{aspect-ratio:21/9}
+@media (max-width:1000px){
+  .real__stage .ba__stage{aspect-ratio:16/10}
+}
+@media (max-width:640px){
+  .real__stage .ba__stage{aspect-ratio:4/3}
+}
+
+/* ---- Les reperes ---- */
+
+.real__specs{
+  display:grid;grid-template-columns:1fr;
+  border-top:1px solid var(--color-border);
+}
+@media (min-width:640px){
+  .real__specs{grid-template-columns:1fr 1fr;column-gap:clamp(1.5rem,3vw,3rem)}
+}
+@media (min-width:1100px){
+  .real__specs{grid-template-columns:repeat(4,1fr)}
+}
+.real__specs > div{padding-block:.85rem;border-bottom:1px solid var(--color-border)}
+.real__specs dt{
+  font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--color-muted);margin-bottom:.3rem;
+}
+.real__specs dd{font-size:.9375rem;color:var(--color-text);max-width:36ch}
+
+/* ---------- 3. SAVOIR REGARDER --------------------------- */
+
+.lire{
+  background:var(--color-dark);color:#fff;
+  padding-block:clamp(4.5rem,9vw,8rem);
+}
+.lire__grid{
+  display:grid;gap:clamp(2.5rem,5vw,5rem);
+  grid-template-columns:1fr;align-items:start;
+}
+@media (min-width:900px){
+  .lire__grid{grid-template-columns:minmax(0,.8fr) minmax(0,1fr)}
+  .lire__text{position:sticky;top:calc(var(--header-h) + 3rem)}
+}
+.lire__text .label{color:var(--color-secondary);margin-bottom:1.25rem}
+.lire__text .section-title{margin-bottom:1.5rem}
+.lire__text p{color:var(--color-muted);max-width:44ch}
+
+.lire__list{
+  display:grid;gap:0;
+  counter-reset:lire;
+  border-top:1px solid rgba(255,255,255,.14);
+}
+.lire__list li{
+  counter-increment:lire;
+  display:grid;grid-template-columns:auto 1fr;
+  gap:.35rem clamp(1.25rem,2.5vw,2.25rem);
+  padding-block:clamp(1.5rem,2.6vw,2.25rem);
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+.lire__list li::before{
+  content:counter(lire,decimal-leading-zero);
+  grid-row:1/3;
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.18em;
+  color:var(--color-accent);font-variant-numeric:tabular-nums;
+  padding-top:.45rem;
+}
+.lire__list h3{
+  font-size:clamp(1.125rem,1.7vw,1.4375rem);
+  font-weight:600;letter-spacing:-.02em;
+}
+.lire__list p{color:var(--color-muted);font-size:.9375rem;max-width:54ch}
+
+/* ---------- 4. LES MATIÈRES ------------------------------ */
+
+.mats-link{background:var(--color-background)}
+.mats-link__grid{
+  display:grid;gap:clamp(2.5rem,5vw,5rem);
+  grid-template-columns:1fr;align-items:center;
+}
+@media (min-width:900px){
+  .mats-link__grid{grid-template-columns:minmax(0,1fr) minmax(0,.82fr)}
+}
+.mats-link__text .label{margin-bottom:1.25rem}
+.mats-link__text .section-title{margin-bottom:1.5rem}
+.mats-link__text p{color:var(--color-secondary);max-width:52ch}
+.mats-link__text .link-arrow{margin-top:1.75rem}
+
+.mats-link__list{border-top:1px solid var(--color-border)}
+.mats-link__list a{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:1.5rem;
+  padding-block:clamp(.9rem,1.7vw,1.25rem);
+  border-bottom:1px solid var(--color-border);
+  transition:padding-left .45s var(--ease);
+}
+.mats-link__list a:hover,.mats-link__list a:focus-visible{padding-left:.75rem}
+.mats-link__list span{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(1.0625rem,1.6vw,1.375rem);
+  letter-spacing:-.015em;
+  transition:color .35s var(--ease);
+}
+.mats-link__list em{
+  font-style:normal;
+  font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--color-muted);white-space:nowrap;
+}
+.mats-link__list a:hover span{color:var(--color-accent)}

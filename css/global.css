@@ -1,0 +1,720 @@
+/* ============================================================
+   SNTM SAP — global.css
+   Éléments communs à toutes les pages.
+   Système : le losange et la diagonale à 28°.
+   ============================================================ */
+
+/* ---------- 1. FONTES LOCALES ----------------------------
+   Duo retenu : Cabinet Grotesk pour les titres, Switzer pour
+   le texte. Les deux sont sur fontshare.com, gratuites pour un
+   usage commercial et hebergeables en local.
+
+   Chaque face declare deux sources : le fichier Fontshare
+   d'abord, une police de secours ensuite. Tant que les fichiers
+   Fontshare ne sont pas dans fonts/, le navigateur prend la
+   seconde source et le site s'affiche correctement. Des qu'ils
+   y sont, la bascule est automatique, sans toucher au CSS.
+   ---------------------------------------------------------- */
+
+@font-face{
+  font-family:"Cabinet Grotesk";
+  src:url("../fonts/CabinetGrotesk-Medium.woff2") format("woff2"),
+      url("../fonts/fallback-display-500.woff2") format("woff2");
+  font-weight:500; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Cabinet Grotesk";
+  src:url("../fonts/CabinetGrotesk-Bold.woff2") format("woff2"),
+      url("../fonts/fallback-display-600.woff2") format("woff2");
+  font-weight:600; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Switzer";
+  src:url("../fonts/Switzer-Regular.woff2") format("woff2"),
+      url("../fonts/fallback-sans-400.woff2") format("woff2");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Switzer";
+  src:url("../fonts/Switzer-Medium.woff2") format("woff2"),
+      url("../fonts/fallback-sans-500.woff2") format("woff2");
+  font-weight:500; font-style:normal; font-display:swap;
+}
+
+/* ---------- 2. VARIABLES --------------------------------- */
+
+:root{
+  /* Marque */
+  --color-accent:#D6202B;
+  --color-accent-deep:#A4141D;
+
+  /* Structure */
+  --color-dark:#141517;
+  --color-primary:#2B2D30;
+  --color-secondary:#6E7175;
+  --color-muted:#9A9C9F;
+
+  /* Surfaces */
+  --color-background:#F5F4F1;
+  --color-surface:#FFFFFF;
+  --color-light:#EAE8E3;
+  --color-border:#DFDCD6;
+
+  /* Texte */
+  --color-text:#1A1B1D;
+
+  /* Typographie */
+  --font-display:"Cabinet Grotesk","Helvetica Neue",Arial,sans-serif;
+  --font-sans:"Switzer","Helvetica Neue",Arial,sans-serif;
+
+  --fs-xl:clamp(2.375rem,4.6vw,4.5rem);
+  --fs-lg:clamp(1.875rem,3.6vw,3.25rem);
+  --fs-md:clamp(1.5rem,2.6vw,2.25rem);
+  --fs-sm:clamp(1.125rem,1.5vw,1.375rem);
+  --fs-body:clamp(1rem,1.05vw,1.0625rem);
+  --fs-label:clamp(.6875rem,.75vw,.75rem);
+
+  /* Rythme */
+  --wrap:min(1440px,100% - clamp(1.5rem,6vw,7rem));
+  --section-y:clamp(5rem,11vw,10.5rem);
+  --gap:clamp(1.5rem,3vw,3rem);
+
+  /* Système */
+  --diag:28deg;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --header-h:clamp(72px,7vw,104px);
+}
+
+/* ---------- 3. RESET ------------------------------------- */
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+html{
+  -webkit-text-size-adjust:100%;
+  scroll-behavior:smooth;
+  overflow-x:clip;
+}
+
+body{
+  font-family:var(--font-sans);
+  font-size:var(--fs-body);
+  font-weight:400;
+  line-height:1.62;
+  color:var(--color-text);
+  background:var(--color-background);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+body.is-locked{overflow:hidden}
+
+img,picture,svg{display:block;max-width:100%}
+img{height:auto}
+ul,ol{list-style:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+em{font-style:italic}
+
+::selection{background:var(--color-accent);color:#fff}
+
+/* ---------- 4. TYPOGRAPHIE GLOBALE ----------------------- */
+
+h1,h2,h3{
+  font-family:var(--font-display);
+  font-weight:600;
+  line-height:1.02;
+  letter-spacing:-.02em;
+  text-wrap:balance;
+}
+h1{font-size:var(--fs-xl)}
+h2{font-size:var(--fs-lg)}
+h3{font-size:var(--fs-sm);letter-spacing:-.01em;line-height:1.2}
+
+p{text-wrap:pretty}
+
+.label{
+  font-family:var(--font-sans);
+  font-size:var(--fs-label);
+  font-weight:500;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--color-secondary);
+}
+
+.wrap{width:var(--wrap);margin-inline:auto}
+.section{padding-block:var(--section-y)}
+
+.section-head{margin-bottom:clamp(2.5rem,5vw,4.5rem)}
+.section-head .label{margin-bottom:1.25rem}
+.section-title{max-width:20ch}
+
+/* ---------- 5. BOUTONS ET LIENS -------------------------- */
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:54px;padding:0 2rem;
+  font-family:var(--font-sans);font-size:.9375rem;font-weight:500;
+  letter-spacing:.02em;
+  border:1px solid transparent;
+  transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);
+}
+.btn--accent{background:var(--color-accent);color:#fff}
+.btn--accent:hover,.btn--accent:focus-visible{background:var(--color-accent-deep)}
+
+.btn--ghost{border-color:currentColor;color:var(--color-text)}
+.btn--ghost:hover,.btn--ghost:focus-visible{background:var(--color-text);color:var(--color-background)}
+
+.btn--ghost-light{border-color:rgba(255,255,255,.35);color:#fff}
+.btn--ghost-light:hover,.btn--ghost-light:focus-visible{background:#fff;color:var(--color-dark)}
+
+.link-arrow{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.9375rem;font-weight:500;
+  padding-bottom:.35rem;
+  border-bottom:1px solid var(--color-border);
+  transition:border-color .3s var(--ease),color .3s var(--ease);
+}
+.link-arrow::after{content:"→";transition:transform .3s var(--ease)}
+.link-arrow:hover,.link-arrow:focus-visible{border-color:var(--color-accent);color:var(--color-accent)}
+.link-arrow:hover::after{transform:translateX(4px)}
+
+/* ---------- 6. ACCESSIBILITÉ ----------------------------- */
+
+.skip-link{
+  position:absolute;left:1rem;top:-100px;z-index:9999;
+  background:var(--color-dark);color:#fff;
+  padding:.9rem 1.4rem;font-size:.875rem;
+  transition:top .2s;
+}
+.skip-link:focus{top:1rem}
+
+:focus-visible{
+  outline:2px solid var(--color-accent);
+  outline-offset:3px;
+}
+
+/* ---------- 8. HEADER ------------------------------------
+   En haut de page : transparent sur le hero, texte clair.
+   Des qu'on descend : barre pleine, texte sombre.
+   Au scroll vers le bas : la barre se retire pour ne jamais
+   recouvrir le contenu. Elle revient des qu'on remonte. */
+
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  height:var(--header-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding-inline:clamp(1.25rem,4vw,3.5rem);
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:transform .45s var(--ease),background .35s var(--ease),
+             height .35s var(--ease),border-color .35s var(--ease);
+}
+.site-header__logo img{
+  height:clamp(42px,4.4vw,62px);width:auto;
+  filter:drop-shadow(0 1px 10px rgba(0,0,0,.28));
+  transition:height .35s var(--ease),filter .35s var(--ease);
+}
+
+/* Le bloc de droite : langue puis menu, sur une seule ligne
+   quelle que soit la largeur. */
+.site-header__right{
+  display:flex;align-items:center;
+  gap:clamp(.85rem,2vw,1.75rem);
+}
+
+/* ---- Le selecteur de langue ---- */
+
+.lang{
+  display:flex;align-items:center;
+  gap:clamp(.4rem,.9vw,.6rem);
+  color:#fff;
+  text-shadow:0 1px 10px rgba(0,0,0,.4);
+  transition:color .35s var(--ease);
+}
+.lang a,.lang span[lang]{
+  font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.16em;
+  line-height:1;
+  padding:.45rem .1rem;
+  transition:opacity .3s var(--ease),border-color .3s var(--ease);
+}
+.lang a{
+  opacity:.62;
+  border-bottom:1px solid transparent;
+}
+.lang a:hover,.lang a:focus-visible{opacity:1}
+.lang [aria-current="true"]{
+  opacity:1;
+  border-bottom-color:var(--color-accent);
+}
+/* La langue pas encore disponible reste visible mais inerte :
+   aucun lien mort, et le selecteur parait complet. */
+.lang [aria-disabled="true"]{
+  opacity:.34;
+  cursor:default;
+}
+.lang__sep{
+  display:block;width:1px;height:11px;
+  background:currentColor;opacity:.35;
+}
+
+.site-header.is-stuck .lang{color:var(--color-text);text-shadow:none}
+.site-header.is-open .lang{color:#fff;text-shadow:none}
+
+/* Tres petits ecrans : on garde la langue, on retire le mot
+   « Menu » qui n'apporte rien a cote du pictogramme. */
+@media (max-width:400px){
+  .site-header__right{gap:.75rem}
+  .burger__label{display:none}
+  .burger{gap:0}
+}
+
+.burger{
+  display:inline-flex;align-items:center;gap:.85rem;
+  min-height:48px;padding:0 .25rem;
+  color:#fff;
+  text-shadow:0 1px 10px rgba(0,0,0,.4);
+  transition:color .35s var(--ease);
+}
+.burger__lines{display:block;width:30px}
+.burger__lines i{
+  display:block;height:1.5px;background:currentColor;
+  transition:transform .4s var(--ease),width .4s var(--ease);
+}
+.burger__lines i:first-child{width:30px;margin-bottom:8px}
+.burger__lines i:last-child{width:20px;margin-left:auto}
+.burger:hover .burger__lines i:last-child{width:30px}
+.burger__label{
+  font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+}
+
+/* Barre posee : on a quitte le hero */
+.site-header.is-stuck{
+  height:clamp(60px,5.4vw,76px);
+  background:var(--color-background);
+  border-bottom-color:var(--color-border);
+}
+.site-header.is-stuck .site-header__logo img{
+  height:clamp(34px,3.2vw,44px);
+  filter:none;
+}
+.site-header.is-stuck .burger{color:var(--color-text);text-shadow:none}
+
+/* Retrait au scroll descendant */
+.site-header.is-hidden{transform:translateY(-102%)}
+
+/* Menu ouvert : la barre revient toujours, en clair sur fond sombre */
+.site-header.is-open{
+  transform:none;
+  background:transparent;
+  border-bottom-color:transparent;
+}
+.site-header.is-open .burger{color:#fff;text-shadow:none}
+.site-header.is-open .site-header__logo img{filter:none}
+.site-header.is-open .burger__lines i:first-child{transform:translateY(5px) rotate(28deg)}
+.site-header.is-open .burger__lines i:last-child{width:30px;transform:translateY(-5px) rotate(-28deg)}
+
+/* ---------- 9. MENU PLEIN ÉCRAN -------------------------- */
+
+.menu{
+  position:fixed;inset:0;z-index:880;
+  background:var(--color-dark);
+  color:#fff;
+  display:grid;
+  grid-template-columns:1fr;
+  align-content:center;
+  gap:clamp(2rem,5vw,4rem);
+  padding:calc(var(--header-h) + 2rem) clamp(1.5rem,6vw,7rem) 3rem;
+  clip-path:polygon(0% 0%,0% 0%,-45% 100%,0% 100%);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+}
+.menu[hidden]{display:none}
+
+.menu__list li{overflow:hidden}
+.menu__list a{
+  display:inline-block;
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:clamp(1.75rem,4.6vw,3.5rem);
+  line-height:1.16;
+  letter-spacing:-.02em;
+  transition:color .3s var(--ease);
+}
+.menu__list a:hover,.menu__list a:focus-visible{color:var(--color-muted)}
+.menu__list a[aria-current="page"]{
+  border-bottom:2px solid var(--color-accent);
+}
+
+.menu__aside{
+  display:grid;gap:1.75rem;
+  max-width:34rem;
+  color:var(--color-muted);
+  font-size:.9375rem;
+}
+.menu__aside .label{color:var(--color-secondary);margin-bottom:.5rem}
+.menu__aside a{color:#fff}
+.menu__aside a:hover{color:var(--color-accent)}
+.menu__tel{font-family:var(--font-display);font-size:1.5rem;letter-spacing:.02em}
+.menu__aside .btn{justify-self:start}
+
+@media (min-width:1024px){
+  .menu{
+    grid-template-columns:1.35fr .65fr;
+    align-items:center;
+  }
+  .menu__aside{grid-template-rows:auto auto auto;align-content:end}
+}
+
+/* Paysage court : on réduit l'échelle pour éviter le débordement */
+@media (max-height:520px) and (orientation:landscape){
+  .menu{align-content:start;padding-top:calc(var(--header-h) + 1rem)}
+  .menu__list a{font-size:clamp(1.25rem,3.4vh,1.75rem)}
+  .menu__tel{font-size:1.125rem}
+}
+
+/* ---------- 10. PRINCIPES --------------------------------
+   Remplace les anciennes respirations en deux lignes, qui
+   fonctionnaient comme des devinettes. Une seule phrase,
+   affirmative, attribuee : on comprend sans avoir a chercher.
+   ---------------------------------------------------------- */
+
+.breath{
+  padding-block:clamp(4.5rem,10vw,9rem);
+  background:var(--color-light);
+}
+.breath__inner{
+  width:var(--wrap);margin-inline:auto;
+  max-width:min(100%,54rem);
+  display:grid;justify-items:start;
+  gap:clamp(1.5rem,3vw,2.25rem);
+}
+.breath__mark{
+  display:block;width:56px;height:2px;
+  background:var(--color-accent);
+}
+.breath p{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:clamp(1.5rem,3.4vw,2.875rem);
+  line-height:1.16;
+  letter-spacing:-.025em;
+  text-wrap:balance;
+}
+.breath cite{
+  font-style:normal;
+  font-family:var(--font-sans);
+  font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--color-secondary);
+}
+
+/* ---------- 11. AVANT / APRÈS (commun) -------------------
+   Partage fixe : une seule image coupee par la diagonale a 28
+   degres, filet rouge sur la ligne de partage, mention de part
+   et d'autre. Rien a manipuler, rien a deviner. La diagonale
+   se met en place a l'entree dans l'ecran, puis ne bouge plus.
+   --reveal va de 0 a 100, la position de repos est 50.
+   ---------------------------------------------------------- */
+
+.ba{background:var(--color-background);overflow:hidden}
+
+.ba__stage{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/10;
+  overflow:hidden;
+  background:var(--color-dark);
+}
+@media (max-width:700px){
+  .ba__stage{aspect-ratio:4/3}
+}
+
+.ba__layer{position:absolute;inset:0}
+.ba__layer img{width:100%;height:100%;object-fit:cover}
+
+.ba__layer--apres{
+  clip-path:polygon(
+    calc((100 - var(--reveal,50) * 1.45) * 1%) 100%,
+    calc((145 - var(--reveal,50) * 1.45) * 1%) 0%,
+    200% 0%,
+    200% 100%
+  );
+}
+
+/* Le filet rouge marque la coupe. Il est decoupe dans le meme
+   systeme de coordonnees que la couche « apres » : il suit donc
+   exactement la frontiere, quel que soit le format du cadre.
+   Un trait tourne d'un angle fixe ne pouvait pas coincider. */
+.ba__edge{
+  position:absolute;inset:0;
+  background:var(--color-accent);
+  clip-path:polygon(
+    calc((100 - var(--reveal,50) * 1.45) * 1%) 100%,
+    calc((145 - var(--reveal,50) * 1.45) * 1%) 0%,
+    calc((145.55 - var(--reveal,50) * 1.45) * 1%) 0%,
+    calc((100.55 - var(--reveal,50) * 1.45) * 1%) 100%
+  );
+  pointer-events:none;
+}
+/* Un liseré clair double le filet, cote « avant ». */
+.ba__edge--light{
+  background:rgba(255,255,255,.5);
+  clip-path:polygon(
+    calc((99.6 - var(--reveal,50) * 1.45) * 1%) 100%,
+    calc((144.6 - var(--reveal,50) * 1.45) * 1%) 0%,
+    calc((145 - var(--reveal,50) * 1.45) * 1%) 0%,
+    calc((100 - var(--reveal,50) * 1.45) * 1%) 100%
+  );
+}
+
+/* Les deux mentions, toujours lisibles, de part et d'autre. */
+.ba__word{
+  position:absolute;bottom:clamp(1rem,2.2vw,1.75rem);
+  display:flex;align-items:center;gap:.6rem;
+  font-family:var(--font-sans);font-weight:500;
+  font-size:var(--fs-label);
+  letter-spacing:.24em;text-transform:uppercase;
+  color:#fff;
+  padding:.6rem .9rem;
+  background:rgba(14,15,17,.58);
+  pointer-events:none;user-select:none;
+}
+.ba__word::before{
+  content:"";flex:none;
+  width:8px;height:8px;
+  background:var(--color-accent);
+  clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+}
+.ba__word--avant{left:clamp(1rem,2.2vw,1.75rem)}
+.ba__word--apres{right:clamp(1rem,2.2vw,1.75rem)}
+.ba__word--apres::before{background:#fff}
+
+/* La poignee n'a plus de raison d'etre : la coupe est fixe. */
+.ba__handle{display:none}
+
+.ba__caption{
+  margin-top:1.5rem;
+  font-size:.9375rem;
+  color:var(--color-secondary);
+}
+
+/* ---------- 12. PAGES INTÉRIEURES (commun)
+   Hero de page, fil d'Ariane, bandeau, questions, maillage
+   interne et CTA : partages par toutes les pages interieures.
+
+   12a. HERO DE PAGE — un seul modele pour les quatre pages.
+   La continuite vient de la forme, la difference vient de
+   l'image et du contenu. Hauteur mini seulement : si le titre
+   est plus long, la section grandit, elle ne coupe jamais.
+   ---------------------------------------------------------- */
+
+.phero{
+  position:relative;
+  min-height:min(74svh,760px);
+  display:flex;align-items:flex-end;
+  overflow:hidden;
+  background:var(--color-dark);
+  padding-top:calc(var(--header-h) + clamp(1.5rem,3vw,2.5rem));
+}
+
+.phero__media{position:absolute;inset:0}
+.phero__media img{width:100%;height:100%;object-fit:cover;object-position:center 58%}
+.phero__media::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,15,17,.62) 0%,rgba(14,15,17,.22) 34%,rgba(14,15,17,.88) 100%);
+}
+
+.phero__inner{
+  position:relative;z-index:2;
+  width:var(--wrap);margin-inline:auto;
+  padding-bottom:clamp(1.5rem,3vw,2.5rem);
+  color:#fff;
+}
+
+.phero__title{
+  font-size:clamp(2rem,4.4vw,4rem);
+  font-weight:600;line-height:1.0;letter-spacing:-.032em;
+  max-width:17ch;
+  margin-bottom:clamp(.9rem,1.8vw,1.35rem);
+}
+.phero__sign{
+  font-family:var(--font-sans);
+  font-size:clamp(.9375rem,1.1vw,1.0625rem);
+  line-height:1.55;
+  color:rgba(255,255,255,.74);
+  max-width:48ch;
+}
+
+/* Le sommaire de page : meme place sur les quatre pages, et il
+   densifie le maillage interne vers les ancres de la page. */
+.phero__index{
+  display:grid;
+  grid-template-columns:1fr;
+  margin-top:clamp(1.75rem,3.2vw,2.75rem);
+  border-top:1px solid rgba(255,255,255,.2);
+}
+@media (min-width:760px){
+  .phero__index{grid-template-columns:repeat(4,1fr);column-gap:clamp(1rem,2.5vw,2.5rem)}
+}
+.phero__index a{
+  display:flex;align-items:baseline;gap:.85rem;
+  padding-block:clamp(.7rem,1.3vw,1rem);
+  border-bottom:1px solid rgba(255,255,255,.2);
+  font-size:.9375rem;
+  color:rgba(255,255,255,.86);
+  transition:padding-left .4s var(--ease),color .3s var(--ease);
+}
+.phero__index span{
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.18em;
+  color:var(--color-accent);font-variant-numeric:tabular-nums;
+}
+.phero__index a:hover,.phero__index a:focus-visible{padding-left:.5rem;color:#fff}
+
+@media (min-width:901px) and (max-height:900px){
+  .phero{min-height:min(78svh,640px)}
+  .phero__title{font-size:clamp(1.75rem,3.1vw,2.75rem)}
+}
+@media (max-height:620px) and (orientation:landscape){
+  .phero{min-height:0;padding-top:calc(var(--header-h) + 1rem)}
+  .phero__title{font-size:clamp(1.5rem,5.4vh,2.25rem)}
+  .phero__sign{font-size:.875rem}
+  .phero__index{display:none}
+}
+
+/* ---------- 12b. FIL D'ARIANE ------------------------------ */
+
+.crumb{margin-bottom:clamp(1.25rem,2.5vw,2rem)}
+.crumb ol{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem}
+.crumb li{
+  font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.62);
+}
+.crumb li + li::before{content:"/";margin-right:.6rem;color:rgba(255,255,255,.35)}
+.crumb a{
+  color:rgba(255,255,255,.82);
+  padding-bottom:.15rem;
+  border-bottom:1px solid transparent;
+  transition:border-color .3s var(--ease);
+}
+.crumb a:hover,.crumb a:focus-visible{border-bottom-color:var(--color-accent)}
+
+/* ---------- 12c. BANDEAU ----------------------------------- */
+
+.band{overflow:hidden}
+.band img{width:100%;aspect-ratio:21/9;object-fit:cover}
+@media (max-width:640px){.band img{aspect-ratio:4/3}}
+
+/* ---------- 12d. FAQ --------------------------------------- */
+
+.faq__list{border-top:1px solid var(--color-border)}
+
+.faq__item{border-bottom:1px solid var(--color-border)}
+.faq__item summary{
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;
+  padding-block:clamp(1.5rem,2.6vw,2.15rem);
+  cursor:pointer;list-style:none;
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(1.0625rem,1.7vw,1.4375rem);
+  letter-spacing:-.01em;
+  transition:color .3s var(--ease);
+}
+.faq__item summary::-webkit-details-marker{display:none}
+.faq__item summary::after{
+  content:"";flex:none;
+  /* Le chevron vit dans une boite carree assez large pour contenir
+     sa rotation : sinon il deborde de la page sur mobile. */
+  width:23px;height:23px;
+  display:block;
+  background:
+    linear-gradient(currentColor,currentColor) right 3px bottom 8px / 12px 1.5px no-repeat,
+    linear-gradient(currentColor,currentColor) right 8px bottom 3px / 1.5px 12px no-repeat;
+  transform:rotate(45deg);
+  transform-origin:center;
+  transition:transform .4s var(--ease),color .3s var(--ease);
+}
+.faq__item summary:hover{color:var(--color-accent)}
+.faq__item[open] summary{color:var(--color-accent)}
+.faq__item[open] summary::after{transform:rotate(-135deg)}
+
+.faq__answer{padding-bottom:clamp(1.5rem,2.6vw,2.15rem)}
+.faq__answer p{color:var(--color-secondary);max-width:70ch}
+
+/* ---------- 12e. MAILLAGE INTERNE -------------------------- */
+
+.also{background:var(--color-surface)}
+.also .label{margin-bottom:clamp(1.5rem,3vw,2.5rem)}
+.also__rows{border-top:1px solid var(--color-border)}
+
+.also__row{
+  position:relative;
+  display:grid;grid-template-columns:1fr;gap:.6rem;
+  padding-block:clamp(1.75rem,3vw,2.75rem);
+  border-bottom:1px solid var(--color-border);
+  transition:padding-inline .5s var(--ease);
+}
+.also__row::after{
+  content:"";position:absolute;left:0;bottom:-1px;
+  width:0;height:1px;background:var(--color-accent);
+  transition:width .6s var(--ease);
+}
+.also__row:hover::after,.also__row:focus-visible::after{width:100%}
+.also__row h2{
+  font-size:clamp(1.25rem,1.9vw,1.75rem);
+  font-weight:500;letter-spacing:-.02em;
+  transition:color .4s var(--ease);
+}
+.also__row p{color:var(--color-secondary);max-width:46ch}
+.also__go{
+  font-size:1.25rem;color:var(--color-muted);
+  transition:transform .45s var(--ease),color .4s var(--ease);
+}
+.also__row:hover h2{color:var(--color-accent)}
+.also__row:hover .also__go{transform:translateX(8px);color:var(--color-accent)}
+
+@media (min-width:900px){
+  .also__row{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) 3rem;
+    align-items:center;column-gap:clamp(2rem,5vw,6rem);gap:0;
+  }
+  .also__row:hover{padding-inline:1.25rem}
+  .also__go{justify-self:end}
+}
+
+/* ---------- 12f. CTA --------------------------------------- */
+
+.cta{
+  background:var(--color-dark);color:#fff;
+  padding-block:clamp(5rem,11vw,10rem);
+}
+.cta__title{max-width:20ch;margin-bottom:1.5rem}
+.cta__sub{color:var(--color-muted);max-width:54ch;margin-bottom:clamp(2rem,4vw,3rem)}
+.cta__actions{display:flex;flex-wrap:wrap;gap:1rem}
+
+/* ---------- 14. UTILITAIRES D'ANIMATION ------------------ */
+/* Aucun opacity:0 en CSS : tout est posé par gsap.set() au runtime,
+   pour que la page reste lisible si le JS ne charge pas. */
+
+.line-mask{display:block;overflow:hidden}
+.line-mask > span{display:block;will-change:transform}
+
+/* ---------- 15. MOUVEMENT RÉDUIT ------------------------- */
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+}
+
+/* La puce du materiau a l'ecran, sur les pages a ancres. */
+.mat__nav a.is-current{border-color:var(--color-accent);color:var(--color-accent)}
+
+/* Titres animes mot par mot : le masque est porte par le mot,
+   le mouvement par la lettre. Sans JS, rien de tout ceci n'existe
+   et le titre reste un titre. */
+.section-title .w,.cta__title .w{display:inline-block;overflow:hidden;vertical-align:bottom}
+.section-title .w > i,.cta__title .w > i{display:inline-block;font-style:normal;will-change:transform}

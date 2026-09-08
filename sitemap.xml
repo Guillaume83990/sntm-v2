@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://sntm-sap.fr/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/en/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/nettoyage-professionnel-saint-tropez.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/nettoyage-professionnel-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/professional-cleaning-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/nettoyage-professionnel-saint-tropez.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/en/professional-cleaning-saint-tropez.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/nettoyage-professionnel-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/professional-cleaning-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/nettoyage-professionnel-saint-tropez.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/traitement-des-sols-saint-tropez.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/traitement-des-sols-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/floor-treatment-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/traitement-des-sols-saint-tropez.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/en/floor-treatment-saint-tropez.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/traitement-des-sols-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/floor-treatment-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/traitement-des-sols-saint-tropez.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/remise-en-etat-apres-travaux-saint-tropez.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/remise-en-etat-apres-travaux-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/post-construction-cleaning-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/remise-en-etat-apres-travaux-saint-tropez.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/en/post-construction-cleaning-saint-tropez.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/remise-en-etat-apres-travaux-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/post-construction-cleaning-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/remise-en-etat-apres-travaux-saint-tropez.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/nettoyage-locaux-commerciaux-saint-tropez.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/nettoyage-locaux-commerciaux-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/retail-cleaning-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/nettoyage-locaux-commerciaux-saint-tropez.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/en/retail-cleaning-saint-tropez.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.76</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/nettoyage-locaux-commerciaux-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/retail-cleaning-saint-tropez.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/nettoyage-locaux-commerciaux-saint-tropez.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/nettoyage-ecoles-var.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/nettoyage-ecoles-var.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/school-cleaning-var.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/nettoyage-ecoles-var.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/en/school-cleaning-var.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.76</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/nettoyage-ecoles-var.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/school-cleaning-var.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/nettoyage-ecoles-var.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/realisations.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/realisations.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/case-studies.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/realisations.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/en/case-studies.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.76</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/realisations.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/case-studies.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/realisations.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/a-propos.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/a-propos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/a-propos.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/en/about.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.57</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/a-propos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/a-propos.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/contact.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/contact.html"/>
+  </url>
+  <url>
+    <loc>https://sntm-sap.fr/en/contact.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.66</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sntm-sap.fr/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sntm-sap.fr/en/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sntm-sap.fr/contact.html"/>
+  </url>
+</urlset>

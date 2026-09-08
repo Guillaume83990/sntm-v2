@@ -1,0 +1,308 @@
+/* ============================================================
+   SNTM SAP — nettoyage-professionnel.css
+   Sections propres a cette page. Le fil d'Ariane, la FAQ, le
+   maillage et le CTA viennent de global.css.
+   Cette page n'utilise volontairement ni le hero pleine image,
+   ni les rangees a fleche, ni les etapes numerotees : ce sont
+   les signatures des deux autres pages.
+   ============================================================ */
+
+/* ---------- 2. CHAPÔ ------------------------------------- */
+
+.lead__text{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(1.5rem,3.2vw,2.75rem);
+  line-height:1.14;letter-spacing:-.025em;
+  max-width:24ch;
+  margin-bottom:clamp(1.5rem,3vw,2.25rem);
+  text-wrap:balance;
+}
+.lead__note{
+  color:var(--color-secondary);
+  max-width:56ch;
+  margin-left:auto;
+}
+
+/* ---------- 3. PÉRIMÈTRE — le tableau -------------------- */
+
+.peri{background:var(--color-surface)}
+.peri__intro{margin-top:1.5rem;max-width:62ch;color:var(--color-secondary)}
+
+/* Sur petit ecran le tableau defile lateralement plutot que de
+   se disloquer en cartes : les colonnes gardent leur sens. */
+.peri__scroll{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+}
+.peri__scroll:focus-visible{outline:2px solid var(--color-accent);outline-offset:4px}
+
+.peri__table{
+  width:100%;
+  min-width:640px;
+  border-collapse:collapse;
+  text-align:left;
+}
+.peri__table thead th{
+  padding-block:.9rem;
+  border-bottom:1px solid var(--color-text);
+  font-family:var(--font-sans);
+  font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--color-secondary);
+}
+.peri__table tbody th,
+.peri__table tbody td{
+  padding-block:clamp(1.1rem,2vw,1.6rem);
+  padding-right:clamp(1.25rem,3vw,3rem);
+  border-bottom:1px solid var(--color-border);
+  vertical-align:top;
+}
+.peri__table tbody th{
+  width:26%;
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1rem,1.4vw,1.1875rem);
+  letter-spacing:-.01em;
+}
+.peri__table tbody td{color:var(--color-secondary);font-size:.9375rem}
+.peri__table tbody td:last-child{width:24%;padding-right:0}
+.peri__table em{
+  font-style:normal;
+  display:inline-block;
+  padding:.35rem .7rem;
+  border:1px solid var(--color-border);
+  font-size:.8125rem;
+  color:var(--color-text);
+  white-space:nowrap;
+}
+.peri__table tbody tr:hover th{color:var(--color-accent)}
+
+.peri__foot{
+  margin-top:clamp(2rem,4vw,3rem);
+  color:var(--color-secondary);
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.35rem 1rem;
+}
+
+/* ---------- 4. ÉTABLISSEMENTS — cascade décalée ----------
+   Trois blocs pleine largeur, décalés en escalier, avec le
+   texte qui remonte sur l'image. Aucun conteneur à défilement,
+   donc rien ne peut déborder : en dessous de 900px la cascade
+   redevient une simple pile.
+   ---------------------------------------------------------- */
+
+.etab{background:var(--color-background)}
+
+.etab__list{
+  display:grid;
+  gap:clamp(3rem,7vw,7rem);
+}
+
+.etab__item{
+  position:relative;
+  width:100%;
+}
+
+/* Le chiffre en contour, posé derrière l'angle de l'image. */
+.etab__ghost{
+  position:absolute;z-index:0;
+  top:-.34em;
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(5rem,13vw,12rem);
+  line-height:1;letter-spacing:-.04em;
+  color:transparent;
+  -webkit-text-stroke:1px var(--color-border);
+  pointer-events:none;user-select:none;
+}
+
+.etab__img{position:relative;z-index:1;overflow:hidden}
+.etab__img img{width:100%;aspect-ratio:16/9;object-fit:cover;transition:transform 1.2s var(--ease)}
+.etab__item:hover .etab__img img{transform:scale(1.03)}
+
+.etab__body{
+  position:relative;z-index:2;
+  display:grid;justify-items:start;gap:.7rem;
+  background:var(--color-surface);
+  padding:clamp(1.5rem,3vw,2.5rem);
+  margin-top:-2rem;
+  margin-inline:1rem 0;
+}
+.etab__num{
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.2em;
+  color:var(--color-accent);font-variant-numeric:tabular-nums;
+}
+.etab__body h3{
+  font-size:clamp(1.375rem,2.4vw,2rem);
+  font-weight:600;letter-spacing:-.02em;
+}
+.etab__key{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(1rem,1.4vw,1.1875rem);
+  color:var(--color-text);
+}
+.etab__body p:not(.etab__key){color:var(--color-secondary);font-size:.9375rem;max-width:56ch}
+.etab__body .link-arrow{margin-top:.5rem}
+
+@media (min-width:901px){
+  /* L'escalier : chaque bloc se décale, aucun n'est aligné sur
+     le précédent. C'est ce décalage qui casse l'effet grille. */
+  .etab__item{width:76%}
+  .etab__item:nth-child(1){margin-left:0}
+  .etab__item:nth-child(2){margin-left:auto}
+  .etab__item:nth-child(3){margin-left:12%}
+
+  .etab__item:nth-child(1) .etab__ghost{right:-2.5rem}
+  .etab__item:nth-child(2) .etab__ghost{left:-2.5rem}
+  .etab__item:nth-child(3) .etab__ghost{right:-2.5rem}
+
+  .etab__body{
+    margin-top:-4.5rem;
+    max-width:40rem;
+  }
+  .etab__item:nth-child(2) .etab__body{margin-inline:auto 2.5rem;justify-self:end}
+  .etab__item:nth-child(1) .etab__body,
+  .etab__item:nth-child(3) .etab__body{margin-inline:2.5rem auto}
+}
+
+@media (max-width:900px){
+  .etab__ghost{right:0;top:-.28em}
+  .etab__body{margin-top:-1.5rem;margin-inline:.75rem 0}
+}
+
+/* ---------- 5. EXIGENCES --------------------------------- */
+
+.exig{
+  background:var(--color-dark);
+  color:#fff;
+  padding-block:clamp(4.5rem,9vw,8rem);
+}
+.exig__grid{
+  display:grid;gap:clamp(2.5rem,5vw,5rem);
+  grid-template-columns:1fr;
+  align-items:start;
+}
+@media (min-width:900px){
+  .exig__grid{grid-template-columns:minmax(0,.8fr) minmax(0,1fr)}
+  .exig__text{position:sticky;top:calc(var(--header-h) + 3rem)}
+}
+.exig__text .label{color:var(--color-secondary);margin-bottom:1.25rem}
+.exig__text .section-title{margin-bottom:1.5rem}
+.exig__intro{color:var(--color-muted);max-width:40ch}
+
+.exig__list{
+  display:grid;gap:0;
+  counter-reset:exig;
+  border-top:1px solid rgba(255,255,255,.14);
+}
+.exig__list li{
+  counter-increment:exig;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:.35rem clamp(1.25rem,2.5vw,2.25rem);
+  padding-block:clamp(1.5rem,2.6vw,2.25rem);
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+.exig__list li::before{
+  content:counter(exig,decimal-leading-zero);
+  grid-row:1/3;
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.18em;
+  color:var(--color-accent);font-variant-numeric:tabular-nums;
+  padding-top:.45rem;
+}
+.exig__list h3{
+  font-size:clamp(1.125rem,1.7vw,1.4375rem);
+  font-weight:600;letter-spacing:-.02em;
+}
+.exig__list p{color:var(--color-muted);font-size:.9375rem;max-width:54ch}
+
+/* ---------- 6. ZONES — le losange des communes -----------
+   Les huit communes composent la forme de la marque : une
+   ligne, puis deux, trois, deux. Chaque nom est insécable,
+   chaque rangée se replie toute seule, et il n'y a aucun
+   conteneur à défilement.
+   ---------------------------------------------------------- */
+
+.zone{background:var(--color-surface);overflow:hidden}
+
+.zone__grid{
+  display:grid;gap:clamp(2.5rem,5vw,4.5rem);
+  grid-template-columns:1fr;
+  align-items:center;
+}
+@media (min-width:1024px){
+  .zone__grid{grid-template-columns:minmax(0,.32fr) minmax(0,1fr)}
+}
+
+.zone__side .label{margin-bottom:1.5rem}
+.zone__note{color:var(--color-secondary);max-width:38ch;margin-bottom:1.75rem}
+
+.zone__field{
+  position:relative;
+  display:grid;justify-items:center;
+  padding:clamp(2.5rem,6vw,5rem) clamp(.5rem,2vw,2rem);
+  min-width:0;
+}
+
+/* Le losange, tracé derrière les noms. Le trait garde son
+   épaisseur malgré l'étirement du viewBox. */
+.zone__lozenge{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  color:var(--color-border);
+  pointer-events:none;
+}
+
+.zone__diamond{
+  position:relative;z-index:1;
+  display:grid;
+  justify-items:center;
+  gap:clamp(.35rem,1.1vw,1rem);
+  width:100%;
+}
+
+.zone__row{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  column-gap:clamp(.75rem,2.2vw,2.25rem);
+  row-gap:.2rem;
+  max-width:100%;
+}
+
+.zone__name{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(1.0625rem,2.4vw,2rem);
+  line-height:1.14;letter-spacing:-.025em;
+  white-space:nowrap;
+  color:var(--color-secondary);
+  transition:color .35s var(--ease);
+}
+
+/* Saint-Tropez porte la pointe haute du losange, et c'est
+   aussi la commune prioritaire. La forme suit le contenu. */
+.zone__row:first-child .zone__name{
+  font-size:clamp(1.625rem,4.6vw,3.5rem);
+  font-weight:600;
+  color:var(--color-text);
+}
+
+.zone__diamond:hover .zone__name{color:var(--color-border)}
+.zone__name:hover{color:var(--color-text) !important}
+
+.zone__foot{
+  position:relative;z-index:1;
+  margin-top:clamp(1.5rem,3vw,2.5rem);
+  font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--color-muted);
+  text-align:center;
+}
+
+/* Sous 700px le losange se referme trop : on l'efface et on
+   laisse les rangées se composer librement. */
+@media (max-width:700px){
+  .zone__lozenge{display:none}
+  .zone__field{padding-inline:0}
+  .zone__row{column-gap:.9rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .zone__name,.zone__diamond:hover .zone__name{color:var(--color-text)}
+}

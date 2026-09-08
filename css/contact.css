@@ -1,0 +1,286 @@
+/* ============================================================
+   SNTM SAP — contact.css
+   Formulaire qualifiant, panneau lateral, pages legales.
+   Le hero, le fil d'Ariane, les principes, le maillage et le
+   losange des communes viennent de global.css.
+   ============================================================ */
+
+/* ---------- 1. MISE EN PAGE ------------------------------ */
+
+.ctct{background:var(--color-surface)}
+
+.ctct__grid{
+  display:grid;gap:clamp(2.5rem,5vw,4.5rem);
+  grid-template-columns:1fr;
+  align-items:start;
+}
+@media (min-width:1000px){
+  .ctct__grid{grid-template-columns:minmax(0,1fr) minmax(0,.5fr)}
+}
+
+.ctct__form .label{margin-bottom:1.25rem}
+.ctct__title{
+  font-size:clamp(1.625rem,3.2vw,2.75rem);
+  font-weight:600;letter-spacing:-.025em;line-height:1.06;
+  max-width:20ch;margin-bottom:1.25rem;
+}
+.ctct__intro{color:var(--color-secondary);max-width:58ch;margin-bottom:clamp(2rem,4vw,3rem)}
+
+/* ---------- 2. LE FORMULAIRE -----------------------------
+   Sans JavaScript, les trois etapes sont simplement visibles
+   les unes sous les autres et le formulaire reste envoyable.
+   Le decoupage en etapes est ajoute par le JS.
+   ---------------------------------------------------------- */
+
+.form{display:grid;gap:0}
+.form__pot{position:absolute;left:-9999px}
+
+.form__bar{
+  display:none;
+  height:2px;background:var(--color-border);
+  margin-bottom:.85rem;
+}
+.form__bar i{display:block;height:100%;width:33.33%;background:var(--color-accent)}
+.form__count{
+  display:none;
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.2em;
+  color:var(--color-secondary);
+  margin-bottom:clamp(1.5rem,3vw,2.25rem);
+  font-variant-numeric:tabular-nums;
+}
+.form.is-stepped .form__bar,
+.form.is-stepped .form__count{display:block}
+
+.form__step{
+  border:0;padding:0;margin:0 0 clamp(2.5rem,5vw,4rem);
+  display:grid;gap:clamp(1.25rem,2.4vw,1.85rem);
+}
+.form.is-stepped .form__step{margin-bottom:0}
+.form.is-stepped .form__step[hidden]{display:none}
+
+.form__legend{
+  display:flex;align-items:baseline;gap:1rem;
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.25rem,2vw,1.625rem);
+  letter-spacing:-.02em;
+  padding-bottom:1rem;
+  border-bottom:1px solid var(--color-border);
+  width:100%;
+}
+.form__legend span{
+  font-family:var(--font-sans);
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.2em;
+  color:var(--color-accent);font-variant-numeric:tabular-nums;
+}
+
+.form__q{
+  font-family:var(--font-display);font-weight:500;
+  font-size:1.0625rem;
+  margin-bottom:-.4rem;
+}
+
+/* ---- Les choix, en pastilles cliquables ---- */
+
+.opts{display:flex;flex-wrap:wrap;gap:.6rem}
+.opt{position:relative;display:block}
+.opt input{
+  position:absolute;inset:0;
+  opacity:0;width:100%;height:100%;
+  cursor:pointer;
+}
+.opt span{
+  display:block;
+  padding:.8rem 1.15rem;
+  border:1px solid var(--color-border);
+  font-size:.9375rem;
+  white-space:nowrap;
+  transition:border-color .3s var(--ease),background .3s var(--ease),color .3s var(--ease);
+}
+.opt input:hover + span{border-color:var(--color-secondary)}
+.opt input:focus-visible + span{outline:2px solid var(--color-accent);outline-offset:2px}
+.opt input:checked + span{
+  background:var(--color-text);
+  border-color:var(--color-text);
+  color:var(--color-surface);
+}
+
+/* ---- Les champs ---- */
+
+.form__grid{display:grid;gap:clamp(1rem,2vw,1.5rem);grid-template-columns:1fr}
+@media (min-width:640px){.form__grid{grid-template-columns:1fr 1fr}}
+
+.field{display:grid;gap:.5rem}
+.field__label{
+  font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--color-secondary);
+}
+.field__label em{font-style:normal;text-transform:none;letter-spacing:0;color:var(--color-muted)}
+.field__hint{font-size:.8125rem;color:var(--color-muted)}
+
+.field input[type="text"],
+.field input[type="tel"],
+.field input[type="email"],
+.field select,
+.field textarea{
+  width:100%;
+  font-family:var(--font-sans);font-size:1rem;
+  color:var(--color-text);
+  background:var(--color-background);
+  border:1px solid var(--color-border);
+  padding:.85rem 1rem;
+  min-height:52px;
+  transition:border-color .3s var(--ease);
+}
+.field textarea{min-height:auto;resize:vertical}
+.field select{
+  appearance:none;
+  background-image:
+    linear-gradient(currentColor,currentColor) right 1.35rem center / 9px 1.5px no-repeat,
+    linear-gradient(currentColor,currentColor) right 1.05rem center / 1.5px 9px no-repeat;
+  color:var(--color-text);
+  padding-right:2.75rem;
+}
+.field :focus-visible{border-color:var(--color-accent);outline:none}
+.field input[type="file"]{
+  font-size:.875rem;
+  padding:.75rem 0;
+  color:var(--color-secondary);
+}
+
+.consent{
+  display:grid;grid-template-columns:auto 1fr;gap:.9rem;
+  align-items:start;
+  font-size:.875rem;color:var(--color-secondary);
+  max-width:62ch;
+}
+.consent input{
+  width:20px;height:20px;margin-top:.15rem;
+  accent-color:var(--color-accent);
+}
+
+.form__nav{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:.75rem}
+.form__error{
+  margin-top:1rem;
+  padding:.85rem 1.1rem;
+  border-left:2px solid var(--color-accent);
+  background:var(--color-background);
+  font-size:.9375rem;
+  color:var(--color-text);
+}
+
+/* Un champ invalide se signale, mais seulement apres tentative. */
+.form.is-checked :invalid{border-color:var(--color-accent)}
+
+/* ---------- 3. LE PANNEAU LATÉRAL ------------------------ */
+
+.ctct__side{display:grid;gap:clamp(1.5rem,3vw,2rem)}
+@media (min-width:1000px){
+  .ctct__side{position:sticky;top:calc(var(--header-h) + 2rem)}
+}
+.ctct__card{
+  background:var(--color-background);
+  border:1px solid var(--color-border);
+  padding:clamp(1.5rem,2.6vw,2rem);
+}
+.ctct__card .label{margin-bottom:1.5rem}
+
+.suite{display:grid;gap:0}
+.suite li{
+  display:grid;grid-template-columns:auto 1fr;gap:.3rem 1rem;
+  padding-block:1rem;
+  border-top:1px solid var(--color-border);
+}
+.suite li:first-child{border-top:0;padding-top:0}
+.suite span{
+  grid-row:1/3;
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.18em;
+  color:var(--color-accent);font-variant-numeric:tabular-nums;
+  padding-top:.3rem;
+}
+.suite h3{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;margin-bottom:.3rem}
+.suite p{font-size:.875rem;color:var(--color-secondary)}
+
+.coord{display:grid;gap:0}
+.coord li{
+  display:grid;gap:.25rem;
+  padding-block:.9rem;
+  border-top:1px solid var(--color-border);
+}
+.coord li:first-child{border-top:0;padding-top:0}
+.coord span{
+  font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--color-muted);
+}
+.coord a,.coord em{
+  font-style:normal;
+  font-family:var(--font-display);font-weight:500;
+  font-size:1.125rem;letter-spacing:-.01em;
+}
+.coord a{border-bottom:1px solid var(--color-border);padding-bottom:.1rem;transition:border-color .3s var(--ease)}
+.coord a:hover{border-bottom-color:var(--color-accent);color:var(--color-accent)}
+
+/* ---------- 4. ZONES (reprise du losange) ---------------- */
+
+.zone{background:var(--color-background);overflow:hidden}
+.zone__grid{display:grid;gap:clamp(2.5rem,5vw,4.5rem);grid-template-columns:1fr;align-items:center}
+@media (min-width:1024px){.zone__grid{grid-template-columns:minmax(0,.32fr) minmax(0,1fr)}}
+.zone__side .label{margin-bottom:1.5rem}
+.zone__note{color:var(--color-secondary);max-width:38ch}
+.zone__field{position:relative;display:grid;justify-items:center;padding:clamp(2.5rem,6vw,5rem) clamp(.5rem,2vw,2rem);min-width:0}
+.zone__lozenge{position:absolute;inset:0;width:100%;height:100%;color:var(--color-border);pointer-events:none}
+.zone__diamond{position:relative;z-index:1;display:grid;justify-items:center;gap:clamp(.35rem,1.1vw,1rem);width:100%}
+.zone__row{display:flex;flex-wrap:wrap;justify-content:center;column-gap:clamp(.75rem,2.2vw,2.25rem);row-gap:.2rem;max-width:100%}
+.zone__name{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(1.0625rem,2.4vw,2rem);
+  line-height:1.14;letter-spacing:-.025em;
+  white-space:nowrap;color:var(--color-secondary);
+  transition:color .35s var(--ease);
+}
+.zone__row:first-child .zone__name{font-size:clamp(1.625rem,4.6vw,3.5rem);font-weight:600;color:var(--color-text)}
+.zone__diamond:hover .zone__name{color:var(--color-border)}
+.zone__name:hover{color:var(--color-text) !important}
+.zone__foot{
+  position:relative;z-index:1;margin-top:clamp(1.5rem,3vw,2.5rem);
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--color-muted);text-align:center;
+}
+@media (max-width:700px){
+  .zone__lozenge{display:none}
+  .zone__field{padding-inline:0}
+  .zone__row{column-gap:.9rem}
+}
+
+/* ---------- 5. PAGES LÉGALES ----------------------------- */
+
+.legal{
+  background:var(--color-dark);color:#fff;
+  padding-top:calc(var(--header-h) + clamp(3rem,6vw,5rem));
+  padding-bottom:clamp(2.5rem,5vw,4rem);
+}
+.legal .crumb{margin-bottom:clamp(1.5rem,3vw,2.25rem)}
+.legal .crumb li{color:rgba(255,255,255,.55)}
+.legal .crumb a{color:rgba(255,255,255,.8)}
+.legal__title{
+  font-size:clamp(2rem,4.4vw,3.75rem);
+  font-weight:600;line-height:1.0;letter-spacing:-.032em;
+  margin-bottom:1rem;
+}
+.legal__note{color:var(--color-muted);font-size:.9375rem;max-width:52ch}
+
+.legal__body{background:var(--color-surface)}
+.legal__body .wrap{max-width:min(100%,52rem);margin-inline:auto}
+.legal__body h2{
+  font-size:clamp(1.125rem,1.8vw,1.4375rem);
+  font-weight:600;letter-spacing:-.018em;
+  margin-top:clamp(2.25rem,4vw,3rem);
+  padding-top:1.25rem;
+  border-top:1px solid var(--color-border);
+}
+.legal__body h2:first-child{margin-top:0;padding-top:0;border-top:0}
+.legal__body p{color:var(--color-secondary);margin-top:.9rem;max-width:68ch}
+.legal__body strong{color:var(--color-text);font-weight:500}
+.legal__body a{border-bottom:1px solid var(--color-border);transition:border-color .3s var(--ease)}
+.legal__body a:hover{border-bottom-color:var(--color-accent);color:var(--color-accent)}

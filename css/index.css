@@ -1,0 +1,544 @@
+/* ============================================================
+   SNTM SAP — index.css
+   Sections propres à la page d'accueil uniquement.
+   ============================================================ */
+
+/* ---------- 1. HERO — « LA SURFACE SE RÉVÈLE » -----------
+   Deux états du même sol empilés. L'état de repos est une
+   pierre en lumière basse, profonde et sourde. La diagonale
+   à 28° la découvre entretenue. Aucun filtre animé : la
+   séquence tient 60 fps.
+   ---------------------------------------------------------- */
+
+.hero{position:relative;background:#0E0F11}
+
+.hero__pin{
+  position:relative;
+  height:100svh;
+  min-height:420px;
+  overflow:hidden;
+  display:grid;place-items:center;
+}
+
+.hero__stage{position:absolute;inset:0;will-change:transform}
+.hero__layer{position:absolute;inset:0}
+.hero__layer img{width:100%;height:100%;object-fit:cover;object-position:center center}
+
+.hero__layer--net{
+  clip-path:polygon(
+    calc((var(--pass) * 1.45 - 45) * 1%) 100%,
+    calc((var(--pass) * 1.45 - 90) * 1%) 0%,
+    -90% 0%,
+    -45% 100%
+  );
+}
+
+.hero__light{
+  position:absolute;top:50%;
+  left:calc((var(--pass) * 1.45 - 67) * 1%);
+  width:clamp(70px,10vw,170px);height:320%;
+  transform:translate(-50%,-50%) rotate(calc(90deg - var(--diag)));
+  background:linear-gradient(90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,248,236,.06) 40%,
+    rgba(255,252,244,.34) 50%,
+    rgba(255,248,236,.06) 60%,
+    rgba(255,255,255,0) 100%);
+  pointer-events:none;
+}
+
+/* L'image porte déjà sa propre obscurité : le voile ne sert
+   plus qu'à asseoir le texte, en bas et en haut. */
+.hero__veil{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,15,17,.55) 0%,rgba(14,15,17,.12) 34%,rgba(14,15,17,.20) 62%,rgba(14,15,17,.66) 100%);
+  pointer-events:none;
+}
+
+/* Filet de cadre : c'est lui qui donne l'impression d'un
+   objet composé plutôt que d'une photo plein écran. */
+.hero__frame{
+  position:absolute;
+  inset:clamp(1rem,2.2vw,2.25rem);
+  border:1px solid rgba(255,255,255,.16);
+  pointer-events:none;z-index:2;
+}
+
+/* ---- Le bloc de marque ---- */
+
+.hero__inner{
+  position:relative;z-index:3;
+  width:var(--wrap);
+  max-width:calc(100% - clamp(3.5rem,9vw,7rem));
+  display:grid;place-items:center;
+  text-align:center;
+  color:#fff;
+}
+
+.hero__h1{
+  display:grid;justify-items:center;
+  width:100%;min-width:0;
+  font-size:inherit;font-weight:400;letter-spacing:normal;line-height:1;
+}
+
+/* Petite, très espacée : elle signe, elle ne crie pas. */
+.hero__brand{
+  font-family:var(--font-sans);font-weight:500;
+  font-size:clamp(.75rem,1.05vw,.9375rem);
+  letter-spacing:.52em;text-indent:.52em;
+  color:rgba(255,255,255,.82);
+  line-height:1;
+}
+.hero__stroke{
+  display:block;width:1px;
+  height:clamp(1.75rem,3.5vw,3rem);
+  background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,0));
+  margin-block:clamp(1.1rem,2.2vw,1.75rem);
+}
+/* La case commune : sa hauteur est celle de la baseline, donc
+   les verbes ne peuvent jamais empiéter sur ce qui suit. */
+.hero__slot{
+  display:grid;
+  place-items:center;
+  width:100%;
+}
+.hero__claim,.hero__verbs{grid-area:1/1;width:100%}
+
+.hero__claim{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(2rem,6.4vw,4.5rem);
+  line-height:1.02;letter-spacing:-.035em;
+  max-width:15ch;
+  margin-inline:auto;
+  text-wrap:balance;
+}
+.hero__services{
+  font-family:var(--font-sans);font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.62);
+  max-width:46ch;line-height:1.9;
+  margin-top:clamp(1.35rem,2.6vw,2rem);
+}
+
+.hero__verbs{
+  display:grid;
+  place-items:center;
+  align-content:center;
+  pointer-events:none;
+}
+.hero__verbs span{
+  grid-area:1/1;
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(1.75rem,5.6vw,4rem);
+  line-height:1.02;letter-spacing:-.035em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  max-width:100%;
+}
+
+.hero__actions{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;
+  margin-top:clamp(2.25rem,4.5vw,3.5rem);
+}
+
+/* ---- Pied : l'état de la surface, et le filet de progression ---- */
+
+.hero__foot{
+  position:absolute;z-index:3;
+  left:0;right:0;bottom:clamp(2rem,4.5vw,4rem);
+  max-width:calc(100% - clamp(3.5rem,9vw,7rem));
+  width:min(var(--wrap),720px);margin-inline:auto;
+  display:flex;align-items:center;gap:clamp(1rem,2.5vw,2rem);
+  font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+}
+.hero__foot-l,.hero__foot-r{white-space:nowrap;flex:none}
+.hero__foot-r{margin-left:auto;color:rgba(255,255,255,.4)}
+.hero__rule{position:relative;flex:1;height:1px;background:rgba(255,255,255,.2)}
+.hero__rule i{
+  position:absolute;left:0;top:-1px;height:3px;width:0%;
+  background:var(--color-accent);
+}
+
+@media (max-width:700px){
+  .hero__foot-l{display:none}
+}
+
+/* ---- Paliers responsive du hero ---- */
+
+/* Tablette portrait : le cadrage vertical est déjà servi par
+   <picture>, on desserre juste la composition. */
+@media (max-width:900px){
+  .hero__services{max-width:30ch}
+  .hero__actions{margin-top:clamp(1.75rem,4vw,2.5rem)}
+}
+
+/* Mobile : les boutons passent pleine largeur, le pied se réduit
+   au filet de progression et à l'état de la surface. */
+@media (max-width:520px){
+  .hero__frame{inset:.75rem}
+  .hero__actions{width:100%;flex-direction:column;gap:.75rem}
+  .hero__actions .btn{width:100%}
+  .hero__services{letter-spacing:.14em;line-height:1.8}
+  .hero__foot{bottom:1.25rem;gap:.85rem}
+  .hero__foot-r{display:none}
+}
+
+/* Très petits écrans, 360px et moins. */
+@media (max-width:380px){
+  .hero__brand{font-size:.6875rem;letter-spacing:.42em;text-indent:.42em}
+  .hero__stroke{height:1.25rem;margin-block:.85rem}
+  .hero__services{font-size:.625rem}
+}
+
+/* Paysage court : téléphone couché et petite tablette couchée.
+   Le pin reste, mais tout se compacte pour tenir en hauteur. */
+@media (max-height:560px) and (orientation:landscape){
+  .hero__pin{min-height:0}
+  .hero__frame{inset:.75rem}
+  .hero__claim,.hero__verbs span{font-size:clamp(1.375rem,5.2vh,2.125rem)}
+  .hero__slot{min-height:0}
+  .hero__services,.hero__foot{display:none}
+  .hero__stroke{height:1rem;margin-block:.6rem}
+  .hero__actions{margin-top:1.25rem}
+  .hero__actions .btn{min-height:44px;padding-inline:1.35rem}
+}
+
+/* Tablette couchée : hauteur suffisante, on garde tout. */
+@media (min-height:561px) and (max-height:820px) and (orientation:landscape){
+  .hero__services{margin-top:1rem}
+  .hero__actions{margin-top:1.75rem}
+}
+
+/* Sans mouvement : la surface est entretenue d'emblée. */
+@media (prefers-reduced-motion:reduce){
+  .hero__layer--net{clip-path:none}
+  .hero__light,.hero__verbs,.hero__foot{display:none}
+}
+
+/* ---------- 2. MANIFESTE --------------------------------- */
+
+.manifeste .label{margin-bottom:1.5rem}
+.manifeste__lead{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:var(--fs-md);
+  line-height:1.24;
+  letter-spacing:-.015em;
+  max-width:28ch;
+  margin-bottom:clamp(2.5rem,5vw,4rem);
+}
+.manifeste__cols{
+  display:grid;gap:var(--gap);
+  grid-template-columns:1fr;
+  max-width:62rem;
+  margin-left:auto;
+  color:var(--color-secondary);
+}
+@media (min-width:768px){
+  .manifeste__cols{grid-template-columns:1fr 1fr}
+}
+
+/* ---------- 4. PRESTATIONS ------------------------------- */
+
+.presta__rows{
+  border-top:1px solid var(--color-border);
+}
+
+.presta__row{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:.75rem;
+  padding-block:clamp(2rem,3.4vw,3.25rem);
+  border-bottom:1px solid var(--color-border);
+  transition:padding-inline .5s var(--ease);
+}
+
+/* Le filet rouge se tire sur toute la largeur au survol. */
+.presta__row::after{
+  content:"";position:absolute;left:0;bottom:-1px;
+  width:0;height:1px;background:var(--color-accent);
+  transition:width .6s var(--ease);
+}
+.presta__row:hover::after,
+.presta__row:focus-visible::after{width:100%}
+
+.presta__row h3{
+  font-size:clamp(1.375rem,2.1vw,2rem);
+  font-weight:500;
+  letter-spacing:-.02em;
+  transition:color .4s var(--ease);
+}
+.presta__row p{
+  color:var(--color-secondary);
+  max-width:46ch;
+}
+.presta__go{
+  font-size:1.25rem;
+  color:var(--color-muted);
+  transition:transform .45s var(--ease),color .4s var(--ease);
+}
+.presta__row:hover h3{color:var(--color-accent)}
+.presta__row:hover .presta__go{transform:translateX(8px);color:var(--color-accent)}
+
+@media (min-width:900px){
+  .presta__row{
+    grid-template-columns:minmax(0,1.05fr) minmax(0,1fr) 3rem;
+    align-items:center;
+    column-gap:clamp(2rem,5vw,6rem);
+    gap:0;
+  }
+  .presta__row:hover{padding-inline:1.25rem}
+  .presta__go{justify-self:end}
+}
+
+/* ---------- 5. TRAITEMENT DES SOLS -----------------------
+   Fond sombre, plein écran, épinglé. Les six matières se
+   substituent le long de la diagonale à 28°. Le nom court en
+   fond, plus large que l'écran : c'est lui qui donne l'échelle.
+   --reveal de chaque vignette va de 0 à 100.
+   ---------------------------------------------------------- */
+
+.mats{
+  position:relative;
+  background:var(--color-dark);
+  color:#fff;
+}
+
+.mats__pin{
+  position:relative;
+  min-height:100svh;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1fr;
+  grid-template-rows:auto minmax(0,1fr) auto;
+  gap:clamp(1.25rem,2.5vw,2rem);
+  width:var(--wrap);
+  margin-inline:auto;
+  padding-block:clamp(4rem,8vw,7rem) clamp(2rem,4vw,3.5rem);
+  align-content:center;
+}
+
+/* ---- Le nom en fond, coupé par le cadre ---- */
+
+.mats__names{
+  position:absolute;
+  left:0;bottom:clamp(1.5rem,3.5vw,3rem);
+  display:grid;place-items:start;
+  max-width:100%;
+  pointer-events:none;user-select:none;
+  z-index:0;
+}
+.mats__names span{
+  grid-area:1/1;
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(3rem,6.2vw,6.5rem);
+  line-height:.82;letter-spacing:-.04em;
+  white-space:nowrap;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,.15);
+}
+@media (max-width:900px){.mats__names{display:none}}
+
+/* ---- En-tête ---- */
+
+.mats__head{position:relative;z-index:2}
+.mats__head .label{color:var(--color-secondary);margin-bottom:.85rem}
+.mats__title{
+  font-size:clamp(1.625rem,3.4vw,3rem);
+  font-weight:600;letter-spacing:-.025em;line-height:1.04;
+  max-width:18ch;
+}
+
+/* ---- La matière ---- */
+
+.mats__stage{
+  position:relative;z-index:1;
+  width:100%;
+  max-width:min(100%,560px);
+  aspect-ratio:1/1;
+  margin-inline:auto;
+  overflow:hidden;
+  background:#1B1C1F;
+}
+
+.mats__img{
+  position:absolute;inset:0;
+  clip-path:polygon(
+    calc((var(--reveal,0) * 1.45 - 45) * 1%) 100%,
+    calc((var(--reveal,0) * 1.45 - 90) * 1%) 0%,
+    -90% 0%,
+    -45% 100%
+  );
+}
+.mats__img:first-of-type{clip-path:none}
+.mats__img img{width:100%;height:100%;object-fit:cover}
+
+/* Le front rouge de la substitution. */
+.mats__edge{
+  position:absolute;top:50%;
+  left:calc((var(--edge,0) * 1.45 - 67) * 1%);
+  width:2px;height:300%;
+  background:var(--color-accent);
+  transform:translateY(-50%) rotate(calc(90deg - var(--diag)));
+  opacity:var(--edgeon,0);
+  pointer-events:none;
+}
+
+/* ---- Le texte de la matière ---- */
+
+.mats__metas{
+  position:relative;z-index:2;
+  display:grid;
+  min-height:11.5rem;
+}
+.mats__meta{
+  grid-area:1/1;
+  display:grid;justify-items:start;gap:.6rem;
+  align-content:start;
+}
+.mats__num{
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.2em;
+  color:var(--color-accent);font-variant-numeric:tabular-nums;
+}
+.mats__name{
+  font-size:clamp(1.5rem,2.6vw,2.25rem);
+  font-weight:600;letter-spacing:-.02em;line-height:1;
+}
+.mats__desc{
+  color:var(--color-muted);
+  max-width:46ch;
+  font-size:.9375rem;
+}
+.mats__meta .link-arrow{
+  border-bottom-color:rgba(255,255,255,.24);
+  margin-top:.35rem;
+}
+.mats__meta .link-arrow:hover{border-bottom-color:var(--color-accent)}
+
+/* ---- Le rail ---- */
+
+.mats__rail{
+  position:absolute;z-index:3;
+  right:0;top:50%;transform:translateY(-50%);
+  display:grid;gap:.9rem;
+}
+.mats__rail button{
+  display:block;padding:.35rem 0;
+  width:34px;
+}
+.mats__rail i{
+  display:block;height:1px;width:100%;
+  background:rgba(255,255,255,.28);
+  transition:background .4s var(--ease),width .4s var(--ease),transform .4s var(--ease);
+}
+.mats__rail button:hover i{background:rgba(255,255,255,.6)}
+.mats__rail button.is-on i{background:var(--color-accent);transform:scaleY(3)}
+
+/* ---- Desktop : deux colonnes ---- */
+
+@media (min-width:901px){
+  .mats__pin{
+    grid-template-columns:minmax(0,.92fr) minmax(0,1fr);
+    grid-template-rows:auto minmax(0,1fr);
+    column-gap:clamp(2.5rem,5vw,5.5rem);
+    align-items:center;
+    padding-right:4.5rem;
+  }
+  .mats__head{grid-column:1;grid-row:1;align-self:end;padding-bottom:2rem}
+  .mats__metas{grid-column:1;grid-row:2;align-self:start}
+  .mats__stage{grid-column:2;grid-row:1/3;max-width:min(100%,600px)}
+}
+
+/* ---- Mobile ---- */
+
+@media (max-width:900px){
+  .mats__pin{padding-block:clamp(3.5rem,10vw,5rem) 3rem;gap:1.5rem}
+  .mats__stage{max-width:min(100%,420px);aspect-ratio:4/3}
+  .mats__metas{min-height:13rem}
+  .mats__rail{
+    position:static;transform:none;
+    grid-auto-flow:column;grid-template-columns:repeat(6,1fr);
+    gap:.5rem;width:100%;
+  }
+  .mats__rail button{width:100%;padding:.6rem 0}
+}
+
+@media (max-height:620px) and (orientation:landscape){
+  .mats__pin{min-height:0;padding-block:3.5rem 2rem}
+  .mats__stage{aspect-ratio:16/10;max-width:min(100%,420px)}
+  .mats__metas{min-height:9rem}
+  .mats__desc{display:none}
+}
+
+/* Sans mouvement : les six matières se lisent à la suite. */
+@media (prefers-reduced-motion:reduce){
+  .mats__pin{min-height:0;grid-template-columns:1fr;grid-template-rows:none}
+  .mats__names,.mats__rail,.mats__edge{display:none}
+  .mats__stage{position:static;aspect-ratio:auto;max-width:none;background:none;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+  .mats__img{position:static;clip-path:none !important}
+  .mats__metas{min-height:0;display:grid;gap:2.5rem}
+  .mats__meta{grid-area:auto}
+}
+
+/* ---------- 6. MÉTHODE ----------------------------------- */
+
+.methode{background:var(--color-surface)}
+.methode__grid{
+  display:grid;gap:clamp(2.5rem,5vw,5rem);
+  grid-template-columns:1fr;
+  align-items:start;
+}
+@media (min-width:900px){
+  .methode__grid{grid-template-columns:.85fr 1fr}
+}
+.methode__img{overflow:hidden}
+.methode__img img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.methode__text .label{margin-bottom:1.25rem}
+.methode__text .section-title{margin-bottom:clamp(2rem,4vw,3rem)}
+
+.methode__steps{display:grid;gap:0}
+.methode__steps li{
+  display:grid;grid-template-columns:auto 1fr;gap:1.5rem;
+  padding-block:1.75rem;
+  border-top:1px solid var(--color-border);
+}
+.methode__steps li:last-child{border-bottom:1px solid var(--color-border)}
+.methode__steps span{
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.16em;
+  color:var(--color-accent);font-variant-numeric:tabular-nums;
+  padding-top:.35rem;
+}
+.methode__steps h3{margin-bottom:.5rem}
+.methode__steps p{color:var(--color-secondary);font-size:.9375rem}
+
+/* ---------- 7. ZONES ------------------------------------- */
+
+.zones{background:var(--color-surface)}
+.zones__grid{
+  display:grid;gap:clamp(2.5rem,5vw,5rem);
+  grid-template-columns:1fr;align-items:center;
+}
+@media (min-width:900px){
+  .zones__grid{grid-template-columns:.9fr 1fr}
+}
+.zones__img{overflow:hidden}
+.zones__img img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.zones__text .label{margin-bottom:1.25rem}
+.zones__text .section-title{margin-bottom:2rem}
+.zones__list{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:.25rem 1.5rem;
+  margin-bottom:2rem;
+}
+.zones__list li{
+  padding-block:.6rem;
+  border-bottom:1px solid var(--color-border);
+  font-family:var(--font-display);font-weight:500;
+  font-size:1.125rem;
+}
+.zones__text > p:last-child{color:var(--color-secondary);font-size:.9375rem}
+

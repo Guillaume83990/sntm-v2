@@ -1,0 +1,169 @@
+/* ============================================================
+   SNTM SAP — a-propos.css
+   Le hero, les principes, le losange des communes, le maillage
+   et le CTA viennent de global.css.
+   ============================================================ */
+
+/* ---------- 1. LA CARTE D'IDENTITÉ ----------------------- */
+
+.ident{background:var(--color-surface)}
+.ident__grid{
+  display:grid;gap:clamp(2rem,4vw,4rem);
+  grid-template-columns:1fr;align-items:start;
+}
+@media (min-width:1000px){
+  .ident__grid{grid-template-columns:minmax(0,1fr) minmax(0,.72fr)}
+}
+.ident__text{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(1.375rem,2.8vw,2.375rem);
+  line-height:1.16;letter-spacing:-.025em;
+  max-width:26ch;
+  text-wrap:balance;
+}
+.ident__specs{border-top:1px solid var(--color-border)}
+.ident__specs > div{
+  display:grid;gap:.3rem;
+  padding-block:.9rem;
+  border-bottom:1px solid var(--color-border);
+}
+@media (min-width:560px){
+  .ident__specs > div{grid-template-columns:11rem 1fr;gap:1.5rem;align-items:baseline}
+}
+.ident__specs dt{
+  font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--color-muted);
+}
+.ident__specs dd{font-size:.9375rem;color:var(--color-text)}
+
+/* ---------- 2. LES PARTIS PRIS ---------------------------
+   Quatre blocs, chacun avec son chiffre en tres grand contour
+   pose derriere le texte. Le chiffre est purement decoratif :
+   il est en aria-hidden et ne se lit pas deux fois.
+   ---------------------------------------------------------- */
+
+.partis{background:var(--color-background)}
+.partis__intro{margin-top:1.5rem;max-width:54ch;color:var(--color-secondary)}
+
+.partis__grid{
+  display:grid;gap:0;
+  grid-template-columns:1fr;
+}
+@media (min-width:860px){
+  .partis__grid{grid-template-columns:1fr 1fr;column-gap:clamp(2.5rem,5vw,5rem)}
+}
+
+.parti{
+  position:relative;
+  padding-block:clamp(2rem,3.6vw,3rem);
+  border-top:1px solid var(--color-border);
+  overflow:hidden;
+}
+.parti__num{
+  position:absolute;z-index:0;
+  right:-.05em;top:.1em;
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(4.5rem,10vw,9rem);
+  line-height:1;letter-spacing:-.05em;
+  color:transparent;
+  -webkit-text-stroke:1px var(--color-border);
+  pointer-events:none;user-select:none;
+}
+.parti h3{
+  position:relative;z-index:1;
+  font-size:clamp(1.25rem,2vw,1.625rem);
+  font-weight:600;letter-spacing:-.02em;
+  max-width:18ch;
+  margin-bottom:.85rem;
+}
+.parti p{
+  position:relative;z-index:1;
+  color:var(--color-secondary);
+  max-width:52ch;
+}
+
+/* ---------- 3. LE TERRITOIRE ----------------------------- */
+
+.terr{background:var(--color-surface)}
+.terr__intro{margin-top:1.5rem;max-width:58ch;color:var(--color-secondary)}
+
+.terr__grid{
+  display:grid;gap:clamp(2.5rem,5vw,4.5rem);
+  grid-template-columns:1fr;
+}
+@media (min-width:860px){
+  .terr__grid{grid-template-columns:1fr 1fr}
+  /* Le second bloc descend : la paire n'est pas alignee. */
+  .terr__item:nth-child(2){margin-top:clamp(2rem,5vw,5rem)}
+}
+
+.terr__img{overflow:hidden;margin-bottom:1.5rem}
+.terr__img img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:transform 1.2s var(--ease)}
+.terr__item:hover .terr__img img{transform:scale(1.03)}
+.terr__item h3{
+  font-size:clamp(1.375rem,2.4vw,1.875rem);
+  font-weight:600;letter-spacing:-.02em;
+  margin-bottom:.75rem;
+}
+.terr__item p{color:var(--color-secondary);max-width:48ch}
+
+/* ---------- 4. LE VÉHICULE ------------------------------- */
+
+.camion{
+  position:relative;
+  background:var(--color-dark);
+  color:#fff;
+}
+.camion__media{position:relative;overflow:hidden}
+.camion__media img{
+  width:100%;
+  aspect-ratio:21/9;
+  max-height:clamp(240px,52svh,620px);
+  object-fit:cover;
+}
+@media (max-width:700px){
+  .camion__media img{aspect-ratio:4/3;max-height:none}
+}
+.camion__media::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,15,17,.25) 0%,rgba(14,15,17,0) 40%,rgba(14,15,17,.55) 100%);
+}
+.camion__text{
+  padding-block:clamp(2.5rem,5vw,4rem);
+}
+.camion__text .label{color:var(--color-secondary);margin-bottom:1.25rem}
+.camion__text .section-title{margin-bottom:1.25rem}
+.camion__text p{color:var(--color-muted);max-width:56ch}
+
+/* ---------- 5. ZONES (reprise du losange) ---------------- */
+
+.zone{background:var(--color-background);overflow:hidden}
+.zone__grid{display:grid;gap:clamp(2.5rem,5vw,4.5rem);grid-template-columns:1fr;align-items:center}
+@media (min-width:1024px){.zone__grid{grid-template-columns:minmax(0,.32fr) minmax(0,1fr)}}
+.zone__side .label{margin-bottom:1.5rem}
+.zone__note{color:var(--color-secondary);max-width:38ch;margin-bottom:1.75rem}
+.zone__field{position:relative;display:grid;justify-items:center;padding:clamp(2.5rem,6vw,5rem) clamp(.5rem,2vw,2rem);min-width:0}
+.zone__lozenge{position:absolute;inset:0;width:100%;height:100%;color:var(--color-border);pointer-events:none}
+.zone__diamond{position:relative;z-index:1;display:grid;justify-items:center;gap:clamp(.35rem,1.1vw,1rem);width:100%}
+.zone__row{display:flex;flex-wrap:wrap;justify-content:center;column-gap:clamp(.75rem,2.2vw,2.25rem);row-gap:.2rem;max-width:100%}
+.zone__name{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(1.0625rem,2.4vw,2rem);
+  line-height:1.14;letter-spacing:-.025em;
+  white-space:nowrap;color:var(--color-secondary);
+  transition:color .35s var(--ease);
+}
+.zone__row:first-child .zone__name{font-size:clamp(1.625rem,4.6vw,3.5rem);font-weight:600;color:var(--color-text)}
+.zone__diamond:hover .zone__name{color:var(--color-border)}
+.zone__name:hover{color:var(--color-text) !important}
+.zone__foot{
+  position:relative;z-index:1;margin-top:clamp(1.5rem,3vw,2.5rem);
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--color-muted);text-align:center;
+}
+@media (max-width:700px){
+  .zone__lozenge{display:none}
+  .zone__field{padding-inline:0}
+  .zone__row{column-gap:.9rem}
+}
