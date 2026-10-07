@@ -204,15 +204,14 @@
     const index = document.querySelector('.phero__index');
     const img = media.querySelector('img');
 
-    gsap.set(media, { clipPath: 'polygon(-50% 100%, -95% 0%, -45% 0%, 0% 100%)' });
+    // V2 : l'image (élément LCP) reste visible dès le premier affichage ;
+    // elle se pose par un léger zoom au lieu d'être découverte par la diagonale.
+    gsap.set(media, { scale: 1.06, transformOrigin: '50% 50%' });
     gsap.set(lines, { yPercent: 112 });
     gsap.set([crumb, index], { autoAlpha: 0, y: 12 });
 
     gsap.timeline({ defaults: { ease: 'power3.out' } })
-      .to(media, {
-        clipPath: 'polygon(-50% 100%, -95% 0%, 100% 0%, 100% 100%)',
-        duration: 1.3, ease: 'power3.inOut'
-      }, 0)
+      .to(media, { scale: 1, duration: 1.6, ease: 'power3.out' }, 0)
       .fromTo(img, { scale: 1.12 }, { scale: 1, duration: 2, ease: 'power2.out' }, 0)
       .to(crumb, { autoAlpha: 1, y: 0, duration: 0.7 }, 0.4)
       .to(lines, { yPercent: 0, duration: 1, stagger: 0.08 }, 0.5)
@@ -276,15 +275,14 @@
     const index = document.querySelector('.phero__index');
     const img = media.querySelector('img');
 
-    gsap.set(media, { clipPath: 'polygon(-50% 100%, -95% 0%, -45% 0%, 0% 100%)' });
+    // V2 : l'image (élément LCP) reste visible dès le premier affichage ;
+    // elle se pose par un léger zoom au lieu d'être découverte par la diagonale.
+    gsap.set(media, { scale: 1.06, transformOrigin: '50% 50%' });
     gsap.set(lines, { yPercent: 112 });
     gsap.set([crumb, index], { autoAlpha: 0, y: 12 });
 
     gsap.timeline({ defaults: { ease: 'power3.out' } })
-      .to(media, {
-        clipPath: 'polygon(-50% 100%, -95% 0%, 100% 0%, 100% 100%)',
-        duration: 1.3, ease: 'power3.inOut'
-      }, 0)
+      .to(media, { scale: 1, duration: 1.6, ease: 'power3.out' }, 0)
       .fromTo(img, { scale: 1.12 }, { scale: 1, duration: 2, ease: 'power2.out' }, 0)
       .to(crumb, { autoAlpha: 1, y: 0, duration: 0.7 }, 0.4)
       .to(lines, { yPercent: 0, duration: 1, stagger: 0.08 }, 0.5)

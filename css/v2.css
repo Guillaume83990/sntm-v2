@@ -277,3 +277,11 @@ html.lenis,html.lenis body{height:auto}
 #coordonnees li > span,.contact__coords li > span{color:var(--color-secondary)}
 .ref__legend-bad{color:#EE4B55}
 .ref__legend-good{color:#9A9C9F}
+
+/* ---------- 19. LISIBILITÉ MOBILE : 12 px minimum -------- */
+:root{--fs-label:clamp(.75rem,.75vw,.8125rem)}
+@media (max-width:900px){
+  .site-footer__zones,.site-footer__legal,.site-footer__coords,
+  .crumb li,.phero__index span,.burger__label,
+  .lang a,.lang span[lang]{font-size:.75rem}
+}
