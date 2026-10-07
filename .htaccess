@@ -42,4 +42,11 @@ Redirect 301 /sols.html /traitement-des-sols-saint-tropez.html
   Header set X-Content-Type-Options "nosniff"
   Header set X-Frame-Options "SAMEORIGIN"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
+  # V2 : HTTPS imposé pendant un an (actif seulement sur les réponses en HTTPS)
+  Header always set Strict-Transport-Security "max-age=31536000" env=HTTPS
+  # V2 : le site n'utilise ni caméra, ni micro, ni localisation, ni paiement
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+  # V2 : seules les ressources du site sont autorisées, plus EmailJS pour le formulaire
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://api.emailjs.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self' mailto:; upgrade-insecure-requests"
+  Header set Cross-Origin-Opener-Policy "same-origin"
 </IfModule>

@@ -8,6 +8,17 @@
 (function () {
   'use strict';
 
+  // V2 : chargés après la page, hors du chemin critique (défilement fluide, effets).
+  // Sans script en ligne, la politique de sécurité (CSP) peut rester stricte.
+  const BASE_JS = new URL('.', document.currentScript.src).href;
+  window.addEventListener('load', function () {
+    ['lib/lenis.min.js', 'v2.js'].forEach(function (s) {
+      const e = document.createElement('script');
+      e.src = BASE_JS + s; e.async = false;
+      document.body.appendChild(e);
+    });
+  });
+
   gsap.registerPlugin(ScrollTrigger);
 
   // Sur iOS et Android, l'apparition/disparition de la barre d'URL

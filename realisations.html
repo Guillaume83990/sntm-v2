@@ -28,8 +28,7 @@
 
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="css/realisations.css">
-<link rel="preload" href="css/v2.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="css/v2.css"></noscript>
+<link rel="stylesheet" href="css/v2.css">
 </head>
 
 <body>
@@ -525,9 +524,5 @@
 <script src="js/lib/ScrollTrigger.min.js" defer></script>
 <script src="js/global.js" defer></script>
 <script src="js/realisations.js" defer></script>
-<script>
-/* V2 : défilement fluide et effets chargés après la page, hors du chemin critique */
-addEventListener("load",function(){["js/lib/lenis.min.js","js/v2.js"].forEach(function(s){var e=document.createElement("script");e.src=s;e.async=false;document.body.appendChild(e)})});
-</script>
 </body>
 </html>
