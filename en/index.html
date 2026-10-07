@@ -31,6 +31,7 @@
 
 <link rel="stylesheet" href="../css/global.css">
 <link rel="stylesheet" href="../css/index.css">
+<link rel="stylesheet" href="../css/v2.css">
 </head>
 
 <body>
@@ -166,18 +167,54 @@
 </section>
 
 <!-- ============================================================
+     V2 · RÉFÉRENCE : la preuve, juste après la promesse
+     ============================================================ -->
+<section class="refs" aria-labelledby="refsTitre">
+  <div class="wrap refs__grid">
+    <div class="refs__intro reveal">
+      <p class="label" id="refsTitre">They trust us with their floors</p>
+      <p>Luxury hotels, villas, shops and schools across the Gulf.</p>
+    </div>
+    <figure class="refs__seal reveal">
+      <img src="../images/ref-byblos-sombre.webp" alt="Byblos Saint-Tropez" width="480" height="569" loading="lazy" decoding="async">
+    </figure>
+    <p class="refs__note reveal">The Byblos, Saint-Tropez’s palace hotel since 1967, is one of SNTM SAP’s clients.</p>
+  </div>
+</section>
+
+<!-- ============================================================
      MANIFESTE
      ============================================================ -->
 <section class="manifeste section">
   <div class="wrap">
     <p class="label reveal">The company</p>
-    <p class="manifeste__lead reveal">
-      SNTM SAP maintains commercial premises across Saint-Tropez and the Gulf.
-      Retail premises, schools, sites awaiting handover, floors in need of restoration.
+    <p class="manifeste__lead scrub-words">
+      SNTM SAP has been caring for surfaces across Saint-Tropez and the Gulf since 2010.
+      Hotels, villas, shops, schools, sites awaiting handover: every floor has its own method.
     </p>
     <div class="manifeste__cols">
       <p class="reveal">A floor is the most heavily used surface in a building, and the first one seen from the front door. It takes the footfall, the water, the sand and the wrong products. It degrades slowly, then all at once.</p>
       <p class="reveal">Our job is to step in before that moment, and to know what to do once it has passed. Every material calls for a different method, and that difference is the whole trade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     V2 · REPÈRES : uniquement des chiffres vérifiables
+     ============================================================ -->
+<section class="reperes" aria-label="SNTM SAP at a glance">
+  <div class="wrap reperes__grid">
+    <div class="repere reveal">
+      <span class="repere__num"><span data-count="2010" data-from="1990">2010</span></span>
+      <p class="repere__txt">The year SNTM SAP was founded, in Gassin, at the heart of the Gulf.</p>
+    </div>
+    <div class="repere reveal">
+      <span class="repere__num"><span data-count="8">8</span><em>.</em></span>
+      <p class="repere__txt">Towns covered across the Gulf of Saint-Tropez, and the rest of the Var on request.</p>
+    </div>
+    <div class="repere reveal">
+      <span class="repere__num"><span data-count="6">6</span><em>.</em></span>
+      <p class="repere__txt">Families of floors we treat, from marble to porcelain stoneware, each with its own method.</p>
     </div>
   </div>
 </section>
@@ -203,25 +240,25 @@
     </div>
 
     <div class="presta__rows">
-      <a class="presta__row reveal" href="retail-cleaning-saint-tropez.html">
+      <a class="presta__row reveal" href="retail-cleaning-saint-tropez.html" data-peek="../images/hero-commerces-700.webp">
         <h3>Retail and commercial premises</h3>
         <p>Sales floors, stockrooms and common areas, around your opening hours.</p>
         <span class="presta__go" aria-hidden="true">&rarr;</span>
       </a>
 
-      <a class="presta__row reveal" href="school-cleaning-var.html">
+      <a class="presta__row reveal" href="school-cleaning-var.html" data-peek="../images/hero-ecoles-700.webp">
         <h3>Schools and colleges</h3>
         <p>Classrooms, corridors and washrooms, with the constraints specific to schools.</p>
         <span class="presta__go" aria-hidden="true">&rarr;</span>
       </a>
 
-      <a class="presta__row reveal" href="post-construction-cleaning-saint-tropez.html">
+      <a class="presta__row reveal" href="post-construction-cleaning-saint-tropez.html" data-peek="../images/hero-remise-700.webp">
         <h3>Post-construction cleaning</h3>
         <p>Dust, residue, floors and glazing before handover or inventory check.</p>
         <span class="presta__go" aria-hidden="true">&rarr;</span>
       </a>
 
-      <a class="presta__row reveal" href="floor-treatment-saint-tropez.html">
+      <a class="presta__row reveal" href="floor-treatment-saint-tropez.html" data-peek="../images/hero-sols-768.webp">
         <h3>Floor treatment</h3>
         <p>Marble, travertine, terracotta, parquet, polished concrete, porcelain.</p>
         <span class="presta__go" aria-hidden="true">&rarr;</span>
@@ -263,6 +300,7 @@
     <div class="mats__head">
       <p class="label">Floor treatment</p>
       <h2 class="mats__title">Every material has its own method</h2>
+      <p class="raking-hint">Move your cursor over the floor: raking light reveals its true condition</p>
     </div>
 
     <div class="mats__stage" id="matsStage">
@@ -369,35 +407,67 @@
 </section>
 
 <!-- ============================================================
-     AVANT / APRÈS — signature 6
+     V2 · UN CHANTIER RÉEL (photos de l'équipe SNTM)
+     Les deux vues ne sont pas prises du même angle : elles sont
+     présentées côte à côte, jamais superposées.
      ============================================================ -->
-<section class="ba section" id="avant-apres">
+<section class="chantier section" id="chantier">
   <div class="wrap">
     <div class="section-head">
-      <p class="label reveal">Before / after</p>
-      <h2 class="section-title reveal">The same floor, three days apart</h2>
+      <p class="label reveal">A real job</p>
+      <h2 class="section-title reveal">Terracotta floors in a villa, during and after</h2>
+    </div>
+
+    <div class="chantier__grid">
+      <figure class="chantier__fig chantier__fig--pendant">
+        <div class="chantier__media">
+          <span class="chantier__tag">During</span>
+          <img src="../images/reel-tomettes-pendant-768.webp" srcset="../images/reel-tomettes-pendant-768.webp 768w, ../images/reel-tomettes-pendant-1152.webp 1152w, ../images/reel-tomettes-pendant-1536.webp 1536w" sizes="(min-width: 860px) 42vw, 92vw" alt="Terracotta tile floor with white inserts, dull and soiled, furniture protected with blue film" width="1536" height="1536" loading="lazy" decoding="async">
+        </div>
+        <figcaption>Furniture protected, floor dull and soiled: the work begins.</figcaption>
+      </figure>
+      <figure class="chantier__fig chantier__fig--apres">
+        <div class="chantier__media">
+          <span class="chantier__tag">After</span>
+          <img src="../images/reel-tomettes-apres-768.webp" srcset="../images/reel-tomettes-apres-768.webp 768w, ../images/reel-tomettes-apres-1152.webp 1152w, ../images/reel-tomettes-apres-1536.webp 1536w" sizes="(min-width: 860px) 48vw, 92vw" alt="Villa living room with terracotta tile floor cleaned and sealed, warm tone and satin sheen" width="1536" height="2048" loading="lazy" decoding="async">
+        </div>
+        <figcaption>Deep cleaning, then protection: the terracotta gets its colour and satin sheen back.</figcaption>
+      </figure>
+    </div>
+
+    <div class="chantier__foot reveal">
+      <p class="chantier__proof">Photos taken on site by the SNTM SAP team</p>
+      <a class="link-arrow" href="floor-treatment-saint-tropez.html#terre-cuite">Our method for terracotta</a>
     </div>
   </div>
+</section>
 
-  <div class="ba__stage" id="baStage" style="--reveal: 0">
-    <picture class="ba__layer ba__layer--avant">
-      <source type="image/webp" srcset="../images/avant-tomettes-768.webp 768w, ../images/avant-tomettes-1152.webp 1152w, ../images/avant-tomettes-1536.webp 1536w, ../images/avant-tomettes-1672.webp 1672w" sizes="100vw">
-      <img src="../images/avant-tomettes-1152.webp" alt="Terracotta tomette floor, dull and soiled before treatment" width="1672" height="716" loading="lazy" decoding="async">
-    </picture>
-    <picture class="ba__layer ba__layer--apres" id="baApres">
-      <source type="image/webp" srcset="../images/apres-tomettes-768.webp 768w, ../images/apres-tomettes-1152.webp 1152w, ../images/apres-tomettes-1536.webp 1536w, ../images/apres-tomettes-1672.webp 1672w" sizes="100vw">
-      <img src="../images/apres-tomettes-1152.webp" alt="The same tomette floor after cleaning and sealing, even tone and satin sheen" width="1672" height="716" loading="lazy" decoding="async">
-    </picture>
-
-    <span class="ba__edge" id="baEdge" aria-hidden="true"></span>
-    <span class="ba__edge ba__edge--light" aria-hidden="true"></span>
-
-    <span class="ba__word ba__word--avant" aria-hidden="true">Before</span>
-    <span class="ba__word ba__word--apres" aria-hidden="true">After</span>
-  </div>
-
+<!-- ============================================================
+     V2 · SUR LE TERRAIN (photos de l'entreprise)
+     ============================================================ -->
+<section class="terrain section">
   <div class="wrap">
-    <p class="ba__caption reveal">Terracotta tomettes, private villa, Gulf of Saint-Tropez.</p>
+    <div class="section-head">
+      <p class="label reveal">On the ground</p>
+      <h2 class="section-title reveal">A Gulf company, with its own teams and premises</h2>
+    </div>
+    <div class="terrain__grid">
+      <figure class="terrain__card">
+        <div class="terrain__media"><img src="../images/reel-equipe-480.webp" srcset="../images/reel-equipe-480.webp 480w, ../images/reel-equipe-720.webp 720w" sizes="(min-width: 760px) 30vw, 92vw" alt="Two SNTM technicians in uniform cleaning the windows of a building, SNTM van parked in front" width="720" height="946" loading="lazy" decoding="async"></div>
+        <h3>Our teams at work</h3>
+        <p>Window cleaning and on-site maintenance, in SNTM uniform, with our own vans.</p>
+      </figure>
+      <figure class="terrain__card">
+        <div class="terrain__media"><img src="../images/reel-bureau-480.webp" srcset="../images/reel-bureau-480.webp 480w, ../images/reel-bureau-720.webp 720w" sizes="(min-width: 760px) 30vw, 92vw" alt="SNTM SAP office reception, desk with the Cleaning and Maintenance logo" width="720" height="952" loading="lazy" decoding="async"></div>
+        <h3>Our office in Gassin</h3>
+        <p>A reception desk and a single contact, close to your sites.</p>
+      </figure>
+      <figure class="terrain__card">
+        <div class="terrain__media"><img src="../images/reel-flotte-480.webp" srcset="../images/reel-flotte-480.webp 480w, ../images/reel-flotte-720.webp 720w" sizes="(min-width: 760px) 30vw, 92vw" alt="Black SNTM SAP vans lined up in front of the premises" width="720" height="534" loading="lazy" decoding="async"></div>
+        <h3>Our fleet</h3>
+        <p>Equipped vans to work anywhere in the Gulf.</p>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -583,5 +653,7 @@
 <script src="../js/lib/ScrollTrigger.min.js"></script>
 <script src="../js/global.js"></script>
 <script src="../js/index.js"></script>
+<script src="../js/lib/lenis.min.js"></script>
+<script src="../js/v2.js"></script>
 </body>
 </html>

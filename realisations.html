@@ -28,6 +28,7 @@
 
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="css/realisations.css">
+<link rel="stylesheet" href="css/v2.css">
 </head>
 
 <body>
@@ -103,10 +104,10 @@
         <span class="line-mask"><span>Réalisations</span></span>
     </h1>
 
-    <p class="phero__sign line-mask"><span>Six sols, six problèmes différents. Faites glisser pour voir ce qui change.</span></p>
+    <p class="phero__sign line-mask"><span>Un chantier réel, et les cinq problèmes de sol que nous traitons le plus souvent.</span></p>
 
     <nav class="phero__index" aria-label="Sommaire de la page">
-        <a href="#chantiers"><span>01</span>Les six chantiers</a>
+        <a href="#chantiers"><span>01</span>Le chantier et les cas types</a>
         <a href="#lire"><span>02</span>Comment lire un avant / après</a>
         <a href="#traitement-des-sols"><span>03</span>Les matières</a>
         <a href="#contact"><span>04</span>Faire diagnostiquer un sol</a>
@@ -122,13 +123,13 @@
   <div class="wrap">
     <div class="section-head">
       <p class="label reveal">01 — Les chantiers</p>
-      <h2 class="section-title reveal">Le même sol, avant et après</h2>
-      <p class="reals__intro reveal">Chaque image est coupée par la diagonale rouge : l'état constaté d'un côté, le résultat de l'autre. Les repères sous chaque cadre indiquent le matériau, le lieu, ce qui a été constaté et ce qui a changé. Les repères sous chaque image indiquent le matériau, le type de lieu, ce qui a été constaté et ce qui a changé.</p>
+      <h2 class="section-title reveal">Un chantier réel, puis les cas que nous traitons</h2>
+      <p class="reals__intro reveal">Le premier cas est un chantier de l'équipe SNTM SAP, photographié sur place. Les cinq suivants sont des illustrations : elles montrent les dégradations que nous rencontrons le plus souvent, et la diagonale rouge sépare l'état typique du résultat recherché.</p>
     </div>
 
-    <nav class="reals__index" id="realsIndex" aria-label="Les six chantiers">
-      <a href="#real-marbre" data-fam="marbre"><span>01</span>Marbre</a>
-      <a href="#real-terre-cuite" data-fam="terre-cuite"><span>02</span>Terre cuite</a>
+    <nav class="reals__index" id="realsIndex" aria-label="Le chantier réel et les cas types">
+      <a href="#real-terre-cuite" data-fam="terre-cuite"><span>01</span>Terre cuite</a>
+      <a href="#real-marbre" data-fam="marbre"><span>02</span>Marbre</a>
       <a href="#real-travertin" data-fam="travertin"><span>03</span>Travertin</a>
       <a href="#real-gres" data-fam="gres"><span>04</span>Grès cérame</a>
       <a href="#real-parquet" data-fam="parquet"><span>05</span>Parquet</a>
@@ -137,24 +138,57 @@
   </div>
 
   <div class="reals__list" id="realsList">
-      <!-- À REMPLACER PAR LE CHANTIER RÉEL : écraser les fichiers
-           images/avant-marbre-*.webp et images/apres-marbre-*.webp,
-           puis ajuster les quatre lignes de repères ci-dessous. -->
-      <article class="real" id="real-marbre" data-fam="marbre" style="--i: 0">
+      <article class="real real--vrai" id="real-terre-cuite" data-fam="terre-cuite" style="--i: 0">
         <div class="wrap real__head">
           <span class="real__num">01</span>
+          <h2 class="real__title">Tomettes de terre cuite, séjour de villa</h2>
+          <span class="real__tag real__tag--vrai">Chantier réel</span>
+        </div>
+
+        <div class="wrap real__stage">
+          <div class="chantier__grid">
+            <figure class="chantier__fig chantier__fig--pendant">
+              <div class="chantier__media">
+                <span class="chantier__tag">Pendant</span>
+                <img src="images/reel-tomettes-pendant-768.webp" srcset="images/reel-tomettes-pendant-768.webp 768w, images/reel-tomettes-pendant-1152.webp 1152w, images/reel-tomettes-pendant-1536.webp 1536w" sizes="(min-width: 860px) 42vw, 92vw" alt="Sol en tomettes de terre cuite à cabochons blancs, terni et encrassé, mobilier protégé par un film bleu" width="1536" height="1536" loading="lazy" decoding="async">
+              </div>
+              <figcaption>Mobilier protégé, sol terni et encrassé.</figcaption>
+            </figure>
+            <figure class="chantier__fig chantier__fig--apres">
+              <div class="chantier__media">
+                <span class="chantier__tag">Après</span>
+                <img src="images/reel-tomettes-apres-768.webp" srcset="images/reel-tomettes-apres-768.webp 768w, images/reel-tomettes-apres-1152.webp 1152w, images/reel-tomettes-apres-1536.webp 1536w" sizes="(min-width: 860px) 48vw, 92vw" alt="Séjour de villa au sol en tomettes de terre cuite nettoyé et protégé, teinte chaude et reflet satiné" width="1536" height="2048" loading="lazy" decoding="async">
+              </div>
+              <figcaption>Après nettoyage en profondeur et protection.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <dl class="wrap real__specs">
+            <div><dt>Matériau</dt><dd>Tomettes de terre cuite à cabochons blancs</dd></div>
+            <div><dt>Lieu</dt><dd>Villa privée</dd></div>
+            <div><dt>État constaté</dt><dd>Sol terni et encrassé, teinte perdue</dd></div>
+            <div><dt>Intervention</dt><dd>Nettoyage en profondeur, puis protection</dd></div>
+            <div><dt>Photos</dt><dd>Prises sur place par l'équipe SNTM SAP</dd></div>
+        </dl>
+      </article>
+
+      <article class="real" id="real-marbre" data-fam="marbre" style="--i: 1">
+        <div class="wrap real__head">
+          <span class="real__num">02</span>
           <h2 class="real__title">Marbre poli, hall de villa</h2>
+          <span class="real__tag">Illustration</span>
         </div>
 
         <div class="real__stage">
           <div class="ba__stage" style="--reveal: 0">
             <picture class="ba__layer ba__layer--avant">
               <source type="image/webp" srcset="images/avant-marbre-768.webp 768w, images/avant-marbre-1152.webp 1152w, images/avant-marbre-1536.webp 1536w" sizes="(max-width: 1000px) 100vw, 62vw">
-              <img src="images/avant-marbre-1152.webp" alt="Sol en marbre terni, poli rayé et auréoles mates avant intervention" width="1586" height="992" loading="lazy" decoding="async">
+              <img src="images/avant-marbre-1152.webp" alt="Illustration : sol en marbre terni, poli rayé et auréoles mates avant intervention" width="1586" height="992" loading="lazy" decoding="async">
             </picture>
             <picture class="ba__layer ba__layer--apres">
               <source type="image/webp" srcset="images/apres-marbre-768.webp 768w, images/apres-marbre-1152.webp 1152w, images/apres-marbre-1536.webp 1536w" sizes="(max-width: 1000px) 100vw, 62vw">
-              <img src="images/apres-marbre-1152.webp" alt="Le même sol en marbre après reprise, réflexion homogène et brillance retrouvée" width="1586" height="992" loading="lazy" decoding="async">
+              <img src="images/apres-marbre-1152.webp" alt="Illustration : le même sol en marbre après reprise, réflexion homogène et brillance retrouvée" width="1586" height="992" loading="lazy" decoding="async">
             </picture>
             <span class="ba__edge" aria-hidden="true"></span>
             <span class="ba__edge ba__edge--light" aria-hidden="true"></span>
@@ -165,64 +199,27 @@
 
         <dl class="wrap real__specs">
             <div><dt>Matériau</dt><dd>Marbre poli grand format</dd></div>
-            <div><dt>Lieu</dt><dd>Villa privée, Golfe de Saint-Tropez</dd></div>
-            <div><dt>État constaté</dt><dd>Poli rayé par le passage, auréoles mates d'origine acide</dd></div>
-            <div><dt>Résultat</dt><dd>Réflexion homogène retrouvée sur toute la surface</dd></div>
+            <div><dt>Dégradation typique</dt><dd>Poli rayé par le passage, auréoles mates d'origine acide</dd></div>
+            <div><dt>Résultat recherché</dt><dd>Réflexion homogène retrouvée sur toute la surface</dd></div>
         </dl>
       </article>
 
-      <!-- À REMPLACER PAR LE CHANTIER RÉEL : écraser les fichiers
-           images/avant-tomettes-real-*.webp et images/apres-tomettes-real-*.webp,
-           puis ajuster les quatre lignes de repères ci-dessous. -->
-      <article class="real" id="real-terre-cuite" data-fam="terre-cuite" style="--i: 1">
-        <div class="wrap real__head">
-          <span class="real__num">02</span>
-          <h2 class="real__title">Tomettes de terre cuite, séjour</h2>
-        </div>
-
-        <div class="real__stage">
-          <div class="ba__stage" style="--reveal: 0">
-            <picture class="ba__layer ba__layer--avant">
-              <source type="image/webp" srcset="images/avant-tomettes-real-768.webp 768w, images/avant-tomettes-real-1152.webp 1152w" sizes="(max-width: 1000px) 100vw, 62vw">
-              <img src="images/avant-tomettes-real-1152.webp" alt="Sol en tomettes de terre cuite terni et saturé avant intervention" width="1672" height="1045" loading="lazy" decoding="async">
-            </picture>
-            <picture class="ba__layer ba__layer--apres">
-              <source type="image/webp" srcset="images/apres-tomettes-real-768.webp 768w, images/apres-tomettes-real-1152.webp 1152w" sizes="(max-width: 1000px) 100vw, 62vw">
-              <img src="images/apres-tomettes-real-1152.webp" alt="Le même sol en tomettes après traitement, teinte homogène et satinée" width="1672" height="1045" loading="lazy" decoding="async">
-            </picture>
-            <span class="ba__edge" aria-hidden="true"></span>
-            <span class="ba__edge ba__edge--light" aria-hidden="true"></span>
-            <span class="ba__word ba__word--avant" aria-hidden="true">Avant</span>
-            <span class="ba__word ba__word--apres" aria-hidden="true">Après</span>
-          </div>
-        </div>
-
-        <dl class="wrap real__specs">
-            <div><dt>Matériau</dt><dd>Tomettes hexagonales de terre cuite</dd></div>
-            <div><dt>Lieu</dt><dd>Villa privée, Golfe de Saint-Tropez</dd></div>
-            <div><dt>État constaté</dt><dd>Sol saturé par l'accumulation de couches d'entretien</dd></div>
-            <div><dt>Résultat</dt><dd>Teinte d'origine homogène, finition satinée</dd></div>
-        </dl>
-      </article>
-
-      <!-- À REMPLACER PAR LE CHANTIER RÉEL : écraser les fichiers
-           images/avant-travertin-*.webp et images/apres-travertin-*.webp,
-           puis ajuster les quatre lignes de repères ci-dessous. -->
       <article class="real" id="real-travertin" data-fam="travertin" style="--i: 2">
         <div class="wrap real__head">
           <span class="real__num">03</span>
           <h2 class="real__title">Travertin, terrasse en surplomb</h2>
+          <span class="real__tag">Illustration</span>
         </div>
 
         <div class="real__stage">
           <div class="ba__stage" style="--reveal: 0">
             <picture class="ba__layer ba__layer--avant">
               <source type="image/webp" srcset="images/avant-travertin-768.webp 768w, images/avant-travertin-1152.webp 1152w, images/avant-travertin-1536.webp 1536w" sizes="(max-width: 1000px) 100vw, 62vw">
-              <img src="images/avant-travertin-1152.webp" alt="Terrasse en travertin grise et verdie, pores encrassés avant intervention" width="1586" height="992" loading="lazy" decoding="async">
+              <img src="images/avant-travertin-1152.webp" alt="Illustration : terrasse en travertin grise et verdie, pores encrassés avant intervention" width="1586" height="992" loading="lazy" decoding="async">
             </picture>
             <picture class="ba__layer ba__layer--apres">
               <source type="image/webp" srcset="images/apres-travertin-768.webp 768w, images/apres-travertin-1152.webp 1152w, images/apres-travertin-1536.webp 1536w" sizes="(max-width: 1000px) 100vw, 62vw">
-              <img src="images/apres-travertin-1152.webp" alt="La même terrasse après traitement, teinte beige uniforme et pores dégagés" width="1586" height="992" loading="lazy" decoding="async">
+              <img src="images/apres-travertin-1152.webp" alt="Illustration : la même terrasse après traitement, teinte beige uniforme et pores dégagés" width="1586" height="992" loading="lazy" decoding="async">
             </picture>
             <span class="ba__edge" aria-hidden="true"></span>
             <span class="ba__edge ba__edge--light" aria-hidden="true"></span>
@@ -233,30 +230,27 @@
 
         <dl class="wrap real__specs">
             <div><dt>Matériau</dt><dd>Travertin adouci, dalles grand format</dd></div>
-            <div><dt>Lieu</dt><dd>Terrasse extérieure, Golfe de Saint-Tropez</dd></div>
-            <div><dt>État constaté</dt><dd>Verdissement des zones d'ombre, pores encrassés</dd></div>
-            <div><dt>Résultat</dt><dd>Teinte beige uniforme, pores dégagés et protégés</dd></div>
+            <div><dt>Dégradation typique</dt><dd>Verdissement des zones d'ombre, pores encrassés</dd></div>
+            <div><dt>Résultat recherché</dt><dd>Teinte beige uniforme, pores dégagés et protégés</dd></div>
         </dl>
       </article>
 
-      <!-- À REMPLACER PAR LE CHANTIER RÉEL : écraser les fichiers
-           images/avant-gres-*.webp et images/apres-gres-*.webp,
-           puis ajuster les quatre lignes de repères ci-dessous. -->
       <article class="real" id="real-gres" data-fam="gres" style="--i: 3">
         <div class="wrap real__head">
           <span class="real__num">04</span>
           <h2 class="real__title">Grès cérame, surface de vente</h2>
+          <span class="real__tag">Illustration</span>
         </div>
 
         <div class="real__stage">
           <div class="ba__stage" style="--reveal: 0">
             <picture class="ba__layer ba__layer--avant">
               <source type="image/webp" srcset="images/avant-gres-768.webp 768w, images/avant-gres-1152.webp 1152w, images/avant-gres-1536.webp 1536w" sizes="(max-width: 1000px) 100vw, 62vw">
-              <img src="images/avant-gres-1152.webp" alt="Sol de commerce en grès cérame aux joints noircis avant intervention" width="1536" height="960" loading="lazy" decoding="async">
+              <img src="images/avant-gres-1152.webp" alt="Illustration : sol de commerce en grès cérame aux joints noircis avant intervention" width="1536" height="960" loading="lazy" decoding="async">
             </picture>
             <picture class="ba__layer ba__layer--apres">
               <source type="image/webp" srcset="images/apres-gres-768.webp 768w, images/apres-gres-1152.webp 1152w, images/apres-gres-1536.webp 1536w" sizes="(max-width: 1000px) 100vw, 62vw">
-              <img src="images/apres-gres-1152.webp" alt="Le même sol après traitement des joints, trame uniforme retrouvée" width="1536" height="960" loading="lazy" decoding="async">
+              <img src="images/apres-gres-1152.webp" alt="Illustration : le même sol après traitement des joints, trame uniforme retrouvée" width="1536" height="960" loading="lazy" decoding="async">
             </picture>
             <span class="ba__edge" aria-hidden="true"></span>
             <span class="ba__edge ba__edge--light" aria-hidden="true"></span>
@@ -267,30 +261,27 @@
 
         <dl class="wrap real__specs">
             <div><dt>Matériau</dt><dd>Grès cérame grand format</dd></div>
-            <div><dt>Lieu</dt><dd>Local commercial, Saint-Tropez</dd></div>
-            <div><dt>État constaté</dt><dd>Joints noircis dessinant une trame sur tout le sol</dd></div>
-            <div><dt>Résultat</dt><dd>Joints repris et protégés, sol redevenu uniforme</dd></div>
+            <div><dt>Dégradation typique</dt><dd>Joints noircis dessinant une trame sur tout le sol</dd></div>
+            <div><dt>Résultat recherché</dt><dd>Joints repris et protégés, sol redevenu uniforme</dd></div>
         </dl>
       </article>
 
-      <!-- À REMPLACER PAR LE CHANTIER RÉEL : écraser les fichiers
-           images/avant-parquet-*.webp et images/apres-parquet-*.webp,
-           puis ajuster les quatre lignes de repères ci-dessous. -->
       <article class="real" id="real-parquet" data-fam="parquet" style="--i: 4">
         <div class="wrap real__head">
           <span class="real__num">05</span>
           <h2 class="real__title">Parquet chêne, appartement</h2>
+          <span class="real__tag">Illustration</span>
         </div>
 
         <div class="real__stage">
           <div class="ba__stage" style="--reveal: 0">
             <picture class="ba__layer ba__layer--avant">
               <source type="image/webp" srcset="images/avant-parquet-768.webp 768w, images/avant-parquet-1152.webp 1152w, images/avant-parquet-1536.webp 1536w" sizes="(max-width: 1000px) 100vw, 62vw">
-              <img src="images/avant-parquet-1152.webp" alt="Parquet chêne à la finition usée dans l'axe de passage avant intervention" width="1536" height="960" loading="lazy" decoding="async">
+              <img src="images/avant-parquet-1152.webp" alt="Illustration : parquet chêne à la finition usée dans l'axe de passage avant intervention" width="1536" height="960" loading="lazy" decoding="async">
             </picture>
             <picture class="ba__layer ba__layer--apres">
               <source type="image/webp" srcset="images/apres-parquet-768.webp 768w, images/apres-parquet-1152.webp 1152w, images/apres-parquet-1536.webp 1536w" sizes="(max-width: 1000px) 100vw, 62vw">
-              <img src="images/apres-parquet-1152.webp" alt="Le même parquet après reprise, satiné homogène sur toute la surface" width="1536" height="960" loading="lazy" decoding="async">
+              <img src="images/apres-parquet-1152.webp" alt="Illustration : le même parquet après reprise, satiné homogène sur toute la surface" width="1536" height="960" loading="lazy" decoding="async">
             </picture>
             <span class="ba__edge" aria-hidden="true"></span>
             <span class="ba__edge ba__edge--light" aria-hidden="true"></span>
@@ -301,30 +292,27 @@
 
         <dl class="wrap real__specs">
             <div><dt>Matériau</dt><dd>Chêne massif en point de Hongrie</dd></div>
-            <div><dt>Lieu</dt><dd>Appartement privé, Golfe de Saint-Tropez</dd></div>
-            <div><dt>État constaté</dt><dd>Finition usée dans l'axe de passage, bande mate et rayée</dd></div>
-            <div><dt>Résultat</dt><dd>Finition reprise, satiné homogène sur toute la pièce</dd></div>
+            <div><dt>Dégradation typique</dt><dd>Finition usée dans l'axe de passage, bande mate et rayée</dd></div>
+            <div><dt>Résultat recherché</dt><dd>Finition reprise, satiné homogène sur toute la pièce</dd></div>
         </dl>
       </article>
 
-      <!-- À REMPLACER PAR LE CHANTIER RÉEL : écraser les fichiers
-           images/avant-chantier-*.webp et images/apres-chantier-*.webp,
-           puis ajuster les quatre lignes de repères ci-dessous. -->
       <article class="real" id="real-chantier" data-fam="chantier" style="--i: 5">
         <div class="wrap real__head">
           <span class="real__num">06</span>
           <h2 class="real__title">Remise en état, logement neuf</h2>
+          <span class="real__tag">Illustration</span>
         </div>
 
         <div class="real__stage">
           <div class="ba__stage" style="--reveal: 0">
             <picture class="ba__layer ba__layer--avant">
               <source type="image/webp" srcset="images/avant-chantier-768.webp 768w, images/avant-chantier-1152.webp 1152w, images/avant-chantier-1536.webp 1536w" sizes="(max-width: 1000px) 100vw, 62vw">
-              <img src="images/avant-chantier-1152.webp" alt="Pièce neuve couverte d'un film de poussière de plâtre avant remise en état" width="1536" height="960" loading="lazy" decoding="async">
+              <img src="images/avant-chantier-1152.webp" alt="Illustration : pièce neuve couverte d'un film de poussière de plâtre avant remise en état" width="1536" height="960" loading="lazy" decoding="async">
             </picture>
             <picture class="ba__layer ba__layer--apres">
               <source type="image/webp" srcset="images/apres-chantier-768.webp 768w, images/apres-chantier-1152.webp 1152w, images/apres-chantier-1536.webp 1536w" sizes="(max-width: 1000px) 100vw, 62vw">
-              <img src="images/apres-chantier-1152.webp" alt="La même pièce après remise en état, sol net et prêt pour la livraison" width="1536" height="960" loading="lazy" decoding="async">
+              <img src="images/apres-chantier-1152.webp" alt="Illustration : la même pièce après remise en état, sol net et prêt pour la livraison" width="1536" height="960" loading="lazy" decoding="async">
             </picture>
             <span class="ba__edge" aria-hidden="true"></span>
             <span class="ba__edge ba__edge--light" aria-hidden="true"></span>
@@ -335,11 +323,11 @@
 
         <dl class="wrap real__specs">
             <div><dt>Matériau</dt><dd>Grès cérame neuf, sortie de pose</dd></div>
-            <div><dt>Lieu</dt><dd>Logement livré, Golfe de Saint-Tropez</dd></div>
-            <div><dt>État constaté</dt><dd>Film de poussière de plâtre, voile de laitance, adhésifs</dd></div>
-            <div><dt>Résultat</dt><dd>Surface prête pour la remise des clés</dd></div>
+            <div><dt>Dégradation typique</dt><dd>Film de poussière de plâtre, voile de laitance, adhésifs</dd></div>
+            <div><dt>Résultat recherché</dt><dd>Surface prête pour la remise des clés</dd></div>
         </dl>
       </article>
+
 
   </div>
 </section>
@@ -536,5 +524,7 @@
 <script src="js/lib/ScrollTrigger.min.js"></script>
 <script src="js/global.js"></script>
 <script src="js/realisations.js"></script>
+<script src="js/lib/lenis.min.js"></script>
+<script src="js/v2.js"></script>
 </body>
 </html>

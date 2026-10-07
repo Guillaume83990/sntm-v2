@@ -1,0 +1,237 @@
+/* ============================================================
+   SNTM SAP — v2.css
+   Montée en gamme V2 (octobre 2026). Tout ce qui est nouveau
+   vit ici, avec les variables de global.css : aucune nouvelle
+   couleur, aucune nouvelle police, la diagonale à 28° partout.
+   ============================================================ */
+
+/* ---------- 0. DÉFILEMENT FLUIDE (Lenis) ------------------ */
+
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
+.lenis.lenis-stopped{overflow:hidden}
+
+/* ---------- 1. TRANSITION ENTRE LES PAGES ----------------- */
+/* Un voile noir coupé à 28° traverse l'écran. Il n'existe
+   que si JS le crée : sans JS, la navigation reste normale. */
+
+.veil{
+  position:fixed;inset:0;z-index:200;pointer-events:none;
+  background:var(--color-dark);
+  clip-path:polygon(100% 0,100% 0,100% 100%,100% 100%);
+}
+.veil__mark{
+  position:absolute;left:50%;top:50%;
+  width:clamp(64px,7vw,96px);height:auto;
+  transform:translate(-50%,-50%);opacity:0;
+}
+.veil__edge{
+  position:absolute;top:0;bottom:0;left:0;width:2px;
+  background:var(--color-accent);opacity:0;
+  transform-origin:top left;transform:skewX(calc(var(--diag) * -1));
+}
+
+/* ---------- 2. BOUTON APPELER (mobile) -------------------- */
+
+.callbar{
+  position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));
+  z-index:90;display:none;
+  grid-template-columns:1fr 1fr;gap:8px;
+  transform:translateY(140%);
+  transition:transform .55s var(--ease);
+}
+.callbar.is-on{transform:none}
+.callbar a{
+  display:flex;align-items:center;justify-content:center;gap:.55rem;
+  min-height:52px;
+  font-size:.9375rem;font-weight:500;letter-spacing:.02em;
+  box-shadow:0 10px 30px -12px rgba(20,21,23,.55);
+}
+.callbar__tel{background:var(--color-dark);color:#fff}
+.callbar__devis{background:var(--color-accent);color:#fff}
+.callbar svg{width:18px;height:18px;flex:none}
+@media (max-width:899px) and (pointer:coarse),(max-width:640px){
+  .callbar{display:grid}
+  .site-footer{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+}
+.menu-open .callbar{transform:translateY(140%)}
+
+/* ---------- 3. RÉFÉRENCE (sous le hero) ------------------- */
+
+.refs{
+  background:var(--color-background);
+  padding-block:clamp(3.5rem,7vw,6rem);
+  border-bottom:1px solid var(--color-border);
+}
+.refs__grid{
+  display:grid;gap:clamp(2rem,4vw,4rem);align-items:center;
+  grid-template-columns:1fr;
+}
+@media (min-width:900px){
+  .refs__grid{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
+}
+.refs__intro .label{margin-bottom:1rem}
+.refs__intro p:last-child{
+  font-family:var(--font-display);font-weight:500;
+  font-size:var(--fs-sm);line-height:1.3;max-width:24ch;
+}
+.refs__seal{
+  position:relative;justify-self:center;
+  display:grid;place-items:center;
+  width:clamp(170px,17vw,230px);aspect-ratio:1;
+}
+/* Le cadre fin, coupé en diagonale aux deux coins. */
+.refs__seal::before{
+  content:"";position:absolute;inset:0;
+  border:1px solid var(--color-border);
+  clip-path:polygon(14% 0,100% 0,100% 86%,86% 100%,0 100%,0 14%);
+}
+.refs__seal img{width:62%;height:auto}
+.refs__note{color:var(--color-secondary);max-width:38ch}
+@media (min-width:900px){.refs__note{justify-self:end}}
+
+/* ---------- 4. MANIFESTE LU AU DÉFILEMENT ----------------- */
+
+.scrub-words .sw{color:var(--color-text);transition:none}
+.js-scrub .scrub-words .sw{color:var(--color-light)}
+
+/* ---------- 5. REPÈRES CHIFFRÉS --------------------------- */
+
+.reperes{background:var(--color-dark);color:#fff;overflow:hidden;position:relative}
+.reperes::after{
+  /* la diagonale de marque, en filigrane */
+  content:"";position:absolute;top:-20%;bottom:-20%;left:62%;width:1px;
+  background:rgba(255,255,255,.12);transform:rotate(var(--diag));
+}
+.reperes__grid{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr;gap:clamp(2.5rem,5vw,4rem);
+  padding-block:clamp(4.5rem,9vw,8rem);
+}
+@media (min-width:760px){.reperes__grid{grid-template-columns:repeat(3,1fr)}}
+.repere{border-top:1px solid rgba(255,255,255,.18);padding-top:1.5rem}
+.repere__num{
+  display:block;
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(3.5rem,8vw,6.5rem);line-height:.95;letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;
+}
+.repere__num em{font-style:normal;color:var(--color-accent)}
+.repere__txt{margin-top:1rem;color:rgba(255,255,255,.66);max-width:26ch}
+
+/* ---------- 6. PRESTATIONS : APERÇU QUI SUIT LA SOURIS ----- */
+
+.presta__peek{
+  position:fixed;left:0;top:0;z-index:5;pointer-events:none;
+  width:clamp(220px,20vw,320px);aspect-ratio:4/5;
+  overflow:hidden;opacity:0;
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
+}
+.presta__peek img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transform:scale(1.12);
+  transition:opacity .45s var(--ease),transform .9s var(--ease);
+}
+.presta__peek img.is-on{opacity:1;transform:scale(1)}
+@media (hover:none),(pointer:coarse){.presta__peek{display:none}}
+
+/* ---------- 7. LUMIÈRE RASANTE (section matériaux) -------- */
+
+.raking{
+  position:absolute;inset:0;z-index:3;pointer-events:none;
+  opacity:0;transition:opacity .6s var(--ease);
+  /* la pièce s'assombrit, seul le faisceau éclaire le sol */
+  background:
+    radial-gradient(ellipse 34% 26% at var(--rx,50%) var(--ry,50%),rgba(255,248,236,.42),rgba(255,248,236,0) 70%),
+    radial-gradient(ellipse 70% 60% at var(--rx,50%) var(--ry,50%),rgba(0,0,0,0) 30%,rgba(0,0,0,.42) 100%);
+  mix-blend-mode:soft-light;
+}
+.mats__stage.is-raking .raking{opacity:1}
+.raking-hint{
+  display:none;margin-top:1rem;
+  font-size:var(--fs-label);letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+}
+.raking-hint::before{
+  content:"";display:inline-block;width:22px;height:1px;margin-right:.7rem;vertical-align:middle;
+  background:var(--color-accent);
+}
+@media (hover:hover) and (pointer:fine){.raking-hint{display:block}}
+
+/* ---------- 8. CHANTIER RÉEL (pendant / après) ------------ */
+
+.chantier{background:var(--color-background)}
+.chantier__grid{
+  display:grid;gap:clamp(1.25rem,2.5vw,2rem);
+  grid-template-columns:1fr;align-items:end;
+}
+@media (min-width:860px){
+  .chantier__grid{grid-template-columns:minmax(0,.86fr) minmax(0,1fr)}
+}
+.chantier__fig{position:relative;margin:0}
+.chantier__media{position:relative;overflow:hidden;background:var(--color-light)}
+.chantier__media img{width:100%;height:100%;object-fit:cover;display:block}
+.chantier__fig--pendant .chantier__media{aspect-ratio:1}
+.chantier__fig--apres .chantier__media{aspect-ratio:3/4}
+.chantier__tag{
+  position:absolute;left:0;top:0;z-index:2;
+  padding:.6rem .95rem;
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  background:var(--color-background);color:var(--color-text);
+}
+.chantier__fig--apres .chantier__tag{background:var(--color-accent);color:#fff}
+.chantier__fig figcaption{margin-top:.9rem;color:var(--color-secondary);font-size:.9375rem}
+.chantier__foot{
+  display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between;
+  margin-top:clamp(2rem,4vw,3rem);padding-top:1.5rem;border-top:1px solid var(--color-border);
+}
+.chantier__proof{display:flex;align-items:center;gap:.75rem;color:var(--color-secondary);font-size:.9375rem}
+.chantier__proof::before{content:"";width:8px;height:8px;background:var(--color-accent);transform:rotate(45deg)}
+
+/* ---------- 9. SUR LE TERRAIN (vraies photos) ------------- */
+
+.terrain{background:var(--color-surface)}
+.terrain__grid{
+  display:grid;gap:clamp(1.25rem,2.5vw,2rem);
+  grid-template-columns:1fr;
+}
+@media (min-width:760px){.terrain__grid{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:760px){.terrain__card:nth-child(2){transform:translateY(clamp(2rem,5vw,4.5rem))}}
+.terrain__card{margin:0}
+.terrain__media{
+  position:relative;overflow:hidden;aspect-ratio:4/5;background:var(--color-light);
+  /* coin coupé à 28°, comme le cadre du hero */
+  clip-path:polygon(0 0,100% 0,100% 88%,88% 100%,0 100%);
+}
+.terrain__media img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.terrain__card:hover .terrain__media img{transform:scale(1.04)}
+.terrain__card h3{margin-top:1.25rem;font-size:var(--fs-sm)}
+.terrain__card p{margin-top:.5rem;color:var(--color-secondary);max-width:34ch}
+.terrain__note{margin-top:clamp(4rem,8vw,6.5rem);color:var(--color-muted);font-size:.875rem}
+
+/* ---------- 10. MOUVEMENT RÉDUIT -------------------------- */
+
+@media (prefers-reduced-motion:reduce){
+  .veil{display:none}
+  .presta__peek{display:none}
+  .raking{display:none}
+  .callbar{transition:none}
+}
+
+/* ---------- 11. RÉALISATIONS : réel ou illustration ------- */
+
+.real__tag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  margin-left:auto;align-self:center;
+  padding:.45rem .8rem;
+  font-size:var(--fs-label);font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  border:1px solid var(--color-border);color:var(--color-secondary);
+}
+.real__tag--vrai{border-color:var(--color-accent);color:var(--color-accent)}
+.real__tag--vrai::before{content:"";width:7px;height:7px;background:var(--color-accent);transform:rotate(45deg)}
+.real--vrai .real__stage{width:var(--wrap);margin-inline:auto;margin-block:clamp(1.5rem,3vw,2.5rem)}
+
+/* ---------- 12. À PROPOS : les vraies photos -------------- */
+
+.camion__reel{padding-top:var(--section-y)}
+.camion__reel + .camion__text{padding-top:clamp(5rem,9vw,8rem)}

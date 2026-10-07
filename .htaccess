@@ -16,6 +16,10 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTP_HOST} ^www\.sntm-sap\.fr [NC]
 RewriteRule ^(.*)$ https://sntm-sap.fr/$1 [L,R=301]
 
+# ── Anciennes pages (V2) : redirections permanentes ──
+Redirect 301 /services.html /nettoyage-professionnel-saint-tropez.html
+Redirect 301 /sols.html /traitement-des-sols-saint-tropez.html
+
 # ── Compression GZIP ─────────────────────────
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
