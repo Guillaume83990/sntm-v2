@@ -355,13 +355,29 @@ section.terrain{position:relative;overflow:clip}
 section.terrain .wrap{position:relative;z-index:1}
 @media (min-width:760px){section.terrain .terrain__card:nth-child(2){transform:none}}
 
-/* 20.2 À propos : galerie horizontale */
-.hgal{overflow:hidden}
-.camion__reel.is-h{
-  display:flex;gap:clamp(1.5rem,2.5vw,2.5rem);width:max-content;
-  padding-inline:clamp(1.5rem,4vw,4rem);padding-top:clamp(3rem,6vw,5rem);
+/* 20.2 À propos : les photos en tirages, posés en éventail */
+.camion__reel .terrain__card{
+  background:#F5F4F1;padding:10px 10px 14px;
+  box-shadow:0 34px 60px -28px rgba(0,0,0,.85);
 }
-.camion__reel.is-h .terrain__card{width:clamp(320px,34vw,520px);transform:none}
+.camion__reel .terrain__media{clip-path:none;aspect-ratio:auto;background:none}
+.camion__reel .terrain__media img{height:auto;aspect-ratio:auto}
+.camion__reel .terrain__card:hover .terrain__media img{transform:none}
+.camion__reel .terrain__card h3{margin-top:.75rem;color:var(--color-text);font-size:.9375rem;font-weight:500;letter-spacing:0}
+@media (max-width:759px){
+  .camion__reel{gap:1.75rem}
+  .camion__reel .terrain__card{width:82%}
+  .camion__reel .terrain__card:nth-child(odd){transform:rotate(-1.5deg)}
+  .camion__reel .terrain__card:nth-child(even){margin-left:auto;transform:rotate(1.5deg)}
+}
+@media (min-width:760px){
+  .camion__reel{display:flex;justify-content:center;align-items:center;gap:clamp(1rem,2.2vw,2.25rem)}
+  .camion__reel .terrain__card{width:clamp(220px,22vw,320px);flex:none}
+  .camion__reel .terrain__card:nth-child(3){width:clamp(280px,28vw,400px)}
+  .camion__reel .terrain__card:nth-child(1){transform:rotate(-5deg)}
+  .camion__reel .terrain__card:nth-child(2){transform:translateY(-26px) rotate(1.5deg);z-index:2}
+  .camion__reel .terrain__card:nth-child(3){transform:translateY(14px) rotate(4deg)}
+}
 
 /* 20.3 Nettoyage professionnel, le périmètre : la ligne lue s'allume */
 .v2-peri tbody th,.v2-peri tbody td{transition:color .5s var(--ease),box-shadow .5s var(--ease)}

@@ -208,6 +208,7 @@
   plusTard(function chantier() {
     if (SNTM.reduced) return;
     document.querySelectorAll('.chantier__media, .terrain__media').forEach((el, k) => {
+      if (el.closest('.camion__reel')) return; // tirages photo de l'À propos : pas de découpe
       gsap.set(el, { clipPath: 'polygon(0 100%, 0 100%, 0 100%, 0 100%)' });
       ScrollTrigger.create({
         trigger: el, start: 'top 86%', once: true,
@@ -257,18 +258,19 @@
       });
     }
 
-    // 9.2 À propos, « Vous nous verrez arriver » (Scroll Horizontal Gallery) :
-    // les vraies photos défilent latéralement pendant qu'on descend.
+    // 9.2 À propos, « Vous nous verrez arriver » : les trois photos sont
+    // des tirages posés sur la table. Empilés au départ, ils s'écartent en
+    // éventail pendant qu'on descend. Format moyen, photo entière.
     const reel = document.querySelector('.camion__reel');
-    if (reel && large) {
-      const pin = document.createElement('div');
-      pin.className = 'hgal';
-      reel.parentNode.insertBefore(pin, reel);
-      pin.appendChild(reel);
-      reel.classList.add('is-h');
-      const distance = () => Math.max(0, reel.scrollWidth - window.innerWidth);
-      gsap.to(reel, { x: () => -distance(), ease: 'none',
-        scrollTrigger: { trigger: pin, start: 'center center', end: () => '+=' + distance(), pin: true, scrub: 0.6, invalidateOnRefresh: true } });
+    if (reel && moyen) {
+      const cartes = reel.querySelectorAll('.terrain__card');
+      const pile = [[36, -1, 26], [0, 2, 0], [-34, 3, 18]];
+      const eventail = [[0, -5, 0], [0, 1.5, -26], [0, 4, 14]];
+      cartes.forEach((c, k) => {
+        const [x0, r0, y0] = pile[k % 3], [x1, r1, y1] = eventail[k % 3];
+        gsap.fromTo(c, { xPercent: x0, rotate: r0, y: y0 }, { xPercent: x1, rotate: r1, y: y1, ease: 'none',
+          scrollTrigger: { trigger: reel, start: 'top 88%', end: 'center 48%', scrub: 0.8 } });
+      });
     }
 
     // 9.3 Nettoyage professionnel, le périmètre (Scroll Reveal Content) :
