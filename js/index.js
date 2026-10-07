@@ -49,7 +49,10 @@
       gsap.set(frame,    { autoAlpha: 0, scale: 1.035 });
       gsap.set('.hero__foot', { autoAlpha: 0 });
 
-      gsap.timeline({ defaults: { ease: 'power3.out' } })
+      // L'entrée du hero s'enchaîne avec l'intro signature quand elle est là.
+      const intro = document.querySelector('.intro');
+      const attente = intro && getComputedStyle(intro).display !== 'none' ? 0.85 : 0;
+      gsap.timeline({ defaults: { ease: 'power3.out' }, delay: attente })
         .to(frame,    { autoAlpha: 1, scale: 1, duration: 1.5, ease: 'power3.inOut' }, 0)
         .to(brand,    { autoAlpha: 1, letterSpacing: '.52em', duration: 1.3 }, 0.15)
         .to(stroke,   { scaleY: 1, duration: 0.9 }, 0.7)
