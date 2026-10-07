@@ -268,3 +268,12 @@ html.lenis,html.lenis body{height:auto}
 .mats__num{color:#EE4B55}
 .chantier__fig figcaption{color:#5C5F64}
 .site-footer__coords,.site-footer__zones,.site-footer__legal p{color:#8E8F91}
+
+/* ---------- 18. CONTRASTES, suite (pages intérieures) ----- */
+/* Le gris secondaire passait à 4,45:1 sur le beige : assombri
+   d'un cheveu pour franchir 4,5:1, invisible à l'œil. */
+:root{--color-secondary:#686B70}
+.reals__index a span{color:var(--color-secondary)}
+#coordonnees li > span,.contact__coords li > span{color:var(--color-secondary)}
+.ref__legend-bad{color:#EE4B55}
+.ref__legend-good{color:#9A9C9F}
