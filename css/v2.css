@@ -93,7 +93,7 @@ html.lenis,html.lenis body{height:auto}
 /* ---------- 4. MANIFESTE LU AU DÉFILEMENT ----------------- */
 
 .scrub-words .sw{color:var(--color-text);transition:none}
-.js-scrub .scrub-words .sw{color:var(--color-light)}
+.js-scrub .scrub-words .sw{color:var(--color-secondary)}
 
 /* ---------- 5. REPÈRES CHIFFRÉS --------------------------- */
 
@@ -252,3 +252,19 @@ html.lenis,html.lenis body{height:auto}
 .field:not(.is-invalide) .fg-erreur{color:var(--color-secondary)}
 .fg-suggestion{font:inherit;color:var(--color-text);background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .fg-resume{margin:0 0 1rem;font-size:.8125rem;color:var(--color-accent-deep)}
+
+/* ---------- 15. ZONES TACTILES (44 px minimum) ------------ */
+/* Les liens FR / EN gardent leur dessin : seule la zone de
+   clic s'agrandit, sans décaler le header. */
+.lang a{position:relative}
+.lang a::after{content:"";position:absolute;left:50%;top:50%;width:44px;height:44px;transform:translate(-50%,-50%)}
+
+/* ---------- 16. LIENS DANS LE TEXTE (pas que la couleur) -- */
+.site-footer__legal a{text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- 17. CONTRASTES (WCAG AA, 4,5:1) --------------- */
+/* Ajustements minimes des gris et du rouge sur fond sombre. */
+.mats__head .label{color:#9A9C9F}
+.mats__num{color:#EE4B55}
+.chantier__fig figcaption{color:#5C5F64}
+.site-footer__coords,.site-footer__zones,.site-footer__legal p{color:#8E8F91}

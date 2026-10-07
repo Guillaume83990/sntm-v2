@@ -41,7 +41,7 @@
       if (SNTM.reduced) return;
       gsap.set(brand,    { autoAlpha: 0, letterSpacing: '.9em' });
       gsap.set(stroke,   { scaleY: 0, transformOrigin: 'top center' });
-      gsap.set(activity, { autoAlpha: 0, y: 22 });
+      gsap.set(activity, { y: 22 }); // visible dès le départ : c'est l'élément LCP
       gsap.set(claim,    { autoAlpha: 0, y: 16 });
       gsap.set(sectors,  { autoAlpha: 0, y: 14 });
       gsap.set(place,    { autoAlpha: 0, y: 12 });
@@ -55,7 +55,7 @@
         .to(stroke,   { scaleY: 1, duration: 0.9 }, 0.7)
         // L'ordre d'apparition est l'ordre de lecture voulu :
         // l'activité d'abord, la signature ensuite, le reste après.
-        .to(activity, { autoAlpha: 1, y: 0, duration: 1.1 }, 0.8)
+        .to(activity, { y: 0, duration: 1.1 }, 0.1)
         .to(claim,    { autoAlpha: 1, y: 0, duration: 0.9 }, 1.05)
         .to(sectors,  { autoAlpha: 1, y: 0, duration: 0.85 }, 1.25)
         .to(place,    { autoAlpha: 1, y: 0, duration: 0.8 }, 1.35)
@@ -82,14 +82,19 @@
       return Math.round(Math.min(Math.max(h * k, 900), 2100));
     }
 
+    // Épinglage en CSS (position: sticky) : le hero ne quitte jamais
+    // sa place dans la page. ScrollTrigger ne fait que lire la progression.
+    // Plus de saut au recalcul, et le titre (LCP) est peint une seule fois.
+    const spacer = document.getElementById('heroSpacer') || pin.parentElement;
+    const poser = () => spacer.style.setProperty('--course', course() + 'px');
+    poser();
+    ScrollTrigger.addEventListener('refreshInit', poser);
+
     ScrollTrigger.create({
-      trigger: pin,
+      trigger: spacer,
       start: 'top top',
-      end: () => '+=' + course(),
-      pin: true,
-      pinSpacing: true,
+      end: 'bottom bottom',
       scrub: 0.55,
-      anticipatePin: 1,
       invalidateOnRefresh: true,
       onUpdate(self) {
         const p = self.progress;

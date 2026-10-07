@@ -30,7 +30,9 @@
 
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/v2.css">
+<link rel="preload" href="css/v2.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="css/v2.css"></noscript>
+<noscript><style>.hero__spacer{--course:0px}</style></noscript>
 </head>
 
 <body>
@@ -45,7 +47,7 @@
      ============================================================ -->
 <header class="site-header" id="siteHeader">
   <a class="site-header__logo" href="index.html" aria-label="SNTM SAP, retour à l'accueil">
-    <img src="images/logo-sntm.webp" alt="SNTM SAP" width="180" height="120">
+    <img src="images/logo-sntm-180.webp" srcset="images/logo-sntm-180.webp 1x, images/logo-sntm-360.webp 2x" alt="SNTM SAP" width="180" height="120">
   </a>
 
   <div class="site-header__right">
@@ -109,6 +111,9 @@
      métier se relaient, puis la marque se pose.
      ============================================================ -->
 <section class="hero" id="hero">
+  <!-- Enveloppe d'épinglage fournie d'avance : ScrollTrigger ne déplace
+       plus le hero dans la page, le titre (LCP) est peint dès le départ. -->
+  <div class="hero__spacer" id="heroSpacer">
   <div class="hero__pin" id="heroPin">
 
     <div class="hero__stage" id="heroStage">
@@ -175,6 +180,7 @@
       <span class="hero__foot-r" id="heroFootR">Faites défiler</span>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- ============================================================
@@ -187,7 +193,7 @@
       <p>Hôtellerie de prestige, villas, commerces et écoles du Golfe.</p>
     </div>
     <figure class="refs__seal reveal">
-      <img src="images/ref-byblos-sombre.webp" alt="Byblos Saint-Tropez" width="480" height="569" loading="lazy" decoding="async">
+      <img src="images/ref-byblos-sombre-240.webp" srcset="images/ref-byblos-sombre-240.webp 240w, images/ref-byblos-sombre.webp 480w" sizes="(min-width: 900px) 140px, 130px" alt="Byblos Saint-Tropez" width="480" height="569" loading="lazy" decoding="async">
     </figure>
     <p class="refs__note reveal">Le Byblos, palace de Saint-Tropez depuis 1967, compte parmi les établissements clients de SNTM SAP.</p>
   </div>
@@ -528,7 +534,7 @@
 <footer class="site-footer">
   <div class="site-footer__inner">
 
-    <img class="site-footer__logo" src="images/logo-sntm.webp" alt="SNTM SAP" width="180" height="120" loading="lazy">
+    <img class="site-footer__logo" src="images/logo-sntm-180.webp" srcset="images/logo-sntm-180.webp 1x, images/logo-sntm-360.webp 2x" alt="SNTM SAP" width="180" height="120" loading="lazy">
 
     <p class="site-footer__base">Nettoyage professionnel et traitement des sols</p>
 
@@ -613,11 +619,13 @@
 }
 </script>
 
-<script src="js/lib/gsap.min.js"></script>
-<script src="js/lib/ScrollTrigger.min.js"></script>
-<script src="js/global.js"></script>
-<script src="js/index.js"></script>
-<script src="js/lib/lenis.min.js"></script>
-<script src="js/v2.js"></script>
+<script src="js/lib/gsap.min.js" defer></script>
+<script src="js/lib/ScrollTrigger.min.js" defer></script>
+<script src="js/global.js" defer></script>
+<script src="js/index.js" defer></script>
+<script>
+/* V2 : défilement fluide et effets chargés après la page, hors du chemin critique */
+addEventListener("load",function(){["js/lib/lenis.min.js","js/v2.js"].forEach(function(s){var e=document.createElement("script");e.src=s;e.async=false;document.body.appendChild(e)})});
+</script>
 </body>
 </html>

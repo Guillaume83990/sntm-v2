@@ -13,6 +13,13 @@
   const EN = document.documentElement.lang === 'en';
   const fin = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+  // Les animations sous la ligne de flottaison se préparent quand le
+  // navigateur est libre : rien ne s'ajoute au démarrage de la page.
+  const plusTard = (fn) => {
+    const go = () => (window.requestIdleCallback ? requestIdleCallback(fn, { timeout: 1200 }) : setTimeout(fn, 200));
+    document.readyState === 'complete' ? go() : window.addEventListener('load', go, { once: true });
+  };
+
   /* ========================================================
      1. DÉFILEMENT FLUIDE (Lenis), synchronisé avec GSAP
      ======================================================== */
@@ -121,7 +128,7 @@
      d'écran et pour Google.
      ======================================================== */
 
-  SNTM.whenReady(function scrubWords() {
+  plusTard(function scrubWords() {
     document.querySelectorAll('.scrub-words').forEach((el) => {
       if (SNTM.reduced) return;
       const mots0 = el.textContent.trim().split(/\s+/);
@@ -135,7 +142,7 @@
       });
       document.documentElement.classList.add('js-scrub');
       const mots = el.querySelectorAll('.sw');
-      gsap.fromTo(mots, { color: '#EAE8E3' }, {
+      gsap.fromTo(mots, { color: '#6E7175' }, {
         color: '#1A1B1D', ease: 'none', stagger: 0.08,
         scrollTrigger: { trigger: el, start: 'top 82%', end: 'bottom 45%', scrub: 0.4 }
       });
@@ -146,7 +153,7 @@
      5. REPÈRES CHIFFRÉS : comptés une seule fois
      ======================================================== */
 
-  SNTM.whenReady(function reperes() {
+  plusTard(function reperes() {
     document.querySelectorAll('[data-count]').forEach((el) => {
       const fin = parseInt(el.dataset.count, 10);
       const depuis = parseInt(el.dataset.from || '0', 10);
@@ -238,7 +245,7 @@
      léger décalage de parallaxe entre les deux photos
      ======================================================== */
 
-  SNTM.whenReady(function chantier() {
+  plusTard(function chantier() {
     if (SNTM.reduced) return;
     document.querySelectorAll('.chantier__media, .terrain__media').forEach((el, k) => {
       gsap.set(el, { clipPath: 'polygon(0 100%, 0 100%, 0 100%, 0 100%)' });
@@ -261,5 +268,4 @@
     }
   });
 
-  window.addEventListener('load', () => ScrollTrigger.refresh());
 })();

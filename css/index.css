@@ -12,8 +12,21 @@
 
 .hero{position:relative;background:#0E0F11}
 
+/* V2 : épinglage en CSS. --course est posé par index.js (0 sans JS
+   ou avec mouvement réduit : le hero reste alors un simple écran). */
+.hero__spacer{
+  /* même formule que course() dans index.js : la page a sa vraie
+     hauteur dès le premier affichage, rien ne bouge ensuite */
+  --course:min(max(140svh,900px),2100px);
+  position:relative;height:calc(100svh + var(--course));min-height:420px;
+}
+@media (min-width:700px){.hero__spacer{--course:min(max(180svh,900px),2100px)}}
+@media (min-width:1024px){.hero__spacer{--course:min(max(220svh,900px),2100px)}}
+@media (prefers-reduced-motion:reduce){.hero__spacer{--course:0px}}
+
 .hero__pin{
-  position:relative;
+  --pass:0; /* état de départ, identique à celui posé par index.js */
+  position:sticky;top:0;
   height:100svh;
   min-height:420px;
   overflow:hidden;

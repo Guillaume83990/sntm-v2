@@ -29,7 +29,8 @@
 
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="css/remise-en-etat.css">
-<link rel="stylesheet" href="css/v2.css">
+<link rel="preload" href="css/v2.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="css/v2.css"></noscript>
 </head>
 
 <body>
@@ -38,7 +39,7 @@
 
 <header class="site-header" id="siteHeader">
   <a class="site-header__logo" href="index.html" aria-label="SNTM SAP, retour à l'accueil">
-    <img src="images/logo-sntm.webp" alt="SNTM SAP" width="180" height="120">
+    <img src="images/logo-sntm-180.webp" srcset="images/logo-sntm-180.webp 1x, images/logo-sntm-360.webp 2x" alt="SNTM SAP" width="180" height="120">
   </a>
   <div class="site-header__right">
 
@@ -379,7 +380,7 @@
 <footer class="site-footer">
   <div class="site-footer__inner">
 
-    <img class="site-footer__logo" src="images/logo-sntm.webp" alt="SNTM SAP" width="180" height="120" loading="lazy">
+    <img class="site-footer__logo" src="images/logo-sntm-180.webp" srcset="images/logo-sntm-180.webp 1x, images/logo-sntm-360.webp 2x" alt="SNTM SAP" width="180" height="120" loading="lazy">
 
     <p class="site-footer__base">Nettoyage professionnel et traitement des sols</p>
 
@@ -545,11 +546,13 @@
 }
 </script>
 
-<script src="js/lib/gsap.min.js"></script>
-<script src="js/lib/ScrollTrigger.min.js"></script>
-<script src="js/global.js"></script>
-<script src="js/remise-en-etat.js"></script>
-<script src="js/lib/lenis.min.js"></script>
-<script src="js/v2.js"></script>
+<script src="js/lib/gsap.min.js" defer></script>
+<script src="js/lib/ScrollTrigger.min.js" defer></script>
+<script src="js/global.js" defer></script>
+<script src="js/remise-en-etat.js" defer></script>
+<script>
+/* V2 : défilement fluide et effets chargés après la page, hors du chemin critique */
+addEventListener("load",function(){["js/lib/lenis.min.js","js/v2.js"].forEach(function(s){var e=document.createElement("script");e.src=s;e.async=false;document.body.appendChild(e)})});
+</script>
 </body>
 </html>
