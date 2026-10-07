@@ -171,46 +171,6 @@
   });
 
   /* ========================================================
-     6. PRESTATIONS : l'aperçu photo suit la souris
-     ======================================================== */
-
-  (function peek() {
-    const rows = document.querySelectorAll('.presta__row[data-peek]');
-    if (!rows.length || !fin || SNTM.reduced) return;
-
-    const box = document.createElement('div');
-    box.className = 'presta__peek';
-    box.setAttribute('aria-hidden', 'true');
-    const imgs = [...rows].map((r) => {
-      const i = new Image();
-      i.alt = ''; i.decoding = 'async';
-      i.dataset.src = r.dataset.peek;
-      box.appendChild(i);
-      return i;
-    });
-    document.body.appendChild(box);
-
-    const xTo = gsap.quickTo(box, 'x', { duration: 0.6, ease: 'power3.out' });
-    const yTo = gsap.quickTo(box, 'y', { duration: 0.6, ease: 'power3.out' });
-    let charge = false;
-
-    const zone = rows[0].parentElement;
-    zone.addEventListener('pointerenter', () => {
-      if (!charge) { imgs.forEach((i) => { i.src = i.dataset.src; }); charge = true; }
-      gsap.to(box, { autoAlpha: 1, scale: 1, duration: 0.4, ease: 'power3.out' });
-    });
-    zone.addEventListener('pointerleave', () => gsap.to(box, { autoAlpha: 0, scale: 0.92, duration: 0.35 }));
-    zone.addEventListener('pointermove', (e) => {
-      xTo(e.clientX + 28);
-      yTo(e.clientY - box.offsetHeight / 2);
-    });
-    rows.forEach((r, k) => r.addEventListener('pointerenter', () => {
-      imgs.forEach((i, j) => i.classList.toggle('is-on', j === k));
-    }));
-    gsap.set(box, { scale: 0.92 });
-  })();
-
-  /* ========================================================
      7. LUMIÈRE RASANTE sur les matériaux
      C'est ainsi qu'un spécialiste lit un sol : une lampe
      posée au ras de la surface révèle rayures et voiles.
@@ -259,12 +219,17 @@
         })
       });
     });
-    const apres = document.querySelector('.chantier__fig--apres .chantier__media img');
-    if (apres) {
-      gsap.fromTo(apres, { yPercent: -4, scale: 1.08 }, {
-        yPercent: 4, scale: 1.08, ease: 'none',
-        scrollTrigger: { trigger: apres.closest('.chantier'), start: 'top bottom', end: 'bottom top', scrub: true }
-      });
+    // Accueil : les deux photos du chantier glissent à des vitesses
+    // différentes, la vue « pendant » passe devant la vue « après ».
+    const scene = document.querySelector('section.chantier .chantier__stage');
+    if (scene) {
+      const apres = scene.querySelector('.chantier__fig--apres img');
+      const pendant = scene.querySelector('.chantier__fig--pendant');
+      const st = { trigger: scene, start: 'top bottom', end: 'bottom top', scrub: true };
+      if (apres) gsap.fromTo(apres, { yPercent: -5, scale: 1.1 }, { yPercent: 5, scale: 1.1, ease: 'none', scrollTrigger: st });
+      if (pendant && window.matchMedia('(min-width: 760px)').matches) {
+        gsap.fromTo(pendant, { yPercent: 14 }, { yPercent: -10, ease: 'none', scrollTrigger: { ...st } });
+      }
     }
   });
 

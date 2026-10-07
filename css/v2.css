@@ -119,21 +119,25 @@ html.lenis,html.lenis body{height:auto}
 .repere__num em{font-style:normal;color:var(--color-accent)}
 .repere__txt{margin-top:1rem;color:rgba(255,255,255,.66);max-width:26ch}
 
-/* ---------- 6. PRESTATIONS : APERÇU QUI SUIT LA SOURIS ----- */
-
-.presta__peek{
-  position:fixed;left:0;top:0;z-index:5;pointer-events:none;
-  width:clamp(220px,20vw,320px);aspect-ratio:4/5;
-  overflow:hidden;opacity:0;
-  clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
+/* ---------- 6. PRESTATIONS : la ligne se remplit par la diagonale --- */
+/* Au survol, un aplat noir traverse la ligne à 28° et le texte passe
+   en clair. Rien sur écran tactile : la ligne reste un simple lien. */
+@media (hover:hover) and (pointer:fine){
+  .presta__row{isolation:isolate}
+  .presta__row::before{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:var(--color-dark);
+    clip-path:polygon(0 0,0 0,-80px 100%,-80px 100%);
+    transition:clip-path .75s var(--ease);
+  }
+  .presta__row:hover::before,.presta__row:focus-visible::before{
+    clip-path:polygon(0 0,calc(100% + 80px) 0,100% 100%,-80px 100%);
+  }
+  .presta__row h3,.presta__row p{position:relative;transition:color .45s var(--ease)}
+  .presta__row:hover h3,.presta__row:focus-visible h3{color:#fff}
+  .presta__row:hover p,.presta__row:focus-visible p{color:rgba(255,255,255,.72)}
+  .presta__row:hover .presta__go,.presta__row:focus-visible .presta__go{color:#EE4B55}
 }
-.presta__peek img{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:0;transform:scale(1.12);
-  transition:opacity .45s var(--ease),transform .9s var(--ease);
-}
-.presta__peek img.is-on{opacity:1;transform:scale(1)}
-@media (hover:none),(pointer:coarse){.presta__peek{display:none}}
 
 /* ---------- 7. LUMIÈRE RASANTE (section matériaux) -------- */
 
@@ -188,6 +192,54 @@ html.lenis,html.lenis body{height:auto}
 .chantier__proof{display:flex;align-items:center;gap:.75rem;color:var(--color-secondary);font-size:.9375rem}
 .chantier__proof::before{content:"";width:8px;height:8px;background:var(--color-accent);transform:rotate(45deg)}
 
+/* ---------- 8 bis. CHANTIER RÉEL, version éditoriale (accueil) ---- */
+/* Fond sombre comme la section matériaux. À gauche, la fiche du
+   chantier (fixe pendant la lecture) ; à droite, les deux photos
+   composées : la vue « pendant » chevauche la vue « après », reliées
+   par le filet rouge à 28°. */
+section.chantier{background:var(--color-dark);color:#fff;position:relative;overflow:hidden}
+section.chantier .label{color:#9A9C9F}
+section.chantier .section-title{color:#fff;max-width:14ch}
+.chantier__layout{display:grid;gap:clamp(3rem,6vw,6rem);grid-template-columns:1fr}
+@media (min-width:960px){
+  .chantier__layout{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);align-items:start}
+  .chantier__side{position:sticky;top:calc(var(--header-h) + 2.5rem)}
+}
+.chantier__side .label{margin-bottom:1.25rem}
+.chantier__intro{margin-top:1.5rem;color:rgba(255,255,255,.66);max-width:40ch}
+.chantier__specs{margin:2.5rem 0 2rem;border-top:1px solid rgba(255,255,255,.14)}
+.chantier__specs div{display:grid;grid-template-columns:minmax(7.5rem,9rem) 1fr;gap:1rem;padding:1.05rem 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.chantier__specs dt{font-size:var(--fs-label);font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#9A9C9F;padding-top:.25em}
+.chantier__specs dd{color:rgba(255,255,255,.9)}
+section.chantier .link-arrow{color:#fff;border-color:rgba(255,255,255,.3)}
+section.chantier .link-arrow:hover{border-color:var(--color-accent)}
+
+.chantier__stage{position:relative;display:grid;gap:1.5rem}
+.chantier__stage .chantier__fig{margin:0;position:relative}
+.chantier__stage .chantier__media{position:relative;overflow:hidden;background:#1D1E21}
+.chantier__stage .chantier__media img{width:100%;height:100%;object-fit:cover;display:block}
+.chantier__stage .chantier__fig--pendant .chantier__media{aspect-ratio:1}
+.chantier__stage .chantier__fig--apres .chantier__media{aspect-ratio:4/5}
+.chantier__stage figcaption{margin-top:.85rem;font-size:.875rem;color:#9A9C9F;max-width:36ch}
+.chantier__stage .chantier__tag{background:var(--color-background);color:var(--color-text)}
+.chantier__stage .chantier__fig--apres .chantier__tag{background:var(--color-accent);color:#fff}
+.chantier__edge{display:none}
+@media (min-width:760px){
+  .chantier__stage{display:block;padding-bottom:clamp(4rem,9vw,8rem)}
+  .chantier__stage .chantier__fig--apres{width:72%;margin-left:auto}
+  .chantier__stage .chantier__fig--pendant{position:absolute;left:0;bottom:0;width:46%;z-index:2}
+  /* un liseré sombre détache la vue « pendant » de la vue « après » */
+  .chantier__stage .chantier__fig--pendant .chantier__media{box-shadow:0 0 0 10px var(--color-dark)}
+  .chantier__stage .chantier__fig--pendant figcaption{padding-right:1rem}
+  /* la légende « après » se place à droite, hors de la vue « pendant » */
+  .chantier__stage .chantier__fig--apres figcaption{margin-left:auto;text-align:right;max-width:58%}
+  .chantier__edge{
+    display:block;position:absolute;z-index:1;pointer-events:none;
+    left:30%;top:2%;height:62%;width:1px;background:var(--color-accent);
+    transform:rotate(var(--diag));transform-origin:top center;
+  }
+}
+
 /* ---------- 9. SUR LE TERRAIN (vraies photos) ------------- */
 
 .terrain{background:var(--color-surface)}
@@ -213,7 +265,6 @@ html.lenis,html.lenis body{height:auto}
 
 @media (prefers-reduced-motion:reduce){
   .veil{display:none}
-  .presta__peek{display:none}
   .raking{display:none}
   .callbar{transition:none}
 }

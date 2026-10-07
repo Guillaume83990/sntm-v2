@@ -388,53 +388,58 @@
 
   SNTM.initReveals = function (scope) {
     const root = scope || document;
+    if (SNTM.reduced) return;
 
-    // Les gros titres arrivent mot par mot, masques par le bas.
-    // Le texte reste intact dans le DOM : on n'emballe que des mots.
-    root.querySelectorAll('.section-title, .cta__title').forEach((el) => {
-      if (SNTM.reduced || el.dataset.split === '1') return;
-      el.dataset.split = '1';
-      el.innerHTML = el.textContent.trim().split(/\s+/)
-        .map((w) => '<span class="w"><i>' + w + '</i></span>')
-        .join(' ');
-      const mots = el.querySelectorAll('.w > i');
-      gsap.set(mots, { yPercent: 118 });
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top 86%',
-        once: true,
-        onEnter: () => gsap.to(mots, {
-          yPercent: 0, duration: 0.95, ease: 'power3.out', stagger: 0.055
-        })
-      });
-    });
+    // V2 : toutes les positions sont lues en une seule fois (un seul calcul
+    // de mise en page), puis les éléments sont préparés par petits lots quand
+    // le navigateur est libre : plus de long blocage au démarrage. Ce qui est
+    // déjà à l'écran au chargement reste affiché tel quel (aucun clignotement).
+    const items = [];
+    root.querySelectorAll('.section-title, .cta__title').forEach((el) => { if (el.dataset.split !== '1') items.push(['titre', el]); });
+    root.querySelectorAll('.reveal').forEach((el) => items.push(['bloc', el]));
+    root.querySelectorAll('.reveal-img').forEach((el) => items.push(['image', el]));
+    const bas = window.innerHeight;
+    const aPreparer = items.filter(([, el]) => el.getBoundingClientRect().top > bas);
 
-    root.querySelectorAll('.reveal').forEach((el) => {
-      if (SNTM.reduced) return;
-      gsap.set(el, { y: 26, autoAlpha: 0 });
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top 88%',
-        once: true,
-        onEnter: () => gsap.to(el, { y: 0, autoAlpha: 1, duration: 0.9, ease: 'power3.out' })
-      });
-    });
+    function preparer(type, el) {
+      if (type === 'titre') {
+        // Les gros titres arrivent mot par mot, masqués par le bas.
+        // Le texte reste intact dans le DOM : on n'emballe que des mots.
+        el.dataset.split = '1';
+        const mots0 = el.textContent.trim().split(/\s+/);
+        el.textContent = '';
+        mots0.forEach((w, k) => {
+          const s = document.createElement('span'); s.className = 'w';
+          const i = document.createElement('i'); i.textContent = w;
+          s.appendChild(i); el.appendChild(s);
+          if (k < mots0.length - 1) el.appendChild(document.createTextNode(' '));
+        });
+        const mots = el.querySelectorAll('.w > i');
+        gsap.set(mots, { yPercent: 118 });
+        ScrollTrigger.create({ trigger: el, start: 'top 86%', once: true,
+          onEnter: () => gsap.to(mots, { yPercent: 0, duration: 0.95, ease: 'power3.out', stagger: 0.055 }) });
+      } else if (type === 'bloc') {
+        gsap.set(el, { y: 26, autoAlpha: 0 });
+        ScrollTrigger.create({ trigger: el, start: 'top 88%', once: true,
+          onEnter: () => gsap.to(el, { y: 0, autoAlpha: 1, duration: 0.9, ease: 'power3.out' }) });
+      } else {
+        // Les images arrivent par la diagonale.
+        gsap.set(el, { clipPath: 'polygon(-50% 100%, -95% 0%, -45% 0%, 0% 100%)' });
+        ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true,
+          onEnter: () => gsap.to(el, { clipPath: 'polygon(-50% 100%, -95% 0%, 100% 0%, 100% 100%)', duration: 1.15, ease: 'power3.inOut' }) });
+      }
+    }
 
-    // Les images arrivent par la diagonale, comme le préloader.
-    root.querySelectorAll('.reveal-img').forEach((el) => {
-      if (SNTM.reduced) return;
-      gsap.set(el, { clipPath: 'polygon(-50% 100%, -95% 0%, -45% 0%, 0% 100%)' });
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top 85%',
-        once: true,
-        onEnter: () => gsap.to(el, {
-          clipPath: 'polygon(-50% 100%, -95% 0%, 100% 0%, 100% 100%)',
-          duration: 1.15,
-          ease: 'power3.inOut'
-        })
-      });
-    });
+    let k = 0;
+    const planifier = () => (window.requestIdleCallback ? requestIdleCallback(lot, { timeout: 400 }) : setTimeout(lot, 16));
+    function lot(deadline) {
+      const fin = performance.now() + 8;
+      while (k < aPreparer.length && (deadline && deadline.timeRemaining ? deadline.timeRemaining() > 2 : performance.now() < fin)) {
+        preparer(aPreparer[k][0], aPreparer[k][1]); k++;
+      }
+      if (k < aPreparer.length) planifier();
+    }
+    planifier();
   };
 
   SNTM.whenReady(() => SNTM.initReveals(document));
