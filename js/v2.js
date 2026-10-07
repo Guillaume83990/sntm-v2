@@ -233,4 +233,144 @@
     }
   });
 
+
+  /* ========================================================
+     9. SECTIONS SIGNATURE : une par page, inspirées de 21st
+     (réécrites en GSAP et CSS, dans l'identité SNTM). Chaque
+     bloc ne s'active que si sa section existe sur la page.
+     ======================================================== */
+
+  plusTard(function signatures() {
+    if (SNTM.reduced) return;
+    const large = window.matchMedia('(min-width: 1000px)').matches;
+    const moyen = window.matchMedia('(min-width: 760px)').matches;
+    const vu = (el, cb, start) => ScrollTrigger.create({ trigger: el, start: start || 'top 72%', once: true, onEnter: cb });
+
+    // 9.1 Accueil, « Sur le terrain » (Portfolio Scroll Grid) : le mot SNTM
+    // reste fixé en CSS, les trois photos glissent à des vitesses différentes.
+    const terrain = document.querySelector('section.terrain .terrain__grid');
+    if (terrain && moyen) {
+      terrain.querySelectorAll('.terrain__card').forEach((c, k) => {
+        const v = [8, -14, 4][k % 3];
+        gsap.fromTo(c, { yPercent: v }, { yPercent: -v, ease: 'none',
+          scrollTrigger: { trigger: terrain, start: 'top bottom', end: 'bottom top', scrub: true } });
+      });
+    }
+
+    // 9.2 À propos, « Vous nous verrez arriver » (Scroll Horizontal Gallery) :
+    // les vraies photos défilent latéralement pendant qu'on descend.
+    const reel = document.querySelector('.camion__reel');
+    if (reel && large) {
+      const pin = document.createElement('div');
+      pin.className = 'hgal';
+      reel.parentNode.insertBefore(pin, reel);
+      pin.appendChild(reel);
+      reel.classList.add('is-h');
+      const distance = () => Math.max(0, reel.scrollWidth - window.innerWidth);
+      gsap.to(reel, { x: () => -distance(), ease: 'none',
+        scrollTrigger: { trigger: pin, start: 'center center', end: () => '+=' + distance(), pin: true, scrub: 0.6, invalidateOnRefresh: true } });
+    }
+
+    // 9.3 Nettoyage professionnel, le périmètre (Scroll Reveal Content) :
+    // la ligne lue s'allume, un repère rouge suit la lecture.
+    const peri = document.querySelector('.peri__table');
+    if (peri) {
+      peri.classList.add('v2-peri');
+      peri.querySelectorAll('tbody tr').forEach((tr) => ScrollTrigger.create({
+        trigger: tr, start: 'top 64%', end: 'bottom 64%', toggleClass: { targets: tr, className: 'is-on' } }));
+    }
+
+    // 9.4 Traitement des sols, les réflexes (Dual Wipe Reveal) : le mauvais
+    // geste est barré en rouge, puis le bon geste se pose, coché.
+    const ref = document.querySelector('.ref__table');
+    if (ref) {
+      ref.classList.add('v2-ref');
+      ref.querySelectorAll('.ref__pair').forEach((p) => {
+        const bad = p.querySelector('.ref__bad');
+        if (bad) { const s = document.createElement('span'); s.className = 'ref__strike'; while (bad.firstChild) s.appendChild(bad.firstChild); bad.appendChild(s); }
+        vu(p, () => p.classList.add('is-vu'), 'top 70%');
+      });
+    }
+
+    // 9.5 Remise en état, les trois échéances (Scroll 01) : l'image reste
+    // fixée et change à chaque échéance lue.
+    const mom = document.querySelector('.mom__grid');
+    if (mom && large) {
+      const items = Array.from(mom.querySelectorAll('.mom__item'));
+      const scene = document.createElement('div');
+      scene.className = 'swap__stage';
+      scene.setAttribute('aria-hidden', 'true');
+      items.forEach((it, k) => {
+        const pic = it.querySelector('.mom__img picture');
+        if (!pic) return;
+        const c = pic.cloneNode(true);
+        c.classList.add('swap__img');
+        if (k === 0) c.classList.add('is-on');
+        c.querySelectorAll('source').forEach((s) => s.setAttribute('sizes', '45vw'));
+        c.querySelector('img').alt = '';
+        scene.appendChild(c);
+      });
+      mom.prepend(scene);
+      mom.classList.add('v2-swap');
+      items[0] && items[0].classList.add('is-on');
+      const imgs = scene.querySelectorAll('.swap__img');
+      items.forEach((it, k) => ScrollTrigger.create({ trigger: it, start: 'top 58%', end: 'bottom 58%',
+        onToggle: (s) => { if (!s.isActive) return;
+          imgs.forEach((im, j) => im.classList.toggle('is-on', j === k));
+          items.forEach((x, j) => x.classList.toggle('is-on', j === k)); } }));
+    }
+
+    // 9.6 Locaux commerciaux, les créneaux : une journée qui avance, le fil
+    // rouge progresse et chaque créneau s'allume à son tour.
+    const cren = document.querySelector('.cren__grid');
+    if (cren) {
+      const its = Array.from(cren.querySelectorAll('.cren__item'));
+      cren.classList.add('v2-rail');
+      ScrollTrigger.create({ trigger: cren, start: 'top 72%', end: 'bottom 50%', scrub: true,
+        onUpdate: (s) => {
+          cren.style.setProperty('--p', s.progress.toFixed(3));
+          const n = Math.min(its.length, Math.floor(s.progress * its.length + 0.25));
+          its.forEach((x, k) => x.classList.toggle('is-on', k < n));
+        } });
+    }
+
+    // 9.7 Écoles, les six zones (Spotlight Card) : un halo suit la souris.
+    const zon = document.querySelector('.zon__grid');
+    if (zon && fin) {
+      zon.classList.add('v2-spot');
+      zon.querySelectorAll('.zon__item').forEach((it) => it.addEventListener('pointermove', (e) => {
+        const r = it.getBoundingClientRect();
+        it.style.setProperty('--sx', (e.clientX - r.left) + 'px');
+        it.style.setProperty('--sy', (e.clientY - r.top) + 'px');
+      }));
+    }
+
+    // 9.8 Réalisations, « Savoir regarder » (balayage éditorial) : un bloc
+    // rouge traverse chaque titre et le découvre.
+    document.querySelectorAll('.lire__list li').forEach((li, k) => {
+      const h = li.querySelector('h3');
+      if (!h) return;
+      const s = document.createElement('span'); s.className = 'wipe';
+      const t = document.createElement('span'); t.className = 'wipe__t';
+      while (h.firstChild) t.appendChild(h.firstChild);
+      s.appendChild(t); h.appendChild(s);
+      li.style.setProperty('--d', (k * 0.12) + 's');
+      vu(li, () => li.classList.add('is-vu'), 'top 80%');
+    });
+
+    // 9.9 Zones d'intervention : le losange se dessine, puis les communes
+    // se découvrent une à une par le même balayage.
+    document.querySelectorAll('.zone__field').forEach((field) => {
+      field.classList.add('v2-zone');
+      field.querySelectorAll('.zone__name').forEach((n, k) => {
+        const s = document.createElement('span'); s.className = 'wipe';
+        const t = document.createElement('span'); t.className = 'wipe__t';
+        while (n.firstChild) t.appendChild(n.firstChild);
+        s.appendChild(t); n.appendChild(s);
+        n.style.setProperty('--d', (0.35 + k * 0.09) + 's');
+      });
+      vu(field, () => field.classList.add('is-vu'), 'top 75%');
+    });
+  });
+
 })();

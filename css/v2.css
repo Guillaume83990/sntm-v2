@@ -339,3 +339,103 @@ section.chantier .link-arrow:hover{border-color:var(--color-accent)}
 
 /* Numéros rouges du sommaire sur fond sombre : même rouge éclairci (4,5:1) */
 .phero__index a span{color:#EE4B55}
+
+/* ---------- 20. SECTIONS SIGNATURE (une par page) --------- */
+
+/* 20.1 Accueil, « Sur le terrain » : le mot SNTM reste fixé
+   au milieu de l'écran pendant que les photos passent devant. */
+section.terrain{position:relative;overflow:clip}
+.terrain__mark{
+  position:sticky;top:34vh;z-index:0;display:block;height:0;overflow:visible;
+  text-align:center;white-space:nowrap;pointer-events:none;
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(6rem,27vw,26rem);line-height:.78;letter-spacing:-.045em;
+  color:rgba(20,21,23,.055);
+}
+section.terrain .wrap{position:relative;z-index:1}
+@media (min-width:760px){section.terrain .terrain__card:nth-child(2){transform:none}}
+
+/* 20.2 À propos : galerie horizontale */
+.hgal{overflow:hidden}
+.camion__reel.is-h{
+  display:flex;gap:clamp(1.5rem,2.5vw,2.5rem);width:max-content;
+  padding-inline:clamp(1.5rem,4vw,4rem);padding-top:clamp(3rem,6vw,5rem);
+}
+.camion__reel.is-h .terrain__card{width:clamp(320px,34vw,520px);transform:none}
+
+/* 20.3 Nettoyage professionnel, le périmètre : la ligne lue s'allume */
+.v2-peri tbody th,.v2-peri tbody td{transition:color .5s var(--ease),box-shadow .5s var(--ease)}
+.v2-peri tbody tr:not(.is-on) th,.v2-peri tbody tr:not(.is-on) td,.v2-peri tbody tr:not(.is-on) em{color:var(--color-muted)}
+.v2-peri tbody tr.is-on th{box-shadow:inset 3px 0 0 var(--color-accent)}
+
+/* 20.4 Traitement des sols, les réflexes : barré, puis coché */
+.v2-ref .ref__strike{
+  background-image:linear-gradient(#EE4B55,#EE4B55);background-repeat:no-repeat;
+  background-size:0 1px;background-position:0 58%;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+  transition:background-size .9s var(--ease);
+}
+.v2-ref .is-vu .ref__strike{background-size:100% 1px}
+.v2-ref .ref__good{opacity:0;transform:translateX(-14px);transition:opacity .7s var(--ease) .55s,transform .9s var(--ease) .55s}
+.v2-ref .is-vu .ref__good{opacity:1;transform:none}
+.v2-ref .is-vu .ref__good::before{content:"\2713";color:#EE4B55}
+
+/* 20.5 Remise en état, les trois échéances : image fixée qui change */
+@media (min-width:1000px){
+  .v2-swap{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(3rem,6vw,6rem);align-items:start}
+  .swap__stage{
+    grid-column:1;grid-row:1 / span 3;position:sticky;top:calc(var(--header-h) + 2rem);
+    aspect-ratio:4/5;overflow:hidden;background:var(--color-light);
+    clip-path:polygon(0 0,100% 0,100% 90%,90% 100%,0 100%);
+  }
+  .swap__img{position:absolute;inset:0;opacity:0;transform:scale(1.06);transition:opacity .8s var(--ease),transform 1.4s var(--ease)}
+  .swap__img.is-on{opacity:1;transform:none}
+  .swap__img img{width:100%;height:100%;object-fit:cover}
+  .v2-swap .mom__item{grid-column:2;min-height:62vh;display:flex;flex-direction:column;justify-content:center}
+  .v2-swap .mom__img{display:none}
+  .v2-swap .mom__item h3,.v2-swap .mom__item p{transition:color .5s var(--ease)}
+  .v2-swap .mom__item:not(.is-on) h3,.v2-swap .mom__item:not(.is-on) p{color:var(--color-muted)}
+  .v2-swap .mom__item.is-on .mom__num{color:var(--color-accent)}
+}
+
+/* 20.6 Locaux commerciaux, les créneaux : la journée avance */
+.v2-rail{position:relative}
+.v2-rail::before{
+  content:"";position:absolute;left:0;top:-1px;width:100%;height:2px;z-index:1;
+  background:var(--color-accent);transform-origin:left;transform:scaleX(var(--p,0));
+}
+@media (max-width:759px){
+  .v2-rail::before{top:0;width:2px;height:100%;transform-origin:top;transform:scaleY(var(--p,0))}
+  .v2-rail .cren__item{padding-left:1.25rem}
+}
+.v2-rail .cren__item h3,.v2-rail .cren__item p,.v2-rail .cren__num{transition:color .5s var(--ease)}
+.v2-rail .cren__item:not(.is-on) h3,.v2-rail .cren__item:not(.is-on) p{color:var(--color-muted)}
+.v2-rail .cren__item.is-on .cren__num{color:var(--color-accent)}
+
+/* 20.7 Écoles, les six zones : halo qui suit la souris */
+.v2-spot .zon__item{isolation:isolate}
+.v2-spot .zon__item::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;
+  background:radial-gradient(360px circle at var(--sx,50%) var(--sy,50%),rgba(214,32,43,.09),rgba(214,32,43,0) 62%);
+  transition:opacity .45s var(--ease);
+}
+.v2-spot .zon__item:hover::after{opacity:1}
+
+/* 20.8 et 20.9 Balayage éditorial (Réalisations, zones) */
+.wipe{position:relative;display:inline-block}
+.wipe__t{opacity:0}
+.wipe::after{
+  content:"";position:absolute;inset:-.06em -.12em;background:var(--color-accent);
+  transform:scaleX(0);transform-origin:left;
+}
+.is-vu .wipe__t{animation:wipe-texte .01s linear calc(var(--d,0s) + .45s) forwards}
+.is-vu .wipe::after{animation:wipe-bloc .9s cubic-bezier(.76,0,.24,1) var(--d,0s) forwards}
+@keyframes wipe-bloc{
+  0%{transform:scaleX(0);transform-origin:left}
+  50%{transform:scaleX(1);transform-origin:left}
+  50.1%{transform:scaleX(1);transform-origin:right}
+  100%{transform:scaleX(0);transform-origin:right}
+}
+@keyframes wipe-texte{to{opacity:1}}
+.v2-zone .zone__lozenge{clip-path:inset(0 100% 0 0);transition:clip-path 1.2s cubic-bezier(.65,0,.35,1)}
+.v2-zone.is-vu .zone__lozenge{clip-path:inset(0 0 0 0)}
