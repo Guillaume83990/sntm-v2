@@ -285,3 +285,6 @@ html.lenis,html.lenis body{height:auto}
   .crumb li,.phero__index span,.burger__label,
   .lang a,.lang span[lang]{font-size:.75rem}
 }
+
+/* Numéros rouges du sommaire sur fond sombre : même rouge éclairci (4,5:1) */
+.phero__index a span{color:#EE4B55}
