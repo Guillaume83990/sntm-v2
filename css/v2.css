@@ -439,3 +439,6 @@ section.terrain .wrap{position:relative;z-index:1}
 @keyframes wipe-texte{to{opacity:1}}
 .v2-zone .zone__lozenge{clip-path:inset(0 100% 0 0);transition:clip-path 1.2s cubic-bezier(.65,0,.35,1)}
 .v2-zone.is-vu .zone__lozenge{clip-path:inset(0 0 0 0)}
+
+/* Légendes du chantier sur fond sombre (la règle 17 vise le fond clair) */
+section.chantier .chantier__stage figcaption{color:#9A9C9F}

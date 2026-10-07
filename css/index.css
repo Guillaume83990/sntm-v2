@@ -627,17 +627,17 @@
 .intro__word{
   position:absolute;
   font-family:var(--font-display);font-weight:600;
-  font-size:clamp(1.25rem,2.2vw,1.75rem);letter-spacing:.9em;text-indent:.9em;
-  opacity:0;animation:intro-mot .55s cubic-bezier(.22,1,.36,1) .3s forwards;
+  font-size:clamp(1.25rem,2.2vw,1.75rem);letter-spacing:.52em;text-indent:.52em;
+  opacity:0;transform:scaleX(1.25);animation:intro-mot .55s cubic-bezier(.22,1,.36,1) .3s forwards;
 }
 .intro__line{
   position:absolute;top:-30%;bottom:-30%;left:-10%;width:2px;
-  background:var(--color-accent);transform:rotate(var(--diag));
+  background:var(--color-accent);transform:translateX(0) rotate(var(--diag));
   animation:intro-filet .7s cubic-bezier(.65,0,.35,1) .62s forwards;
 }
 @keyframes intro-trace{to{stroke-dashoffset:0}}
-@keyframes intro-mot{to{opacity:1;letter-spacing:.52em;text-indent:.52em}}
-@keyframes intro-filet{to{left:115%}}
+@keyframes intro-mot{to{opacity:1;transform:none}}
+@keyframes intro-filet{to{transform:translateX(125vw) rotate(var(--diag))}}
 @keyframes intro-ouvre{
   /* le bord du voile garde la pente du filet (28°) pendant qu'il s'ouvre */
   from{clip-path:polygon(0 0,100% 0,100% 100%,-30% 100%)}
