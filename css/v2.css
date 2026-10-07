@@ -235,3 +235,20 @@ html.lenis,html.lenis body{height:auto}
 
 .camion__reel{padding-top:var(--section-y)}
 .camion__reel + .camion__text{padding-top:clamp(5rem,9vw,8rem)}
+
+/* ---------- 13. FORMULAIRE : confirmation ----------------- */
+
+.form__error[data-etat="ok"]{
+  color:var(--color-text);background:var(--color-light);
+  border-left:2px solid var(--color-accent);padding:.9rem 1.1rem;
+}
+
+/* ---------- 14. MODULE DE VALIDATION SWP (aux couleurs SNTM) */
+
+.field{position:relative}
+.field.is-invalide input,.field.is-invalide select,.field.is-invalide textarea{border-color:var(--color-accent)}
+.fg-erreur{margin:.45rem 0 0;font-size:.8125rem;line-height:1.4;color:var(--color-accent-deep)}
+.fg-erreur:empty,.fg-resume:empty{display:none}
+.field:not(.is-invalide) .fg-erreur{color:var(--color-secondary)}
+.fg-suggestion{font:inherit;color:var(--color-text);background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.fg-resume{margin:0 0 1rem;font-size:.8125rem;color:var(--color-accent-deep)}

@@ -123,10 +123,8 @@
       <h2 class="ctct__title">Dites-nous ce que vous avez à entretenir</h2>
       <p class="ctct__intro">Un devis de nettoyage ne se donne pas au mètre carré. Le matériau du sol, la fréquentation et vos créneaux pèsent bien plus lourd que la surface. Ces questions servent à préparer la visite, pas à vous filtrer.</p>
 
-      <form class="form" id="devis" name="devis" method="POST"
-            data-netlify="true" netlify-honeypot="bot-field"
+      <form class="form" id="devis" data-valider data-conteneur=".field" name="devis" method="POST"
             enctype="multipart/form-data" novalidate>
-        <input type="hidden" name="form-name" value="devis">
         <p class="form__pot" aria-hidden="true"><label>Ne rien remplir <input name="bot-field"></label></p>
 
         <div class="form__bar" aria-hidden="true"><i id="formBar"></i></div>
@@ -138,7 +136,15 @@
           <p class="form__q" id="q-type">Vous êtes</p>
           <div class="opts" role="radiogroup" aria-labelledby="q-type">
             <label class="opt">
-              <input type="radio" name="Type d'établissement" value="Commerce ou boutique" required>
+              <input type="radio" name="Type d'établissement" value="Hôtel ou résidence de tourisme" required>
+              <span>Hôtel ou résidence de tourisme</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="Type d'établissement" value="Villa ou résidence privée">
+              <span>Villa ou résidence privée</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="Type d'établissement" value="Commerce ou boutique">
               <span>Commerce ou boutique</span>
             </label>
             <label class="opt">
@@ -511,7 +517,9 @@
 <script src="js/lib/gsap.min.js"></script>
 <script src="js/lib/ScrollTrigger.min.js"></script>
 <script src="js/global.js"></script>
+<script src="js/validation-formulaire.js"></script>
 <script src="js/contact.js"></script>
+<script src="js/envoi-devis.js"></script>
 <script src="js/lib/lenis.min.js"></script>
 <script src="js/v2.js"></script>
 </body>
